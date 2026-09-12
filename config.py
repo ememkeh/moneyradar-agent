@@ -49,4 +49,4 @@ SEEN_POSTS_FILE = "seen_posts.json"
 MAX_SEEN_POSTS_STORED = 2000
 
 # ── X (TWITTER) TOGGLE ──
-X_ENABLED = False
+X_ENABLED = True
