@@ -24,11 +24,14 @@ def send_alert(post, matched_amount):
     source_label = "🔴 Reddit" if post["source"] == "reddit" else "🐦 X"
     sub_line = f"\n📍 r/{post['subreddit']}" if post.get("subreddit") else ""
 
+    # Plain text, no Markdown — post/tweet content is unpredictable (can contain
+    # *, _, [, ] etc.) and Telegram rejects the whole message with a 400 error
+    # if Markdown parsing fails on any of it. Plain text can never break.
     message = (
-        f"💰 *New Referral Opportunity Spotted*\n\n"
+        f"💰 New Referral Opportunity Spotted\n\n"
         f"{source_label}{sub_line}\n"
         f"💵 Matched amount: {matched_amount}\n\n"
-        f"*{post['title']}*\n\n"
+        f"{post['title']}\n\n"
         f"🔗 {post['permalink']}"
     )
 
@@ -36,7 +39,6 @@ def send_alert(post, matched_amount):
     payload = {
         "chat_id": chat_id,
         "text": message,
-        "parse_mode": "Markdown",
         "disable_web_page_preview": False,
     }
 
@@ -57,7 +59,7 @@ def send_summary(new_count, scanned_count):
         return
 
     if new_count == 0:
-        return
+        return  # stay quiet on empty scans — no need to ping you every 6 hours for nothing
 
     message = f"✅ Scan complete: {new_count} new opportunit{'y' if new_count == 1 else 'ies'} found (of {scanned_count} posts scanned)."
     url = TELEGRAM_API_URL.format(token=token)
