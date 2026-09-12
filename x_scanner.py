@@ -17,6 +17,7 @@ TWITTERAPI_IO_KEY environment variable (GitHub Actions secret), and flip
 X_ENABLED = True in config.py.
 """
 import os
+import time
 import requests
 from config import X_SEARCH_QUERIES, X_ENABLED
 
@@ -41,7 +42,10 @@ def scan_x():
     headers = {"X-API-Key": api_key}
     all_posts = []
 
-    for query in X_SEARCH_QUERIES:
+    for i, query in enumerate(X_SEARCH_QUERIES):
+        if i > 0:
+            time.sleep(2)  # avoid 429 rate-limiting — space queries out
+
         params = {
             "query": f"{query} lang:en -filter:retweets",
             "queryType": "Latest",
