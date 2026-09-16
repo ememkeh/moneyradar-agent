@@ -26,13 +26,21 @@ X_SEARCH_QUERIES = [
     "invite friends earn usdt -bet -betting -casino -gambling",
     "web3 wallet referral program -bet -betting -casino -gambling",
     "referral bonus remittance app -bet -betting -casino -gambling",
+    "instant cashback crypto naira -bet -betting -casino -gambling",
+    "registration bonus crypto exchange -bet -betting -casino -gambling",
+    "welcome bonus crypto wallet -bet -betting -casino -gambling",
+    "trading bonus naira crypto -bet -betting -casino -gambling",
 ]
 
 # ── KEYWORDS THAT MUST APPEAR (post must match at least one) ──
-REFERRAL_KEYWORDS = [
+# Broadened beyond referral phrasing — cashback, registration/welcome/deposit/trading
+# bonuses, and cash rewards are all valid opportunity types, not just refer-a-friend.
+OPPORTUNITY_KEYWORDS = [
     "referral", "refer a friend", "refer and earn", "invite code",
     "invite friend", "refer friend", "referral bonus", "referral code",
     "refer & earn", "sign up bonus", "signup bonus",
+    "cashback", "instant cashback", "registration bonus", "welcome bonus",
+    "deposit bonus", "trading bonus", "cash reward", "instant reward",
 ]
 
 # ── CATEGORY KEYWORDS (post must match at least one) ──
@@ -45,11 +53,13 @@ CATEGORY_KEYWORDS = [
 ]
 
 # ── EXCLUDE KEYWORDS (post is rejected if ANY of these appear, no exceptions) ──
-# Betting/gambling per explicit request. Plus generic noise formats that aren't
-# actual referral-bonus posts (curated "alpha" recap threads, giveaway lists, airdrops).
+# Betting/gambling and gift cards per explicit request. Plus generic noise formats
+# that aren't actual opportunity posts (curated "alpha" recap threads, giveaway
+# lists, airdrops).
 EXCLUDE_KEYWORDS = [
     "bet", "betting", "casino", "gambl", "sportsbook", "wager", "odds", "parlay",
     "daily alpha", "airdrop", "giveaway list",
+    "gift card", "giftcard", "gift-card",
 ]
 
 # ── MINIMUM PAYOUT THRESHOLDS ──
