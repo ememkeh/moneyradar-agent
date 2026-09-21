@@ -48,8 +48,7 @@ def run_scan():
     seen_ids = load_seen_posts()
     print(f"Loaded {len(seen_ids)} previously-seen post IDs.")
 
-    reddit_posts = scan_all_subreddits()
-    print(f"Fetched {len(reddit_posts)} posts from Reddit.")
+   reddit_posts = []  # Reddit disabled — no API access
 
     x_posts = scan_x()
     print(f"Fetched {len(x_posts)} posts from X.")
