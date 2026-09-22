@@ -1,10 +1,10 @@
 """
-MoneyRadar Agent — X (Twitter) scanner
-Uses TwitterAPI.io — a third-party paid data provider, NOT the official X API.
+MoneyRadar Agent – X (Twitter) scanner
+Uses TwitterAPI.io – a third-party paid data provider, NOT the official X API.
 
 Why a third-party provider: X's official API costs ~$0.005 per read with no
 subscription tier under $200/month for meaningful access. TwitterAPI.io charges
-$0.15 per 1,000 tweets (about $0.00015 per tweet) — at our scan volume (4 queries
+$0.15 per 1,000 tweets (about $0.00015 per tweet) – at our scan volume (4 queries
 x 4 runs/day x ~20 results = ~320 tweets/day, ~9,600/month) that's roughly
 $1.44/month instead of ~$48-60/month on the official API.
 
@@ -16,11 +16,13 @@ Setup: sign up at https://twitterapi.io/dashboard, get an API key, set it as the
 TWITTERAPI_IO_KEY environment variable (GitHub Actions secret), and flip
 X_ENABLED = True in config.py.
 """
+
 import os
 import time
 import requests
 from config import X_SEARCH_QUERIES, X_ENABLED
 from datetime import date, timedelta
+
 TWITTERAPI_IO_URL = "https://api.twitterapi.io/twitter/tweet/advanced_search"
 
 
@@ -41,13 +43,14 @@ def scan_x():
 
     headers = {"X-API-Key": api_key}
     all_posts = []
-since_timestamp = int(time.mktime((date.today() - timedelta(days=30)).timetuple()))
+    since_timestamp = int(time.mktime((date.today() - timedelta(days=30)).timetuple()))
+
     for i, query in enumerate(X_SEARCH_QUERIES):
         if i > 0:
             time.sleep(2)  # avoid 429 rate-limiting — space queries out
 
         params = {
-           "query": f"{query} lang:en -filter:retweets since_time:{since_timestamp}",
+            "query": f"{query} lang:en -filter:retweets since_time:{since_timestamp}",
             "queryType": "Latest",
         }
         try:
