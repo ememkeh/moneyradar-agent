@@ -20,7 +20,7 @@ import os
 import time
 import requests
 from config import X_SEARCH_QUERIES, X_ENABLED
-
+from datetime import date, timedelta
 TWITTERAPI_IO_URL = "https://api.twitterapi.io/twitter/tweet/advanced_search"
 
 
@@ -41,13 +41,13 @@ def scan_x():
 
     headers = {"X-API-Key": api_key}
     all_posts = []
-
+since_timestamp = int(time.mktime((date.today() - timedelta(days=30)).timetuple()))
     for i, query in enumerate(X_SEARCH_QUERIES):
         if i > 0:
             time.sleep(2)  # avoid 429 rate-limiting — space queries out
 
         params = {
-            "query": f"{query} lang:en -filter:retweets",
+           "query": f"{query} lang:en -filter:retweets since_time:{since_timestamp}",
             "queryType": "Latest",
         }
         try:
@@ -66,6 +66,7 @@ def scan_x():
                     "permalink": tweet.get("url") or f"https://x.com/i/web/status/{tweet_id}",
                     "subreddit": None,
                     "author": author.get("userName", ""),
+                    "created_at": tweet.get("createdAt", ""),
                 })
         except requests.RequestException as e:
             print(f"[x_scanner] Failed to search '{query}': {e}")
