@@ -1,3 +1,48 @@
+"""
+MoneyRadar Agent – Main orchestrator
+Run this on a schedule (hourly via GitHub Actions – see .github/workflows/scan.yml).
+
+What it does each run:
+1. Scans X (if enabled + token present)
+2. Filters posts for: opportunity keyword + fintech/crypto/wallet category + amount ≥ ₦500 or $1
+   (rejects betting/gambling/gift-card content and generic noise formats regardless of amount)
+3. Skips posts already alerted on (dedupe via seen_posts.json)
+4. Skips a second alert from the same X author on the same day (prevents one
+   prolific account's daily thread from generating repeat pings)
+5. Runs a Claude Haiku check on anything that survives steps 2-4, to catch vague
+   hype and airdrop-farming pitches that keyword-matching alone can't tell apart
+   from a genuine offer (skipped automatically if ANTHROPIC_API_KEY isn't set)
+6. Sends a Telegram alert for each new qualifying post
+"""
+
+import json
+import os
+from datetime import date
+
+from config import SEEN_POSTS_FILE, MAX_SEEN_POSTS_STORED
+from reddit_scanner import scan_all_subreddits
+from x_scanner import scan_x
+from filters import evaluate_post
+from ai_verify import verify_opportunity
+from telegram_alert import send_alert, send_summary
+
+
+def load_seen_posts():
+    if os.path.exists(SEEN_POSTS_FILE):
+        with open(SEEN_POSTS_FILE, "r") as f:
+            return set(json.load(f))
+    return set()
+
+
+def save_seen_posts(seen_ids):
+    # Keep the file from growing forever – drop oldest when over the cap.
+    ids_list = list(seen_ids)
+    if len(ids_list) > MAX_SEEN_POSTS_STORED:
+        ids_list = ids_list[-MAX_SEEN_POSTS_STORED:]
+    with open(SEEN_POSTS_FILE, "w") as f:
+        json.dump(ids_list, f)
+
+
 def run_scan():
     print("=== MoneyRadar Agent – starting scan ===")
 
