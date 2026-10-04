@@ -1,17 +1,17 @@
 """
 MoneyRadar Agent – Main orchestrator
-Run this on a schedule (hourly via GitHub Actions – see .github/workflows/scan.yml).
+Run this on a schedule (every 2 hours via GitHub Actions – see .github/workflows/scan.yml).
 
 What it does each run:
-1. Scans X (if enabled + token present)
-2. Filters posts for: opportunity keyword + fintech/crypto/wallet category + amount ≥ ₦500 or $1
-   (rejects betting/gambling/gift-card content and generic noise formats regardless of amount)
+1. Scans X (if enabled + token present) and public Telegram channels (if enabled)
+2. Filters posts: cash offers need an opportunity keyword + category + amount ≥ ₦500 / $1 / ₩1500;
+   task airdrops and convertible points campaigns pass without a stated amount
+   (rejects betting/gambling/gift-card/scam content regardless)
 3. Skips posts already alerted on (dedupe via seen_posts.json)
-4. Skips a second alert from the same X author on the same day (prevents one
-   prolific account's daily thread from generating repeat pings)
-5. Runs a Claude Haiku check on anything that survives steps 2-4, to catch vague
-   hype and airdrop-farming pitches that keyword-matching alone can't tell apart
-   from a genuine offer (skipped automatically if ANTHROPIC_API_KEY isn't set)
+4. Skips a second alert from the same X author on the same day (X only — exchange
+   Telegram channels often post several real campaigns a day)
+5. Runs a Claude Haiku check that confirms the post is real and live, picks the tier
+   (💰 cash / 🪂 airdrop / 🎯 points) and writes a one-line English summary
 6. Sends a Telegram alert for each new qualifying post
 """
 
@@ -19,11 +19,11 @@ import json
 import os
 from datetime import date
 
-from config import SEEN_POSTS_FILE, MAX_SEEN_POSTS_STORED
-from reddit_scanner import scan_all_subreddits
+from config import SEEN_POSTS_FILE, MAX_SEEN_POSTS_STORED, TELEGRAM_ENABLED, TIER_LABELS
 from x_scanner import scan_x
+from telegram_scanner import scan_telegram_channels
 from filters import evaluate_post
-from ai_verify import verify_opportunity
+from ai_verify import classify_opportunity
 from telegram_alert import send_alert, send_summary
 
 
@@ -50,10 +50,20 @@ def run_scan():
     print(f"Loaded {len(seen_ids)} previously-seen post IDs.")
 
     reddit_posts = []  # Reddit disabled — no API access
+
     x_posts = scan_x()
     print(f"Fetched {len(x_posts)} posts from X.")
 
-    all_posts = reddit_posts + x_posts
+    telegram_posts = []
+    if TELEGRAM_ENABLED:
+        try:
+            telegram_posts = scan_telegram_channels()
+        except Exception as e:
+            # A Telegram failure should never stop X alerts from going out
+            print(f"[telegram] scanner failed, skipping this run: {e}")
+    print(f"Fetched {len(telegram_posts)} posts from Telegram channels.")
+
+    all_posts = reddit_posts + x_posts + telegram_posts
     new_alerts = 0
     today_str = date.today().isoformat()
 
@@ -67,23 +77,32 @@ def run_scan():
         if not result["passes"]:
             continue  # silently skip — no need to log every non-match
 
-        # Same-day author dedupe: skip if this author already triggered an alert today.
+        # Same-day author dedupe — X only. Checked here, but only recorded
+        # after the AI approves, so a rejected post doesn't block that
+        # author's genuine offer later the same day.
         author = post.get("author")
-        if author:
+        author_key = None
+        if author and post.get("source") != "telegram":
             author_key = f"authorday_{author}_{today_str}"
             if author_key in seen_ids:
                 print(f"⏭️  SKIPPED (already alerted this author today): {post['title'][:60]}")
                 continue
-            seen_ids.add(author_key)
 
-        # AI verification: catches vague hype / airdrop-farming pitches / expired
-        # offers that keyword-matching alone can't distinguish from a real offer.
-        verified, ai_reason = verify_opportunity(post["title"], post["body"])
-        if not verified:
-            print(f"🤖 AI REJECTED: {post['title'][:60]} — {ai_reason}")
+        # AI verification: confirms it's real + live, picks the tier, writes an English summary.
+        verdict = classify_opportunity(post["title"], post["body"], result["tier_hint"])
+        if not verdict["verified"]:
+            print(f"🤖 AI REJECTED: {post['title'][:60]} — {verdict['reason']}")
             continue
 
-        print(f"✅ MATCH: {post['title'][:80]} ({result['matched_amount']})")
+        if author_key:
+            seen_ids.add(author_key)
+
+        # Extra fields for telegram_alert.py (ignored by older versions of it)
+        post["tier"] = verdict["tier"]
+        post["tier_label"] = TIER_LABELS.get(verdict["tier"], "")
+        post["summary_en"] = verdict["summary_en"]
+
+        print(f"✅ MATCH [{verdict['tier']}]: {post['title'][:80]} ({result['matched_amount']})")
         success = send_alert(post, result["matched_amount"])
         if success:
             new_alerts += 1
