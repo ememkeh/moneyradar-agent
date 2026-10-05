@@ -39,10 +39,10 @@ NAIRA_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
-# Matches: $5, USD5, 5 usd, 5 dollars, 10 USDT, 10U, 10 USDC, 5美元, 100刀
+# Matches: $5, 18$, USD5, 5 usd, 5 dollars, 10 USDT, 10U, 10 USDC, 5美元, 100刀
 USD_PATTERN = re.compile(
     r'(?:\$|\busd[tc]?|美元|美金)\s*' + _NUM +
-    r'|' + _NUM + r'\s*(?:usd[tc]?\b|dollars?\b|美元|美金|刀|u(?![a-z]))',
+    r'|' + _NUM + r'\s*(?:usd[tc]?\b|dollars?\b|美元|美金|刀|u(?![a-z])|\$)',
     re.IGNORECASE,
 )
 
