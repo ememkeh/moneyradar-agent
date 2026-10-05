@@ -27,16 +27,43 @@ from ai_verify import classify_opportunity
 from telegram_alert import send_alert, send_summary
 
 
+class SeenPosts:
+    """
+    A set that remembers insertion order, so the oldest IDs are the ones
+    dropped when the file hits MAX_SEEN_POSTS_STORED. (A plain set has no
+    order — trimming it dropped random IDs, including fresh ones, which
+    could cause repeat alerts.)
+    """
+    def __init__(self, ids=None):
+        self._ids = dict.fromkeys(ids or [])
+
+    def add(self, item):
+        self._ids.pop(item, None)   # re-adding moves it to the newest end
+        self._ids[item] = None
+
+    def __contains__(self, item):
+        return item in self._ids
+
+    def __len__(self):
+        return len(self._ids)
+
+    def as_list(self):
+        return list(self._ids)
+
+
 def load_seen_posts():
     if os.path.exists(SEEN_POSTS_FILE):
-        with open(SEEN_POSTS_FILE, "r") as f:
-            return set(json.load(f))
-    return set()
+        try:
+            with open(SEEN_POSTS_FILE, "r") as f:
+                return SeenPosts(json.load(f))
+        except (ValueError, OSError) as e:
+            print(f"Could not read {SEEN_POSTS_FILE} ({e}) — starting fresh.")
+    return SeenPosts()
 
 
 def save_seen_posts(seen_ids):
     # Keep the file from growing forever – drop oldest when over the cap.
-    ids_list = list(seen_ids)
+    ids_list = seen_ids.as_list()
     if len(ids_list) > MAX_SEEN_POSTS_STORED:
         ids_list = ids_list[-MAX_SEEN_POSTS_STORED:]
     with open(SEEN_POSTS_FILE, "w") as f:
