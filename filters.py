@@ -13,7 +13,25 @@ from config import (
     MIN_NAIRA, MIN_USD, MIN_KRW,
 )
 
-_NUM = r'(\d[\d,]*(?:\.\d+)?)'
+# Number with optional size suffix: 150, 1,500, 2.5, 150K, 4M, 1.2B, 5万, 3千
+_NUM = r'(\d[\d,]*(?:\.\d+)?(?:\s*(?:k|m|b|mn|bn|million|billion|thousand)(?![a-z])|万|千)?)'
+
+_SUFFIX = {
+    "k": 1e3, "thousand": 1e3, "千": 1e3,
+    "m": 1e6, "mn": 1e6, "million": 1e6,
+    "b": 1e9, "bn": 1e9, "billion": 1e9,
+    "万": 1e4,
+}
+_SPLIT_NUM = re.compile(r'^([\d,]*\.?\d+)\s*(.*)$')
+
+
+def _to_number(raw):
+    """'150K' -> 150000.0, '1,500' -> 1500.0, '5万' -> 50000.0"""
+    m = _SPLIT_NUM.match(raw.strip().lower())
+    if not m:
+        raise ValueError(raw)
+    value = float(m.group(1).replace(",", ""))
+    return value * _SUFFIX.get(m.group(2), 1)
 
 # Matches: ₦500, N500, 500 naira, ngn500, ₦ 1,000, N1000
 NAIRA_PATTERN = re.compile(
@@ -40,7 +58,7 @@ def _extract_amount(pattern, text):
         for group in match.groups():
             if group:
                 try:
-                    amounts.append(float(group.replace(",", "")))
+                    amounts.append(_to_number(group))
                 except ValueError:
                     continue
     return max(amounts) if amounts else None
