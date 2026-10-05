@@ -43,6 +43,17 @@ X_SEARCH_QUERIES = [
     f'("airdrop is live" OR "claim is live" OR "eligibility checker" OR "claim now") {_X_EXCLUDE}',
     # points that convert to cash right away
     f'(points OR xp) ("convert to usdt" OR "redeem for usdt" OR "swap to usdt" OR "withdraw as usdt") {_X_EXCLUDE}',
+    # KOL referral-app posts ("FREE $18 + $1 per ref", "enter code", "instant withdrawal")
+    f'("refer friends" OR "per referral" OR "per ref" OR "referral code" OR "invite code") ("instant withdrawal" OR "withdraw instantly" OR "withdrawn directly" OR "instant payment" OR "withdraw to your wallet") {_X_EXCLUDE}',
+    f'("enter code" OR "bind referral code" OR "use my code" OR "use code") (rewards OR bonus OR "free") (app OR wallet OR withdraw) {_X_EXCLUDE}',
+    # free credit -> cash apps (Phygitals-style: ref credit -> open pack -> sell instantly)
+    f'("open a pack" OR "open packs" OR "sell instantly" OR "instant sell" OR "sell back") (referral OR "per ref" OR "free" OR "sign up") {_X_EXCLUDE}',
+    # naira — any app, especially new ones launching referral programs
+    f'("just launched" OR "new app" OR "now live" OR "launching" OR "beta") (referral OR "refer and earn" OR "invite friends" OR "sign up bonus") (naira OR ngn OR nigeria OR nigerians) {_X_EXCLUDE}',
+    f'("referral program" OR "refer and earn" OR "referral bonus" OR "per referral" OR "per invite") (naira OR ngn OR nigeria OR nigerians) {_X_EXCLUDE}',
+    f'(naira OR ngn) ("sign up" OR "welcome bonus" OR bonus OR cashback OR "earn") (app OR withdraw OR bank) {_X_EXCLUDE}',
+    f'(nigeria OR nigerians OR naija) ("free money" OR "earn money" OR "get paid" OR "instant payment") (app OR "sign up" OR referral) {_X_EXCLUDE}',
+    f'("withdraw to your bank" OR "withdraw to bank" OR "free airtime" OR "free data") (app OR "sign up" OR referral OR earn) {_X_EXCLUDE}',
 ]
 
 # Chinese — needs the updated x_scanner.py (uses lang:zh). Not used until then.
@@ -120,6 +131,10 @@ OPPORTUNITY_KEYWORDS = [
     "bonus code", "task reward", "complete task", "quest reward",
     "sign up and get", "deposit and get", "new user", "new users get",
     "first deposit", "promo code",
+    "refer friends", "per referral", "per ref", "enter code", "use my code",
+    "use code", "instant withdrawal", "withdraw instantly", "instant payment",
+    "claim your free", "free bonus", "bonus", "free airtime", "free data",
+    "earn ₦", "get ₦", "free ₦",
     # chinese
     "邀请", "返佣", "注册奖励", "新用户", "新人", "福利", "奖励", "领取",
     # korean
@@ -152,11 +167,25 @@ CATEGORY_KEYWORDS = [
     "defi", "web3", "virtual card", "neobank", "naira", "cash app", "p2p",
     "solana", "polymarket", "international transfer", "money transfer", "send money",
     "binance", "bybit", "okx", "bitget", "kucoin", "mexc", "gate.io", "bnb",
+    "withdraw", "withdrawal", "withdrawn", "cash out",
+    # naira / nigeria (any app — names below are just extra hits, not a limit)
+    "nigeria", "nigerian", "nigerians", "naija", "bank account", "to your bank",
+    "₦", "ngn", "opay", "palmpay", "moniepoint", "kuda", "paga", "chipper",
+    "fairmoney", "piggyvest", "cowrywise", "risevest", "geegpay", "raenest",
+    "cleva", "airtime", "bank transfer",
     # chinese
     "币", "钱包", "交易所", "链上", "加密", "web3",
     # korean
     "코인", "지갑", "거래소", "가상자산",
 ]
+
+# ── FREE CREDIT THAT TURNS INTO CASH ──
+# Apps that pay referral/signup rewards as in-app credit you can turn into
+# withdrawable money — e.g. Phygitals: $1 per referral -> open a pack -> sell
+# the card instantly for cash. True = alert on these (no deposit needed).
+# False = skip anything pack / mystery-box based.
+ALLOW_FREE_CHANCE_CREDIT = True
+
 
 # ── EXCLUDE KEYWORDS (post is rejected if ANY of these appear) ──
 # Betting/gambling and gift cards per explicit request, generic noise
@@ -189,7 +218,7 @@ SCAN_FREQUENCY_HOURS = 2
 # ── DEDUPE ──
 # Posts already alerted on are stored here so you don't get repeat pings.
 SEEN_POSTS_FILE = "seen_posts.json"
-MAX_SEEN_POSTS_STORED = 2000  # oldest entries drop off after this many
+MAX_SEEN_POSTS_STORED = 20000  # oldest entries drop off after this many (~6 days at current volume)
 
 
 # ── X (TWITTER) TOGGLE ──
