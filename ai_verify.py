@@ -32,7 +32,10 @@ currently-live opportunity, and which tier it belongs to.
 TIERS:
 - "cash": a specific stated reward in money or a named token amount — referral, \
 signup/welcome, deposit or trading bonuses, cashback, survey rewards, task/quest \
-rewards with a fixed payout, exchange campaigns with a fixed per-user reward.
+rewards with a fixed payout, exchange campaigns with a fixed per-user reward. \
+"cash" means every eligible user gets a stated amount. A prize pool, leaderboard, \
+raffle, lucky draw or "N random winners" is NOT cash — the pool size is not the \
+user's reward. Classify those as "airdrop" if they have concrete tasks, else reject.
 - "airdrop": a live task-based airdrop or campaign where doable steps (connect X, \
 follow, join Telegram/Discord, create an account, deposit or trade a set amount, \
 Galxe/Zealy/Layer3/TaskOn quests, testnet interactions) make the user eligible for \
@@ -55,6 +58,9 @@ airdrop that already distributed
 more", claim links on lookalike/unofficial domains asking for wallet signatures, \
 "drop your wallet address" engagement bait, guaranteed returns, impersonating an exchange
 - Sells something: paid groups, VIP signals, courses, paid promotion slots
+- Is a personal farming update or KOL commentary rather than a campaign: "just added \
+this to my farm list", "been farming X", "here's what I did", threads reviewing a \
+project — unless it also gives the official link and the exact steps to qualify
 
 summary_en: one English line, max 25 words — what it is, the reward, the main steps. \
 Translate if the post isn't in English. Empty string if rejected.
