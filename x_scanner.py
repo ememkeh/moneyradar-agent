@@ -32,10 +32,10 @@ TWITTERAPI_IO_URL = "https://api.twitterapi.io/twitter/tweet/advanced_search"
 # Which language sets to run. Remove "zh" or "ko" to switch them off.
 X_LANGUAGES = ["en", "zh", "ko"]
 
-# Only fetch tweets from the last N days. Runs are every 2 hours and dedupe
-# catches repeats, so a short window keeps expired offers out.
-# (Was 30 days — most of what came back that old had already ended.)
+# Fallback window when main.py doesn't pass a "since" time (first run, or an
+# old main.py). Normally the scanner reads only tweets since the last run.
 X_LOOKBACK_DAYS = 3
+X_MAX_PAGES = getattr(config, "X_MAX_PAGES", 3)
 
 
 def _query_sets():
@@ -46,7 +46,7 @@ def _query_sets():
     return [s for s in sets if s.get("lang") in X_LANGUAGES and s.get("queries")]
 
 
-def scan_x():
+def scan_x(since_timestamp=None):
     """
     Returns a list of normalized post dicts from X via TwitterAPI.io, or an
     empty list if X_ENABLED is False or no API key is configured.
@@ -63,8 +63,11 @@ def scan_x():
 
     headers = {"X-API-Key": api_key}
     all_posts = []
-    since_dt = datetime.now(timezone.utc) - timedelta(days=X_LOOKBACK_DAYS)
-    since_timestamp = int(since_dt.timestamp())
+    if not since_timestamp:
+        since_dt = datetime.now(timezone.utc) - timedelta(days=X_LOOKBACK_DAYS)
+        since_timestamp = int(since_dt.timestamp())
+    since_timestamp = int(since_timestamp)
+    print(f"[x_scanner] reading tweets since {datetime.fromtimestamp(since_timestamp, timezone.utc):%Y-%m-%d %H:%M} UTC, up to {X_MAX_PAGES} page(s) per query")
 
     first = True
     for qset in _query_sets():
@@ -76,14 +79,26 @@ def scan_x():
                 time.sleep(2)  # avoid 429 rate-limiting — space queries out
             first = False
 
-            params = {
-                "query": f"{query} lang:{lang} -filter:retweets since_time:{since_timestamp}",
-                "queryType": "Latest",
-            }
-            try:
-                resp = requests.get(TWITTERAPI_IO_URL, headers=headers, params=params, timeout=20)
-                resp.raise_for_status()
-                data = resp.json()
+            cursor = ""
+            for page in range(X_MAX_PAGES):
+                if page > 0:
+                    time.sleep(1)
+                params = {
+                    "query": f"{query} lang:{lang} -filter:retweets since_time:{since_timestamp}",
+                    "queryType": "Latest",
+                    "cursor": cursor,
+                }
+                try:
+                    resp = requests.get(TWITTERAPI_IO_URL, headers=headers, params=params, timeout=20)
+                    resp.raise_for_status()
+                    data = resp.json()
+                except requests.RequestException as e:
+                    print(f"[x_scanner] Failed to search '{query}': {e}")
+                    break
+                except ValueError as e:
+                    print(f"[x_scanner] Bad JSON for '{query}': {e}")
+                    break
+
                 for tweet in data.get("tweets", []) or []:
                     tweet_id = tweet.get("id", "")
                     if not tweet_id:
@@ -104,10 +119,12 @@ def scan_x():
                         "created_at": tweet.get("createdAt", ""),
                     })
                     lang_count += 1
-            except requests.RequestException as e:
-                print(f"[x_scanner] Failed to search '{query}': {e}")
-            except ValueError as e:
-                print(f"[x_scanner] Bad JSON for '{query}': {e}")
+
+                cursor = data.get("next_cursor") or ""
+                if not data.get("has_next_page") or not cursor:
+                    break
+                if page == X_MAX_PAGES - 1:
+                    print(f"[x_scanner] page limit hit for '{query[:50]}…' — raise X_MAX_PAGES in config.py if this shows often")
 
         print(f"[x_scanner] {lang}: {lang_count} tweets from {len(qset['queries'])} queries")
 
