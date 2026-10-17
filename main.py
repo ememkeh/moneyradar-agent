@@ -17,13 +17,21 @@ What it does each run:
 
 import json
 import os
-from datetime import date
+import re
+from difflib import SequenceMatcher
+from datetime import date, timedelta
 
 from config import SEEN_POSTS_FILE, MAX_SEEN_POSTS_STORED, TELEGRAM_ENABLED, TIER_LABELS
+import config
+
+# How far back to remember alerted campaigns. A repost of the same campaign
+# (same reward + tasks) inside this window is skipped; a NEW campaign from the
+# same project always alerts. (Override by adding PROJECT_DEDUPE_DAYS to config.py)
+PROJECT_DEDUPE_DAYS = getattr(config, "PROJECT_DEDUPE_DAYS", 7)
 from x_scanner import scan_x
 from telegram_scanner import scan_telegram_channels
 from filters import evaluate_post
-from ai_verify import classify_opportunity
+from ai_verify import classify_opportunity, is_same_campaign
 from telegram_alert import send_alert, send_summary
 
 
@@ -49,6 +57,80 @@ class SeenPosts:
 
     def as_list(self):
         return list(self._ids)
+
+    def keys_starting(self, prefix):
+        return [k for k in self._ids if k.startswith(prefix)]
+
+
+# Alerted campaigns are stored inside seen_posts.json as text entries:
+#   "alert|<project>|<YYYY-MM-DD>|<english summary>"
+def _recent_campaigns(seen_ids, project, days):
+    cutoff = (date.today() - timedelta(days=days - 1)).isoformat()
+    summaries = []
+    for key in seen_ids.keys_starting(f"alert|{project}|"):
+        parts = key.split("|", 3)
+        if len(parts) == 4 and parts[2] >= cutoff:
+            summaries.append(parts[3])
+    return summaries
+
+
+# ── FREE COPY-PASTE CHECK (runs before Claude, costs nothing) ──
+# KOLs often post near-identical template text. If a new post is almost the
+# same text as one already alerted (or confirmed as a repeat), skip it without
+# calling Claude. Safety rules so real opportunities aren't missed:
+#   - only compares against posts already ALERTED in the last PROJECT_DEDUPE_DAYS
+#   - needs >= 85% identical text (links and ref codes ignored)
+#   - every number must match — a different reward amount, date or season
+#     number always goes to Claude
+COPY_SIMILARITY = 0.85
+_URL_RE = re.compile(r"https?://\S+|t\.co/\S+|\b\w+\.(?:com|xyz|io|me|app|ai|org|net)/\S*", re.I)
+_CODE_RE = re.compile(r"\b(?=\w*\d)(?=\w*[a-z])\w{6,}\b", re.I)   # ref codes like ff96d9c8c6e0
+_NUM_RE = re.compile(r"\d+(?:[.,]\d+)*")
+
+
+def _normalize(text):
+    text = (text or "").lower()
+    text = _URL_RE.sub(" ", text)
+    text = _CODE_RE.sub(" ", text)
+    text = re.sub(r"[^\w\s]", " ", text)      # drop emoji/punctuation, keep CJK
+    return re.sub(r"\s+", " ", text).strip()[:400]
+
+
+def _numbers(norm):
+    return set(_NUM_RE.findall(norm))
+
+
+def _recent_texts(seen_ids, days):
+    cutoff = (date.today() - timedelta(days=days - 1)).isoformat()
+    texts = []
+    for key in seen_ids.keys_starting("txt|"):
+        parts = key.split("|", 2)
+        if len(parts) == 3 and parts[1] >= cutoff:
+            texts.append(parts[2])
+    return texts[-300:]
+
+
+def _is_copy_paste(norm, recent_texts):
+    if len(norm) < 40:
+        return False  # too short to judge safely
+    nums = _numbers(norm)
+    for old in recent_texts:
+        if _numbers(old) != nums:
+            continue
+        sm = SequenceMatcher(None, norm, old)
+        if sm.quick_ratio() >= COPY_SIMILARITY and sm.ratio() >= COPY_SIMILARITY:
+            return True
+    return False
+
+
+def _record_text(seen_ids, norm):
+    if len(norm) >= 40:
+        seen_ids.add(f"txt|{date.today().isoformat()}|{norm}")
+
+
+def _record_campaign(seen_ids, project, summary):
+    clean = (summary or "").replace("|", "/").replace("\n", " ").strip()[:200]
+    seen_ids.add(f"alert|{project}|{date.today().isoformat()}|{clean}")
 
 
 def load_seen_posts():
@@ -115,11 +197,29 @@ def run_scan():
                 print(f"⏭️  SKIPPED (already alerted this author today): {post['title'][:60]}")
                 continue
 
+        # Free copy-paste check — near-identical to something already alerted?
+        norm = _normalize(post["body"])
+        if _is_copy_paste(norm, _recent_texts(seen_ids, PROJECT_DEDUPE_DAYS)):
+            print(f"📋 SKIPPED (copy-paste of an alerted post, no AI used): {post['title'][:60]}")
+            continue
+
         # AI verification: confirms it's real + live, picks the tier, writes an English summary.
         verdict = classify_opportunity(post["title"], post["body"], result["tier_hint"])
         if not verdict["verified"]:
             print(f"🤖 AI REJECTED: {post['title'][:60]} — {verdict['reason']}")
             continue
+
+        # Same-campaign dedupe: 10 KOLs shilling one campaign = 1 alert,
+        # but a NEW campaign from the same project still alerts.
+        project = verdict.get("project") or ""
+        if project:
+            previous = _recent_campaigns(seen_ids, project, PROJECT_DEDUPE_DAYS)
+            if previous and is_same_campaign(project, verdict["summary_en"], post["body"], previous):
+                print(f"🔁 SKIPPED (same '{project}' campaign already alerted): {post['title'][:60]}")
+                _record_text(seen_ids, norm)   # confirmed repeat — catch its copies for free next time
+                continue
+            _record_campaign(seen_ids, project, verdict["summary_en"])
+        _record_text(seen_ids, norm)
 
         if author_key:
             seen_ids.add(author_key)
