@@ -48,6 +48,13 @@ X_SEARCH_QUERIES = [
     f'("enter code" OR "bind referral code" OR "use my code" OR "use code") (rewards OR bonus OR "free") (app OR wallet OR withdraw) {_X_EXCLUDE}',
     # free credit -> cash apps (Phygitals-style: ref credit -> open pack -> sell instantly)
     f'("open a pack" OR "open packs" OR "sell instantly" OR "instant sell" OR "sell back") (referral OR "per ref" OR "free" OR "sign up") {_X_EXCLUDE}',
+    # learn-and-earn (Robinhood SUI 101, Coinbase Learn, etc.)
+    f'("learn and earn" OR "learn & earn" OR "learn to earn" OR "short lessons") (crypto OR btc OR sui OR usdc OR sol OR "free") {_X_EXCLUDE}',
+    # bitcoin / lightning sats giveaways (Breez "coffee on us", etc.)
+    f'(sats OR satoshis) ("we\'ll send you" OR "we will send" OR "first come" OR "on us" OR "free sats" OR "lightning address") {_X_EXCLUDE}',
+    # "free $5 of X" / "we'll send you" style giveaways from apps and brands
+    f'("we\'ll send you" OR "first come, first served" OR "first come first served" OR "on us") (crypto OR wallet OR app OR usdt OR btc) {_X_EXCLUDE}',
+    f'("first trade" OR "first deposit" OR "first purchase") (bonus OR reward OR earn OR get) (crypto OR exchange OR app) {_X_EXCLUDE}',
     # naira — any app, especially new ones launching referral programs
     f'("just launched" OR "new app" OR "now live" OR "launching" OR "beta") (referral OR "refer and earn" OR "invite friends" OR "sign up bonus") (naira OR ngn OR nigeria OR nigerians) {_X_EXCLUDE}',
     f'("referral program" OR "refer and earn" OR "referral bonus" OR "per referral" OR "per invite") (naira OR ngn OR nigeria OR nigerians) {_X_EXCLUDE}',
@@ -131,6 +138,10 @@ OPPORTUNITY_KEYWORDS = [
     "bonus code", "task reward", "complete task", "quest reward",
     "sign up and get", "deposit and get", "new user", "new users get",
     "first deposit", "promo code",
+    "learn and earn", "learn & earn", "learn to earn", "we'll send you",
+    "we will send you", "first come, first served", "first come first served",
+    "fcfs", "on us", "free sats", "earn free", "get free", "free crypto",
+    "first trade", "lands in your",
     "refer friends", "per referral", "per ref", "enter code", "use my code",
     "use code", "instant withdrawal", "withdraw instantly", "instant payment",
     "claim your free", "free bonus", "bonus", "free airtime", "free data",
@@ -168,6 +179,8 @@ CATEGORY_KEYWORDS = [
     "solana", "polymarket", "international transfer", "money transfer", "send money",
     "binance", "bybit", "okx", "bitget", "kucoin", "mexc", "gate.io", "bnb",
     "withdraw", "withdrawal", "withdrawn", "cash out",
+    "sats", "satoshi", "lightning", "btc", "eth", "sol", "trx", "sui", "ton",
+    "robinhood", "coinbase", "blockchain.com", "kraken", "trust wallet",
     # naira / nigeria (any app — names below are just extra hits, not a limit)
     "nigeria", "nigerian", "nigerians", "naija", "bank account", "to your bank",
     "₦", "ngn", "opay", "palmpay", "moniepoint", "kuda", "paga", "chipper",
@@ -207,6 +220,9 @@ EXCLUDE_KEYWORDS = [
 MIN_NAIRA = 500
 MIN_USD = 1        # also applies to USDT/USDC/"U"/美元/刀
 MIN_KRW = 1500     # ~$1
+# Bitcoin sats: roughly how many sats make $1. At ~$100K BTC it's ~1,000.
+# Only used for the minimum-reward check — adjust if BTC moves a lot.
+SATS_PER_USD = 1000
 
 
 # ── SCAN FREQUENCY ──
@@ -224,3 +240,10 @@ MAX_SEEN_POSTS_STORED = 20000  # oldest entries drop off after this many (~6 day
 # ── X (TWITTER) TOGGLE ──
 # Set to True once TWITTERAPI_IO_KEY is set as a GitHub secret (see README).
 X_ENABLED = True
+
+# How many result pages (up to 20 tweets each) to read per query per run.
+# The scanner only reads tweets posted since the last successful run, so most
+# queries need 1 page. Busy queries used to lose everything past the first 20
+# — that's how offers like the Blockchain.com $5 TRX bonus slipped through.
+# Higher = fewer misses, more TwitterAPI.io credits.
+X_MAX_PAGES = 3
