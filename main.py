@@ -160,7 +160,14 @@ def run_scan():
 
     reddit_posts = []  # Reddit disabled — no API access
 
-    x_posts = scan_x()
+    # Read X only since the last successful run (minus 20 min overlap), so
+    # nothing is missed between runs and nothing old is re-paid for.
+    # Capped at 24h back in case the bot was off for a while.
+    import time as _time
+    now_ts = int(_time.time())
+    last_runs = [int(k.split("|")[1]) for k in seen_ids.keys_starting("lastrun|") if k.split("|")[1].isdigit()]
+    since_ts = max(max(last_runs) - 1200, now_ts - 86400) if last_runs else None
+    x_posts = scan_x(since_ts)
     print(f"Fetched {len(x_posts)} posts from X.")
 
     telegram_posts = []
@@ -234,6 +241,9 @@ def run_scan():
         if success:
             new_alerts += 1
 
+    for k in seen_ids.keys_starting("lastrun|"):
+        seen_ids._ids.pop(k, None)
+    seen_ids.add(f"lastrun|{now_ts}")
     save_seen_posts(seen_ids)
     send_summary(new_alerts, len(all_posts))
 
