@@ -15,6 +15,7 @@ If unset, or if the API call fails:
     guardrail, so a broken key would otherwise flood you)
 """
 import os
+import re
 import json
 import requests
 from config import TIER_LABELS, POINTS_TIER_ENABLED
@@ -71,12 +72,17 @@ or rewards that only come from recruiting people who pay
 this to my farm list", "been farming X", "here's what I did", threads reviewing a \
 project — unless it also gives the official link and the exact steps to qualify
 
+project: the name of the project/app/exchange the offer is FOR (not the poster), \
+lowercase, no @ or spaces, e.g. "conso", "phygitals", "bybit". Use the official \
+name even if the post only tags its @handle (@conso_xyz -> "conso"). Empty string \
+if rejected.
+
 summary_en: one English line, max 25 words — what it is, the reward, the main steps. \
 Translate if the post isn't in English. Empty string if rejected.
 
 Respond with ONLY a JSON object, nothing else:
 {"verified": true or false, "tier": "cash" | "airdrop" | "points" | "none", \
-"reason": "one short sentence", "summary_en": "one line"}"""
+"reason": "one short sentence", "project": "name", "summary_en": "one line"}"""
 
 _CHANCE_ALLOWED = """ — EXCEPTION: free in-app credit (from signup or \
 referrals, no deposit needed) that the user can turn into withdrawable cash counts \
@@ -92,13 +98,13 @@ SYSTEM_PROMPT = SYSTEM_PROMPT.replace(
 def _fail_result(tier_hint, why):
     """What to return when the AI check can't run."""
     if tier_hint in (None, "cash"):
-        return {"verified": True, "tier": "cash", "reason": why, "summary_en": ""}
-    return {"verified": False, "tier": tier_hint, "reason": why, "summary_en": ""}
+        return {"verified": True, "tier": "cash", "reason": why, "summary_en": "", "project": ""}
+    return {"verified": False, "tier": tier_hint, "reason": why, "summary_en": "", "project": ""}
 
 
 def classify_opportunity(title, body, tier_hint=None):
     """
-    Returns a dict: { verified: bool, tier: str, reason: str, summary_en: str }
+    Returns a dict: { verified: bool, tier: str, reason: str, summary_en: str, project: str }
     tier is "cash", "airdrop" or "points" (or "none" when rejected).
     tier_hint is the keyword filter's guess from evaluate_post().
     """
@@ -142,6 +148,7 @@ def classify_opportunity(title, body, tier_hint=None):
         tier = str(verdict.get("tier", "none")).lower()
         reason = verdict.get("reason", "")
         summary = verdict.get("summary_en", "")
+        project = re.sub(r"[^a-z0-9]", "", str(verdict.get("project", "")).lower())
 
         if verified and tier not in VALID_TIERS:
             tier = tier_hint if tier_hint in VALID_TIERS else "cash"
@@ -149,11 +156,75 @@ def classify_opportunity(title, body, tier_hint=None):
             verified = False
             reason = "points tier disabled in config"
 
-        return {"verified": verified, "tier": tier, "reason": reason, "summary_en": summary}
+        return {"verified": verified, "tier": tier, "reason": reason, "summary_en": summary, "project": project}
 
     except Exception as e:
         print(f"[ai_verify] AI check failed: {e}")
         return _fail_result(tier_hint, "AI check failed — passed through" if tier_hint in (None, "cash") else "AI check failed — dropped")
+
+
+SAME_CAMPAIGN_PROMPT = """You compare a new earning-opportunity post against alerts \
+already sent for the same project. Decide if the new post is the SAME campaign \
+(same reward and same tasks/steps — just reposted, reworded, or shared by a \
+different person, or a minor reminder/update about it) or a NEW campaign \
+(different reward, different tasks, a new season/round/phase, a new claim \
+opening, a new product or new referral program).
+
+Respond with ONLY a JSON object:
+{"same": true or false, "reason": "one short sentence"}"""
+
+
+def is_same_campaign(project, new_summary, new_text, previous_summaries):
+    """
+    True if the new post is a repeat of a campaign already alerted for this
+    project. If the AI check can't run, compares summaries exactly (so a
+    broken key doesn't block genuinely new campaigns, and exact repeats
+    still get caught).
+    """
+    if not previous_summaries:
+        return False
+
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        return new_summary.strip().lower() in [s.strip().lower() for s in previous_summaries]
+
+    prev = "\n".join(f"- {s}" for s in previous_summaries[-10:])
+    content = (
+        f"Project: {project}\n\n"
+        f"Alerts already sent:\n{prev}\n\n"
+        f"New post summary: {new_summary}\n\n"
+        f"New post text:\n{new_text[:1500]}"
+    )
+    try:
+        resp = requests.post(
+            ANTHROPIC_API_URL,
+            headers={
+                "x-api-key": api_key,
+                "anthropic-version": "2023-06-01",
+                "content-type": "application/json",
+            },
+            json={
+                "model": MODEL,
+                "max_tokens": 120,
+                "system": SAME_CAMPAIGN_PROMPT,
+                "messages": [{"role": "user", "content": content}],
+            },
+            timeout=20,
+        )
+        resp.raise_for_status()
+        raw = resp.json()["content"][0]["text"].strip()
+        if raw.startswith("```"):
+            raw = raw.strip("`")
+            if raw.startswith("json"):
+                raw = raw[4:]
+            raw = raw.strip()
+        verdict = json.loads(raw)
+        same = bool(verdict.get("same", False))
+        print(f"[ai_verify] campaign check '{project}': {'SAME' if same else 'NEW'} — {verdict.get('reason', '')}")
+        return same
+    except Exception as e:
+        print(f"[ai_verify] campaign check failed: {e}")
+        return new_summary.strip().lower() in [s.strip().lower() for s in previous_summaries]
 
 
 def verify_opportunity(title, body, tier_hint=None):
