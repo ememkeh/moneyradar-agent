@@ -12,6 +12,9 @@ from config import (
     AIRDROP_KEYWORDS, POINTS_KEYWORDS, CONVERSION_KEYWORDS,
     MIN_NAIRA, MIN_USD, MIN_KRW,
 )
+import config
+
+SATS_PER_USD = getattr(config, "SATS_PER_USD", 1000)
 
 # Number with optional size suffix: 150, 1,500, 2.5, 150K, 4M, 1.2B, 5万, 3千
 _NUM = r'(\d[\d,]*(?:\.\d+)?(?:\s*(?:k|m|b|mn|bn|million|billion|thousand)(?![a-z])|万|千)?)'
@@ -49,6 +52,24 @@ USD_PATTERN = re.compile(
 # Matches: ₩1500, 1,500원, 5만원 (= 50,000)
 KRW_PATTERN = re.compile(r'₩\s*' + _NUM + r'|' + _NUM + r'\s*원')
 KRW_MAN_PATTERN = re.compile(r'(\d+(?:\.\d+)?)\s*만\s*원')
+
+
+# Matches: 5,000 sats, 10k sats, 21000 satoshis
+SATS_PATTERN = re.compile(_NUM + r'\s*(?:sats?|satoshis?)\b', re.IGNORECASE)
+
+# Matches token rewards with no $ figure: 16.5 TRX, 0.005 BTC, 10 SUI, 2 SOL
+TOKEN_PATTERN = re.compile(
+    _NUM + r'\s*\$?(?:btc|eth|sol|trx|sui|bnb|ton|xrp|ada|doge|arb|op|matic|pol|avax|apt|sei|near|usde|dai)\b',
+    re.IGNORECASE,
+)
+
+# "earn $5", "get ₦1,000", "we'll send you 5,000", "free $5", "$5 of free SUI"
+EARN_AMOUNT_PATTERN = re.compile(
+    r"\b(?:get|earn|claim|receive|win|grab|bag|send you|sends you)\s+(?:up to\s+|a\s+|an\s+)?(?:[$₦₩]|usd|ngn)?\s?\d"
+    r"|\bfree\s+(?:[$₦₩]\s?)?\d"
+    r"|[$₦₩]\s?\d[\d,.]*\s*[km]?\s+(?:of\s+)?free\b",
+    re.IGNORECASE,
+)
 
 
 def _extract_amount(pattern, text):
@@ -114,7 +135,8 @@ _CONVERSION = _compile(CONVERSION_KEYWORDS)
 
 
 def has_opportunity_keyword(text):
-    return _matches_any(text.lower(), _OPPORTUNITY)
+    text_lower = text.lower()
+    return _matches_any(text_lower, _OPPORTUNITY) or bool(EARN_AMOUNT_PATTERN.search(text_lower))
 
 
 def has_category_keyword(text):
@@ -150,6 +172,20 @@ def meets_currency_threshold(text):
         return True, f"${usd_amount:,.2f}"
     if krw_amount is not None and krw_amount >= MIN_KRW:
         return True, f"₩{krw_amount:,.0f}"
+
+    sats = _extract_amount(SATS_PATTERN, text)
+    if sats is not None and sats >= SATS_PER_USD * MIN_USD:
+        return True, f"{sats:,.0f} sats"
+
+    # Token rewards can't be priced here — any stated amount passes, the AI
+    # judges whether it's worth alerting.
+    token = TOKEN_PATTERN.search(text)
+    if token:
+        try:
+            if float(token.group(1).replace(",", "").rstrip("kKmM").strip() or 0) > 0:
+                return True, token.group(0).strip()
+        except ValueError:
+            pass
 
     return False, None
 
