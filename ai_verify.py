@@ -67,7 +67,11 @@ more", claim links on lookalike/unofficial domains asking for wallet signatures,
 - Sells something: paid groups, VIP signals, courses, paid promotion slots
 - Is a pay-to-earn scheme: you must pay a fee, buy a package/level, or "invest" \
 to unlock earnings, daily returns on a deposit ("deposit ₦5,000, earn ₦500 daily"), \
-or rewards that only come from recruiting people who pay
+or rewards that only come from recruiting people who pay. NOTE: a deposit or \
+purchase the user KEEPS is fine — e.g. an exchange's "deposit $20, buy $15 of \
+crypto, get $5 bonus", or "buy a coffee and post a photo, we send 5,000 sats". \
+Those are normal "cash" offers. Only reject when money is paid AWAY or locked \
+for promised daily returns.
 - Is a personal farming update or KOL commentary rather than a campaign: "just added \
 this to my farm list", "been farming X", "here's what I did", threads reviewing a \
 project — unless it also gives the official link and the exact steps to qualify
@@ -77,7 +81,13 @@ lowercase, no @ or spaces, e.g. "conso", "phygitals", "bybit". Use the official 
 name even if the post only tags its @handle (@conso_xyz -> "conso"). Empty string \
 if rejected.
 
+Learn-and-earn offers (watch lessons, get $X of a token) and brand giveaways \
+("we'll send you 5,000 sats", "first come, first served") are "cash".
+
 summary_en: one English line, max 25 words — what it is, the reward, the main steps. \
+If the offer is limited to certain countries (stated, or a well-known US/EU-only \
+app like Robinhood), start with the region in brackets, e.g. "[US/EU only]" or \
+"[Nigeria & Ghana]". Never reject just because of region. \
 Translate if the post isn't in English. Empty string if rejected.
 
 Respond with ONLY a JSON object, nothing else:
