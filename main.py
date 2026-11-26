@@ -136,6 +136,25 @@ def _record_campaign(seen_ids, project, summary):
     seen_ids.add(f"alert|{project}|{date.today().isoformat()}|{clean}")
 
 
+def _quality(post, result, verdict):
+    """Score how useful a post is, to pick the best of several versions."""
+    score = 0
+    author = (post.get("author") or "").lower().replace("_", "")
+    project = verdict.get("project") or ""
+    if project and author and (project in author or author in project):
+        score += 100                      # the project's own account
+    level = (post.get("link_report") or {}).get("level")
+    score += {"ok": 20, "unknown": 8, "caution": 0, "danger": -60, "skip": -5}.get(level, -5)
+    if result.get("matched_amount"):
+        score += 10                       # states the reward
+    if verdict.get("summary_en"):
+        score += 5
+    if post.get("watched"):
+        score += 5                        # an account you've liked before
+    score += min(len(post.get("body") or ""), 1000) // 100   # more detail, up to +10
+    return score
+
+
 def load_seen_posts():
     if os.path.exists(SEEN_POSTS_FILE):
         try:
@@ -187,7 +206,10 @@ def run_scan():
     now_ts = int(_time.time())
     last_runs = [int(k.split("|")[1]) for k in seen_ids.keys_starting("lastrun|") if k.split("|")[1].isdigit()]
     since_ts = max(max(last_runs) - 1200, now_ts - 86400) if last_runs else None
-    x_posts = scan_x(since_ts)
+    for msg in feedback.update_watchlist(fb):
+        print(f"[sources] {msg}")
+        send_text(msg)
+    x_posts = scan_x(since_ts, fb["watched"])
     print(f"Fetched {len(x_posts)} posts from X.")
 
     telegram_posts = []
@@ -223,7 +245,9 @@ def run_scan():
         # author's genuine offer later the same day.
         author = post.get("author")
         author_key = None
-        if author and post.get("source") != "telegram":
+        # (watched accounts are exempt: a 2nd, different offer from them the same
+        #  day still comes through — repeats are caught by the campaign check)
+        if author and post.get("source") != "telegram" and not post.get("watched"):
             if feedback.is_bad_author(fb, author):
                 print(f"👎 SKIPPED (author you downvoted 2+ times, no AI used): @{author}")
                 continue
@@ -250,7 +274,8 @@ def run_scan():
         print(f"🤖 AI checking {len(candidates)} post(s) in batches of {ai_verify.BATCH_SIZE}")
     verdicts = classify_many([(p["title"], p["body"], r["tier_hint"]) for p, r, _, _ in candidates])
 
-    # ── PHASE 3: dedupe + alert ──
+    # ── PHASE 3a: keep AI-approved posts, run the link check, score them ──
+    approved = []
     for (post, result, author_key, norm), verdict in zip(candidates, verdicts):
         if not verdict["verified"]:
             if ai_verify.AI_DOWN["reason"]:
@@ -259,7 +284,15 @@ def run_scan():
                 continue
             print(f"🤖 AI REJECTED: {post['title'][:60]} — {verdict['reason']}")
             continue
+        post["link_report"] = link_check.check_post(post, fb["domain_cache"])
+        approved.append((post, result, author_key, norm, verdict))
 
+    # Best version first: when several creators post the same campaign in one
+    # scan, the clearest one is alerted and the rest are skipped as repeats.
+    approved.sort(key=lambda x: _quality(x[0], x[1], x[4]), reverse=True)
+
+    # ── PHASE 3b: dedupe + alert ──
+    for post, result, author_key, norm, verdict in approved:
         # re-check things that may have changed earlier in this same run
         if author_key and author_key in seen_ids:
             print(f"⏭️  SKIPPED (already alerted this author today): {post['title'][:60]}")
@@ -292,9 +325,8 @@ def run_scan():
         post["tier_label"] = TIER_LABELS.get(verdict["tier"], "")
         post["summary_en"] = verdict["summary_en"]
 
-        # 🛡️ link safety check (only on posts about to be alerted)
-        report = link_check.check_post(post, fb["domain_cache"])
-        post["link_report"] = report
+        # 🛡️ link safety check (done in phase 3a)
+        report = post["link_report"]
         if report["level"] == "danger":
             print(f"🚨 risky link: {report['lines']}")
             if getattr(config, "BLOCK_DANGER", False):
