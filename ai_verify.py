@@ -326,7 +326,10 @@ def classify_opportunity(title, body, tier_hint=None):
                 raw = raw[4:]
             raw = raw.strip()
 
-        return _clean_verdict(json.loads(raw), tier_hint)
+        parsed = json.loads(raw)
+        if isinstance(parsed, list):          # model answered in batch format
+            parsed = parsed[0] if parsed else {}
+        return _clean_verdict(parsed, tier_hint)
 
     except Exception as e:
         print(f"[ai_verify] AI check failed: {e}")
