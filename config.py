@@ -248,6 +248,31 @@ X_ENABLED = True
 # Higher = fewer misses, more TwitterAPI.io credits.
 X_MAX_PAGES = 3
 
+# ── ⚡ FAST LANE ──
+# The workflow now runs every 30 minutes. Every 30 min: only the accounts below
+# + your watched accounts are checked (cheap, few searches). Every ~2 hours:
+# the full keyword sweep (all languages + Telegram channels) runs as before.
+# Every post still goes through the same filters, AI check and dedupe.
+FULL_SWEEP_EVERY_MINUTES = 120
+
+# Official accounts to watch in the fast lane. Use the exact X handle (no @).
+# A wrong handle just returns nothing. Add the projects/apps you care about.
+X_OFFICIAL_ACCOUNTS = [
+    "binance", "Bybit_Official", "okx", "bitgetglobal", "kucoincom",
+    "MEXC_Official", "coinbase", "krakenfx", "gate_io",
+    "Galxe", "layer3xyz", "zealy_io",
+]
+
+# ── 🌙 QUIET HOURS ──
+# No scanning (no X/AI spend, no alerts) between these hours, your local time.
+# The first run after QUIET_END does a full catch-up sweep of everything posted
+# overnight, so nothing is missed — it just arrives when you're awake.
+# Set QUIET_HOURS_ENABLED = False to scan around the clock again.
+QUIET_HOURS_ENABLED = True
+QUIET_START = 23        # 11 pm
+QUIET_END = 6           # 6 am
+QUIET_TIMEZONE = "Africa/Lagos"
+
 # ── LINK SAFETY CHECK ──
 # Every alert shows a 🛡️ line per link (✅ official/established, 🟡 very new,
 # 🔴 lookalike or brand-new claim site). False = 🔴 alerts still come through
