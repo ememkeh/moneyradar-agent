@@ -88,11 +88,19 @@ summary_en: one English line, max 25 words — what it is, the reward, the main 
 If the offer is limited to certain countries (stated, or a well-known US/EU-only \
 app like Robinhood), start with the region in brackets, e.g. "[US/EU only]" or \
 "[Nigeria & Ghana]". Never reject just because of region. \
-Translate if the post isn't in English. Empty string if rejected.
+Translate if the post isn't in English. Empty string if rejected, UNLESS close is true.
+
+close: only for REJECTED posts — true if it was a near miss that the owner might \
+still want to see (a real-looking offer you rejected for missing details, unclear \
+reward, unclear if live, or because it resembles something he disliked). false \
+for clear junk: scams, betting, gift cards, news/price talk, paid groups, expired \
+offers, quest-platform campaigns, pay-to-earn. When close is true, still write \
+summary_en and project. Always false when verified is true.
 
 Respond with ONLY a JSON object, nothing else:
 {"verified": true or false, "tier": "cash" | "airdrop" | "points" | "none", \
-"reason": "one short sentence", "project": "name", "summary_en": "one line"}"""
+"reason": "one short sentence", "project": "name", "summary_en": "one line", \
+"close": true or false}"""
 
 _CHANCE_ALLOWED = """ — EXCEPTION: free in-app credit (from signup or \
 referrals, no deposit needed) that the user can turn into withdrawable cash counts \
@@ -120,7 +128,8 @@ _RESPOND_BATCH = """You will receive several posts, each starting with "### POST
 Judge each one on its own. Respond with ONLY a JSON array, one object per post, \
 in the same order, nothing else:
 [{"n": 1, "verified": true or false, "tier": "cash" | "airdrop" | "points" | "none", \
-"reason": "one short sentence", "project": "name", "summary_en": "one line"}, ...]"""
+"reason": "one short sentence", "project": "name", "summary_en": "one line", \
+"close": true or false}, ...]"""
 
 
 # ── OWNER FEEDBACK (from 👍 / 👎 taps on alerts, set by feedback.py) ──
@@ -212,7 +221,10 @@ def _clean_verdict(verdict, tier_hint):
         verified = False
         reason = "points tier disabled in config"
 
-    return {"verified": verified, "tier": tier, "reason": reason, "summary_en": summary, "project": project}
+    close = bool(verdict.get("close", False)) and not verified
+    guess = tier if tier in VALID_TIERS else (tier_hint if tier_hint in VALID_TIERS else "cash")
+    return {"verified": verified, "tier": tier, "reason": reason, "summary_en": summary,
+            "project": project, "close": close, "tier_guess": guess}
 
 
 BATCH_SIZE = 10
