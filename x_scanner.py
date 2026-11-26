@@ -53,10 +53,13 @@ def _watched_queries(accounts, per_query=10):
             for i in range(0, len(accounts), per_query)]
 
 
-def scan_x(since_timestamp=None, watched=None):
+def scan_x(since_timestamp=None, watched=None, keywords=True, accounts_since=None, official=None,
+           max_pages=None):
     """
     Returns a list of normalized post dicts from X via TwitterAPI.io, or an
     empty list if X_ENABLED is False or no API key is configured.
+      keywords=False   -> fast lane: skip the keyword searches
+      watched/official -> accounts read directly (since accounts_since)
     """
     if not X_ENABLED:
         print("[x_scanner] X_ENABLED is False in config.py — skipping X scan.")
@@ -68,19 +71,26 @@ def scan_x(since_timestamp=None, watched=None):
         print("[x_scanner] Set TWITTERAPI_IO_KEY as a GitHub Actions secret to activate X scanning.")
         return []
 
+    pages_cap = int(max_pages or X_MAX_PAGES)
     headers = {"X-API-Key": api_key}
     all_posts = []
     if not since_timestamp:
         since_dt = datetime.now(timezone.utc) - timedelta(days=X_LOOKBACK_DAYS)
         since_timestamp = int(since_dt.timestamp())
     since_timestamp = int(since_timestamp)
-    print(f"[x_scanner] reading tweets since {datetime.fromtimestamp(since_timestamp, timezone.utc):%Y-%m-%d %H:%M} UTC, up to {X_MAX_PAGES} page(s) per query")
+    print(f"[x_scanner] reading tweets since {datetime.fromtimestamp(since_timestamp, timezone.utc):%Y-%m-%d %H:%M} UTC, up to {pages_cap} page(s) per query")
 
-    sets = _query_sets()
+    sets = _query_sets() if keywords else []
+    acc_since = int(accounts_since or since_timestamp)
     if watched:
         # auto-discovered accounts: every post they make is read, then goes
         # through exactly the same filters + AI check as everything else
-        sets = sets + [{"lang": None, "queries": _watched_queries(watched), "watched": True}]
+        sets = sets + [{"lang": None, "queries": _watched_queries(watched), "watched": True,
+                        "since": acc_since, "label": "watched accounts"}]
+    official = [a for a in (official or []) if a.lower() not in {w.lower() for w in (watched or [])}]
+    if official:
+        sets = sets + [{"lang": None, "queries": _watched_queries(official), "since": acc_since,
+                        "label": "official accounts"}]
 
     first = True
     for qset in sets:
@@ -93,11 +103,12 @@ def scan_x(since_timestamp=None, watched=None):
             first = False
 
             cursor = ""
-            for page in range(X_MAX_PAGES):
+            for page in range(pages_cap):
                 if page > 0:
                     time.sleep(1)
                 params = {
-                    "query": (f"{query} lang:{lang}" if lang else query) + f" -filter:retweets since_time:{since_timestamp}",
+                    "query": (f"{query} lang:{lang}" if lang else query)
+                             + f" -filter:retweets since_time:{qset.get('since', since_timestamp)}",
                     "queryType": "Latest",
                     "cursor": cursor,
                 }
@@ -142,10 +153,10 @@ def scan_x(since_timestamp=None, watched=None):
                 cursor = data.get("next_cursor") or ""
                 if not data.get("has_next_page") or not cursor:
                     break
-                if page == X_MAX_PAGES - 1:
+                if page == pages_cap - 1:
                     print(f"[x_scanner] page limit hit for '{query[:50]}…' — raise X_MAX_PAGES in config.py if this shows often")
 
-        print(f"[x_scanner] {lang or 'watched accounts'}: {lang_count} tweets from {len(qset['queries'])} queries")
+        print(f"[x_scanner] {lang or qset.get('label', 'accounts')}: {lang_count} tweets from {len(qset['queries'])} queries")
 
     # Same tweet can match several queries — keep the first copy only
     unique = {}
