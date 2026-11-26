@@ -276,6 +276,13 @@ QUIET_START = 23        # 11 pm
 QUIET_END = 6           # 6 am
 QUIET_TIMEZONE = "Africa/Lagos"
 
+# ── 🔁 NEAR-MISS DIGEST ──
+# Once a day you get a list of posts the AI ALMOST rejected (real-looking
+# offers it wasn't sure about). Tap 🔁 to get any of them as a full alert.
+# Type /nearmiss to get it early.
+DIGEST_ENABLED = True
+DIGEST_HOUR = 20        # 8 pm your local time (first run at/after this hour)
+
 # ── LINK SAFETY CHECK ──
 # Every alert shows a 🛡️ line per link (✅ official/established, 🟡 very new,
 # 🔴 lookalike or brand-new claim site). False = 🔴 alerts still come through
