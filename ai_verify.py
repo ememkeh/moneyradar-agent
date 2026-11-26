@@ -104,12 +104,174 @@ SYSTEM_PROMPT = SYSTEM_PROMPT.replace(
     "{chance_rule}", _CHANCE_ALLOWED if ALLOW_FREE_CHANCE_CREDIT else ""
 )
 
+_RESPOND_SINGLE = SYSTEM_PROMPT[SYSTEM_PROMPT.index("Respond with ONLY a JSON object"):]
+_PROMPT_CORE = SYSTEM_PROMPT[:SYSTEM_PROMPT.index("Respond with ONLY a JSON object")]
+
+_RESPOND_BATCH = """You will receive several posts, each starting with "### POST <n>". \
+Judge each one on its own. Respond with ONLY a JSON array, one object per post, \
+in the same order, nothing else:
+[{"n": 1, "verified": true or false, "tier": "cash" | "airdrop" | "points" | "none", \
+"reason": "one short sentence", "project": "name", "summary_en": "one line"}, ...]"""
+
+
+# ── OWNER FEEDBACK (from 👍 / 👎 taps on alerts, set by feedback.py) ──
+FEEDBACK = {"text": ""}
+
+
+def set_feedback_examples(likes, dislikes):
+    """Show the AI what the owner liked / didn't like, as extra guidance."""
+    parts = []
+    if likes:
+        parts.append("The bot owner LIKED alerts like these — accept similar posts:\n"
+                     + "\n".join(f"- {s}" for s in likes))
+    if dislikes:
+        parts.append("The bot owner DISLIKED alerts like these — reject similar posts "
+                     "(same kind of offer, same weakness):\n"
+                     + "\n".join(f"- {s}" for s in dislikes))
+    FEEDBACK["text"] = ("\n\n" + "\n\n".join(parts) + "\n\n") if parts else ""
+
+
+def _system(batch=False):
+    return _PROMPT_CORE + FEEDBACK["text"] + (_RESPOND_BATCH if batch else _RESPOND_SINGLE)
+
+
+# ── SPEND TRACKING (Haiku 4.5: $1 / 1M input tokens, $5 / 1M output) ──
+USAGE = {"calls": 0, "input": 0, "output": 0}
+PRICE_IN, PRICE_OUT = 1.0, 5.0
+
+
+def _track(data):
+    u = (data or {}).get("usage") or {}
+    USAGE["calls"] += 1
+    USAGE["input"] += int(u.get("input_tokens", 0) or 0)
+    USAGE["output"] += int(u.get("output_tokens", 0) or 0)
+
+
+def usage_cost():
+    return USAGE["input"] / 1e6 * PRICE_IN + USAGE["output"] / 1e6 * PRICE_OUT
+
+
+def _strip_fences(raw):
+    raw = raw.strip()
+    if raw.startswith("```"):
+        raw = raw.strip("`")
+        if raw.startswith("json"):
+            raw = raw[4:]
+        raw = raw.strip()
+    return raw
+
+
+# Set when the Anthropic account can't be used (credits empty, bad key).
+# While set, NOTHING is alerted — no AI means no filtering, and unfiltered
+# alerts are noise. main.py sends you one Telegram warning a day instead.
+AI_DOWN = {"reason": None}
+
+_ACCOUNT_ERROR_HINTS = ("credit balance", "billing", "insufficient", "invalid x-api-key",
+                        "authentication", "permission", "disabled")
+
+
+def _check_account_error(resp):
+    """Detect 'out of credits' / bad-key errors and switch the bot to safe mode."""
+    if resp.status_code in (400, 401, 402, 403):
+        body = resp.text.lower()
+        if resp.status_code in (401, 402, 403) or any(h in body for h in _ACCOUNT_ERROR_HINTS):
+            AI_DOWN["reason"] = f"HTTP {resp.status_code}: {resp.text[:200]}"
+            print(f"[ai_verify] ⚠️ Anthropic account problem — {AI_DOWN['reason']}")
+            return True
+    return False
+
 
 def _fail_result(tier_hint, why):
     """What to return when the AI check can't run."""
+    if AI_DOWN["reason"]:
+        return {"verified": False, "tier": tier_hint, "reason": "AI unavailable (credits/key) — held back", "summary_en": "", "project": ""}
     if tier_hint in (None, "cash"):
         return {"verified": True, "tier": "cash", "reason": why, "summary_en": "", "project": ""}
     return {"verified": False, "tier": tier_hint, "reason": why, "summary_en": "", "project": ""}
+
+
+def _clean_verdict(verdict, tier_hint):
+    verified = bool(verdict.get("verified", False))
+    tier = str(verdict.get("tier", "none")).lower()
+    reason = verdict.get("reason", "")
+    summary = verdict.get("summary_en", "") or ""
+    project = re.sub(r"[^a-z0-9]", "", str(verdict.get("project", "")).lower())
+
+    if verified and tier not in VALID_TIERS:
+        tier = tier_hint if tier_hint in VALID_TIERS else "cash"
+    if verified and tier == "points" and not POINTS_TIER_ENABLED:
+        verified = False
+        reason = "points tier disabled in config"
+
+    return {"verified": verified, "tier": tier, "reason": reason, "summary_en": summary, "project": project}
+
+
+BATCH_SIZE = 10
+
+
+def classify_many(items):
+    """
+    Check many posts with as few Claude calls as possible (BATCH_SIZE per call).
+    The long instructions are sent once per batch instead of once per post,
+    which is most of the cost. items: list of (title, body, tier_hint).
+    Returns one verdict dict per item, same order. If a batch reply can't be
+    read, that batch falls back to one-by-one checks so nothing is lost.
+    """
+    results = []
+    for start in range(0, len(items), BATCH_SIZE):
+        chunk = items[start:start + BATCH_SIZE]
+        results.extend(_classify_chunk(chunk))
+    return results
+
+
+def _classify_chunk(chunk):
+    if len(chunk) == 1 or AI_DOWN["reason"]:
+        return [classify_opportunity(t, b, h) for t, b, h in chunk]
+
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        return [classify_opportunity(t, b, h) for t, b, h in chunk]
+
+    blocks = []
+    for n, (title, body, hint) in enumerate(chunk, 1):
+        text = f"{title}\n\n{body}"[:1500]
+        guess = f"[keyword filter guess: {hint}]\n" if hint else ""
+        blocks.append(f"### POST {n}\n{guess}{text}")
+    content = "\n\n".join(blocks)
+
+    try:
+        resp = requests.post(
+            ANTHROPIC_API_URL,
+            headers={
+                "x-api-key": api_key,
+                "anthropic-version": "2023-06-01",
+                "content-type": "application/json",
+            },
+            json={
+                "model": MODEL,
+                "max_tokens": 120 * len(chunk) + 100,
+                "system": _system(batch=True),
+                "messages": [{"role": "user", "content": content}],
+            },
+            timeout=60,
+        )
+        if _check_account_error(resp):
+            return [_fail_result(h, "AI unavailable") for _, _, h in chunk]
+        resp.raise_for_status()
+        data = resp.json()
+        _track(data)
+        parsed = json.loads(_strip_fences(data["content"][0]["text"]))
+        by_n = {int(v.get("n", 0)): v for v in parsed if isinstance(v, dict)}
+        out = []
+        for n, (t, b, h) in enumerate(chunk, 1):
+            if n in by_n:
+                out.append(_clean_verdict(by_n[n], h))
+            else:
+                out.append(classify_opportunity(t, b, h))   # missing from reply — check alone
+        return out
+    except Exception as e:
+        print(f"[ai_verify] batch check failed ({e}) — checking one by one")
+        return [classify_opportunity(t, b, h) for t, b, h in chunk]
 
 
 def classify_opportunity(title, body, tier_hint=None):
@@ -118,8 +280,12 @@ def classify_opportunity(title, body, tier_hint=None):
     tier is "cash", "airdrop" or "points" (or "none" when rejected).
     tier_hint is the keyword filter's guess from evaluate_post().
     """
+    if AI_DOWN["reason"]:
+        return _fail_result(tier_hint, "AI unavailable")
+
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
+        AI_DOWN["reason"] = "ANTHROPIC_API_KEY secret is missing"
         return _fail_result(tier_hint, "AI check skipped (no ANTHROPIC_API_KEY set)")
 
     text = f"{title}\n\n{body}"[:2000]  # cap length — keeps cost predictable
@@ -137,13 +303,16 @@ def classify_opportunity(title, body, tier_hint=None):
             json={
                 "model": MODEL,
                 "max_tokens": 300,
-                "system": SYSTEM_PROMPT,
+                "system": _system(),
                 "messages": [{"role": "user", "content": text}],
             },
             timeout=20,
         )
+        if _check_account_error(resp):
+            return _fail_result(tier_hint, "AI unavailable")
         resp.raise_for_status()
         data = resp.json()
+        _track(data)
         raw = data["content"][0]["text"].strip()
 
         # Strip markdown fences if the model wraps its JSON in them
@@ -153,20 +322,7 @@ def classify_opportunity(title, body, tier_hint=None):
                 raw = raw[4:]
             raw = raw.strip()
 
-        verdict = json.loads(raw)
-        verified = bool(verdict.get("verified", False))
-        tier = str(verdict.get("tier", "none")).lower()
-        reason = verdict.get("reason", "")
-        summary = verdict.get("summary_en", "")
-        project = re.sub(r"[^a-z0-9]", "", str(verdict.get("project", "")).lower())
-
-        if verified and tier not in VALID_TIERS:
-            tier = tier_hint if tier_hint in VALID_TIERS else "cash"
-        if verified and tier == "points" and not POINTS_TIER_ENABLED:
-            verified = False
-            reason = "points tier disabled in config"
-
-        return {"verified": verified, "tier": tier, "reason": reason, "summary_en": summary, "project": project}
+        return _clean_verdict(json.loads(raw), tier_hint)
 
     except Exception as e:
         print(f"[ai_verify] AI check failed: {e}")
@@ -221,14 +377,12 @@ def is_same_campaign(project, new_summary, new_text, previous_summaries):
             },
             timeout=20,
         )
+        if _check_account_error(resp):
+            return True   # can't compare — treat as repeat, nothing alerts while AI is down
         resp.raise_for_status()
-        raw = resp.json()["content"][0]["text"].strip()
-        if raw.startswith("```"):
-            raw = raw.strip("`")
-            if raw.startswith("json"):
-                raw = raw[4:]
-            raw = raw.strip()
-        verdict = json.loads(raw)
+        data = resp.json()
+        _track(data)
+        verdict = json.loads(_strip_fences(data["content"][0]["text"]))
         same = bool(verdict.get("same", False))
         print(f"[ai_verify] campaign check '{project}': {'SAME' if same else 'NEW'} — {verdict.get('reason', '')}")
         return same
