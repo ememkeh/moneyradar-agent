@@ -27,6 +27,12 @@ MAX_EXAMPLES = 8          # liked/disliked examples shown to the AI
 BAD_AUTHOR_THRESHOLD = 2  # 👎 count before an author is skipped
 MAX_ALERTS_KEPT = 400     # alert details remembered so taps can be matched
 
+# ── SOURCE AUTO-DISCOVERY ──
+WATCH_AFTER_LIKES = 3     # 👍 on an account's alerts before it's watched directly
+UNWATCH_AFTER_DISLIKES = 2
+UNWATCH_IF_QUIET_DAYS = 30
+MAX_WATCHED = 40
+
 
 def load():
     data = {}
@@ -47,6 +53,9 @@ def load():
     data.setdefault("history", [])
     data.setdefault("paused", False)
     data.setdefault("domain_cache", {})
+    data.setdefault("author_hits", {})   # per X author: 👍 / 👎 / alerts
+    data.setdefault("watched", [])       # auto-discovered (or /watch) accounts
+    data.setdefault("unwatched", [])     # accounts you removed — never auto-added again
     return data
 
 
@@ -65,8 +74,50 @@ def save(data):
         json.dump(data, f, ensure_ascii=False, indent=1)
 
 
+def _hit(data, info, field):
+    # count each alert once, even if tapped again
+    if info.get("voted") == field:
+        return
+    info["voted"] = field
+    a = (info.get("author") or "").lower()
+    if a and info.get("source") == "x":
+        h = data["author_hits"].setdefault(a, {"up": 0, "down": 0, "alerts": 0, "last": ""})
+        h[field] = h.get(field, 0) + 1
+
+
+def update_watchlist(data):
+    """
+    Promote accounts whose alerts you keep 👍-ing; drop ones you 👎 or that
+    went quiet. Returns a list of human-readable change messages.
+    """
+    changes = []
+    today = date.today()
+    for a, h in data["author_hits"].items():
+        if (a not in data["watched"] and a not in data["unwatched"]
+                and h.get("up", 0) >= WATCH_AFTER_LIKES and h.get("down", 0) == 0
+                and len(data["watched"]) < MAX_WATCHED):
+            data["watched"].append(a)
+            changes.append(f"👀 now watching @{a} directly ({h['up']} 👍, 0 👎). /unwatch @{a} to stop.")
+    for a in list(data["watched"]):
+        h = data["author_hits"].get(a, {})
+        if h.get("down", 0) >= UNWATCH_AFTER_DISLIKES:
+            data["watched"].remove(a)
+            changes.append(f"🙈 stopped watching @{a} ({h['down']} 👎).")
+            continue
+        last = h.get("last") or ""
+        if last and (today - date.fromisoformat(last)).days > UNWATCH_IF_QUIET_DAYS:
+            data["watched"].remove(a)
+            changes.append(f"🙈 stopped watching @{a} (no alerts in {UNWATCH_IF_QUIET_DAYS} days).")
+    return changes
+
+
 def remember_alert(data, key, post, project, summary):
     """Store what an alert was about, so a later tap can be matched to it."""
+    a = (post.get("author") or "").lower()
+    if a and post.get("source") == "x":
+        h = data["author_hits"].setdefault(a, {"up": 0, "down": 0, "alerts": 0, "last": ""})
+        h["alerts"] = h.get("alerts", 0) + 1
+        h["last"] = date.today().isoformat()
     data["alerts"][key] = {
         "author": post.get("author") or "",
         "source": post.get("source") or "",
@@ -124,10 +175,13 @@ COMMANDS = [
     ("unmute", "unmute a project — /unmute binance"),
     ("blocked", "list authors skipped for 👎"),
     ("unblock", "stop skipping an author — /unblock @name"),
+    ("sources", "list accounts watched directly"),
+    ("watch", "watch an X account directly — /watch @name"),
+    ("unwatch", "stop watching an account — /unwatch @name"),
     ("undo", "undo your last tap or command"),
     ("help", "show these commands"),
 ]
-COMMANDS_VERSION = 1
+COMMANDS_VERSION = 2
 
 
 def _remember(data, entry):
@@ -163,6 +217,18 @@ def _undo(data):
     if kind == "unblock":
         data["bad_authors"][last["author"]] = last.get("count", 0)
         return f"undone: @{last['author']} is blocked again"
+    if kind == "watch":
+        a = last.get("author")
+        if a in data["watched"]:
+            data["watched"].remove(a)
+        return f"undone: stopped watching @{a}"
+    if kind == "unwatch":
+        a = last.get("author")
+        if a and a not in data["watched"]:
+            data["watched"].append(a)
+        if a in data["unwatched"]:
+            data["unwatched"].remove(a)
+        return f"undone: watching @{a} again"
     if kind == "pause":
         data["paused"] = False
         return "undone: alerts resumed"
@@ -253,6 +319,35 @@ def _run_command(data, text):
         _remember(data, {"kind": "unblock", "author": a, "count": data["bad_authors"][a]})
         data["bad_authors"][a] = 0
         return f"✅ @{a} unblocked."
+    if cmd == "sources":
+        if not data["watched"]:
+            return ("no accounts watched yet. accounts get added automatically after "
+                    f"{WATCH_AFTER_LIKES} 👍 on their alerts, or use /watch @name.")
+        rows = []
+        for a in data["watched"]:
+            h = data["author_hits"].get(a, {})
+            rows.append(f"@{a} — {h.get('alerts', 0)} alerts · {h.get('up', 0)} 👍 · {h.get('down', 0)} 👎")
+        return "👀 watched accounts:\n" + "\n".join(rows)
+    if cmd == "watch":
+        a = _clean_name(arg.lstrip("@"))
+        if not a:
+            return "usage: /watch @name"
+        if a in data["watched"]:
+            return f"already watching @{a}."
+        data["watched"].append(a)
+        if a in data["unwatched"]:
+            data["unwatched"].remove(a)
+        _remember(data, {"kind": "watch", "author": a})
+        return f"👀 watching @{a}. their posts still go through the AI check."
+    if cmd == "unwatch":
+        a = _clean_name(arg.lstrip("@"))
+        if a not in data["watched"]:
+            return f"not watching @{a or '?'}. /sources shows the list."
+        data["watched"].remove(a)
+        if a not in data["unwatched"]:
+            data["unwatched"].append(a)
+        _remember(data, {"kind": "unwatch", "author": a})
+        return f"🙈 stopped watching @{a} — won't be auto-added again."
     if cmd == "undo":
         return "↩️ " + _undo(data)
     return "unknown command. /help shows what I can do."
@@ -313,6 +408,7 @@ def collect_taps(data):
         if action == "up":
             data["likes"].append({"summary": info.get("summary", ""), "date": today})
             _remember(data, {"kind": "like"})
+            _hit(data, info, "up")
             label = "✅ 👍 saved — more like this"
         elif action == "down":
             data["dislikes"].append({"summary": info.get("summary", ""), "date": today})
@@ -322,6 +418,7 @@ def collect_taps(data):
             else:
                 author = ""
             _remember(data, {"kind": "dislike", "author": author})
+            _hit(data, info, "down")
             label = "✅ 👎 saved — less like this"
         elif action == "mute":
             project = key  # mute buttons carry the project name
