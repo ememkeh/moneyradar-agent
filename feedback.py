@@ -46,6 +46,7 @@ def load():
     data.setdefault("stats", {})
     data.setdefault("history", [])
     data.setdefault("paused", False)
+    data.setdefault("domain_cache", {})
     return data
 
 
@@ -55,6 +56,9 @@ def save(data):
     if len(alerts) > MAX_ALERTS_KEPT:
         for k in list(alerts)[: len(alerts) - MAX_ALERTS_KEPT]:
             alerts.pop(k, None)
+    if len(data["domain_cache"]) > 1500:
+        for k in list(data["domain_cache"])[:-1500]:
+            data["domain_cache"].pop(k, None)
     data["likes"] = data["likes"][-50:]
     data["dislikes"] = data["dislikes"][-50:]
     with open(FEEDBACK_FILE, "w") as f:
