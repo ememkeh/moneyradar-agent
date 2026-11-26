@@ -182,6 +182,20 @@
    "project": "binance",
    "summary": "Trade 500+ USDT of SOL/USDC or USUAL/USDT Nov 26–Dec 3 to enter leaderboard for share of 400 BNB prize pool.",
    "date": "2026-11-26"
+  },
+  "x_2126077452468547846": {
+   "author": "SamiluXBT",
+   "source": "x",
+   "project": "sweepglobal",
+   "summary": "Register wallet, join campaign, connect Twitter to earn $SWEEP airdrop rewards.",
+   "date": "2026-11-26"
+  },
+  "x_2126080891164516729": {
+   "author": "fengchangsheng1",
+   "source": "x",
+   "project": "magmaflop",
+   "summary": "MAGMA: 120 tokens at 250+ points (15 min), threshold drops 5 pts every 5 min if pool full. Flop: 3.6B testnet mining pool live.",
+   "date": "2026-11-26"
   }
  },
  "likes": [],
@@ -189,6 +203,19 @@
  "bad_authors": {},
  "muted": [],
  "spend": {
-  "2026-11": 0.180494
- }
+  "2026-11": 0.197266
+ },
+ "stats": {
+  "2026-11-26": {
+   "alerts": 2,
+   "scanned": 161,
+   "runs": 1,
+   "ai": 0.016772,
+   "tweets": 107
+  }
+ },
+ "history": [],
+ "paused": false,
+ "domain_cache": {},
+ "commands_version": 1
 }
