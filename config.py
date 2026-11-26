@@ -38,7 +38,6 @@ X_SEARCH_QUERIES = [
     f'("sign up bonus" OR "new user") (polymarket OR solana) {_X_EXCLUDE}',
     # task airdrops
     f'airdrop ("connect x" OR "connect twitter" OR "connect wallet" OR "complete tasks") {_X_EXCLUDE}',
-    f'airdrop (galxe OR zealy OR layer3 OR taskon) quest {_X_EXCLUDE}',
     f'airdrop ("create an account" OR "sign up" OR deposit) (exchange OR claim) {_X_EXCLUDE}',
     f'("airdrop is live" OR "claim is live" OR "eligibility checker" OR "claim now") {_X_EXCLUDE}',
     # points that convert to cash right away
@@ -155,7 +154,7 @@ OPPORTUNITY_KEYWORDS = [
 # Task-airdrop phrasing. A match here skips the category check (an airdrop
 # is crypto by definition) and doesn't need a stated amount.
 AIRDROP_KEYWORDS = [
-    "airdrop", "air drop", "testnet", "galxe", "zealy", "layer3", "taskon",
+    "airdrop", "air drop", "testnet",
     "retroactive", "whitelist", "allowlist", "eligibility checker",
     "claim is live", "airdrop is live",
     # chinese
@@ -260,8 +259,12 @@ FULL_SWEEP_EVERY_MINUTES = 120
 X_OFFICIAL_ACCOUNTS = [
     "binance", "Bybit_Official", "okx", "bitgetglobal", "kucoincom",
     "MEXC_Official", "coinbase", "krakenfx", "gate_io",
-    "Galxe", "layer3xyz", "zealy_io",
 ]
+
+# Quest-platform campaigns (Galxe, Zealy, Layer3, TaskOn, Intract, QuestN...)
+# are usually low-paying and saturated — rejected by the AI check.
+# Set to False to allow them again.
+SKIP_QUEST_PLATFORMS = True
 
 # ── 🌙 QUIET HOURS ──
 # No scanning (no X/AI spend, no alerts) between these hours, your local time.
