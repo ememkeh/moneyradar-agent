@@ -46,7 +46,14 @@ def _query_sets():
     return [s for s in sets if s.get("lang") in X_LANGUAGES and s.get("queries")]
 
 
-def scan_x(since_timestamp=None):
+def _watched_queries(accounts, per_query=10):
+    """Group watched accounts into a few searches: (from:a OR from:b ...)."""
+    accounts = [a.lstrip("@") for a in accounts if a]
+    return ["(" + " OR ".join(f"from:{a}" for a in accounts[i:i + per_query]) + ")"
+            for i in range(0, len(accounts), per_query)]
+
+
+def scan_x(since_timestamp=None, watched=None):
     """
     Returns a list of normalized post dicts from X via TwitterAPI.io, or an
     empty list if X_ENABLED is False or no API key is configured.
@@ -69,8 +76,14 @@ def scan_x(since_timestamp=None):
     since_timestamp = int(since_timestamp)
     print(f"[x_scanner] reading tweets since {datetime.fromtimestamp(since_timestamp, timezone.utc):%Y-%m-%d %H:%M} UTC, up to {X_MAX_PAGES} page(s) per query")
 
+    sets = _query_sets()
+    if watched:
+        # auto-discovered accounts: every post they make is read, then goes
+        # through exactly the same filters + AI check as everything else
+        sets = sets + [{"lang": None, "queries": _watched_queries(watched), "watched": True}]
+
     first = True
-    for qset in _query_sets():
+    for qset in sets:
         lang = qset["lang"]
         lang_count = 0
 
@@ -84,7 +97,7 @@ def scan_x(since_timestamp=None):
                 if page > 0:
                     time.sleep(1)
                 params = {
-                    "query": f"{query} lang:{lang} -filter:retweets since_time:{since_timestamp}",
+                    "query": (f"{query} lang:{lang}" if lang else query) + f" -filter:retweets since_time:{since_timestamp}",
                     "queryType": "Latest",
                     "cursor": cursor,
                 }
@@ -122,6 +135,7 @@ def scan_x(since_timestamp=None):
                         "author": author.get("userName", ""),
                         "created_at": tweet.get("createdAt", ""),
                         "links": links,
+                        "watched": bool(qset.get("watched")),
                     })
                     lang_count += 1
 
@@ -131,7 +145,7 @@ def scan_x(since_timestamp=None):
                 if page == X_MAX_PAGES - 1:
                     print(f"[x_scanner] page limit hit for '{query[:50]}…' — raise X_MAX_PAGES in config.py if this shows often")
 
-        print(f"[x_scanner] {lang}: {lang_count} tweets from {len(qset['queries'])} queries")
+        print(f"[x_scanner] {lang or 'watched accounts'}: {lang_count} tweets from {len(qset['queries'])} queries")
 
     # Same tweet can match several queries — keep the first copy only
     unique = {}
