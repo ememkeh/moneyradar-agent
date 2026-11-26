@@ -52,7 +52,7 @@ def _post_link(post):
     return post.get("permalink") or post.get("url") or ""
 
 
-def send_alert(post, matched_amount):
+def send_alert(post, matched_amount, reply_markup=None):
     """
     Sends a formatted Telegram message for a single qualifying post.
     Reads TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID from environment variables.
@@ -99,6 +99,8 @@ def send_alert(post, matched_amount):
         "text": message,
         "disable_web_page_preview": False,
     }
+    if reply_markup:
+        payload["reply_markup"] = reply_markup   # 👍 / 👎 / 🔇 buttons
 
     try:
         resp = requests.post(url, json=payload, timeout=15)
@@ -109,7 +111,7 @@ def send_alert(post, matched_amount):
         return False
 
 
-def send_summary(new_count, scanned_count):
+def send_summary(new_count, scanned_count, extra=""):
     """Send a short 'scan complete' summary — only when something was found."""
     token = os.environ.get("TELEGRAM_BOT_TOKEN")
     chat_id = os.environ.get("TELEGRAM_CHAT_ID")
@@ -120,8 +122,24 @@ def send_summary(new_count, scanned_count):
         return  # stay quiet on empty scans
 
     message = f"✅ Scan complete: {new_count} new opportunit{'y' if new_count == 1 else 'ies'} found (of {scanned_count} posts scanned)."
+    if extra:
+        message += "\n" + extra
     url = TELEGRAM_API_URL.format(token=token)
     try:
         requests.post(url, json={"chat_id": chat_id, "text": message}, timeout=15)
     except requests.RequestException:
         pass
+
+
+def send_text(message):
+    """Send a plain message (used for warnings like 'AI credits empty')."""
+    token = os.environ.get("TELEGRAM_BOT_TOKEN")
+    chat_id = os.environ.get("TELEGRAM_CHAT_ID")
+    if not token or not chat_id:
+        print(f"[telegram_alert] Would have sent: {message}")
+        return
+    try:
+        requests.post(TELEGRAM_API_URL.format(token=token),
+                      json={"chat_id": chat_id, "text": message[:4000]}, timeout=15)
+    except requests.RequestException as e:
+        print(f"[telegram_alert] Failed to send message: {e}")
