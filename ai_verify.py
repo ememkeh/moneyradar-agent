@@ -45,7 +45,7 @@ raffle, lucky draw or "N random winners" is NOT cash — the pool size is not th
 user's reward. Classify those as "airdrop" if they have concrete tasks, else reject.
 - "airdrop": a live task-based airdrop or campaign where doable steps (connect X, \
 follow, join Telegram/Discord, create an account, deposit or trade a set amount, \
-Galxe/Zealy/Layer3/TaskOn quests, testnet interactions) make the user eligible for \
+testnet interactions) make the user eligible for \
 a token distribution, even if the exact amount isn't stated. It must name the \
 project and the concrete steps, and be live now or have a stated claim/distribution \
 date. An airdrop claim or eligibility check that is open now also counts.
@@ -103,6 +103,15 @@ reject if the user must deposit their own money to take part."""
 SYSTEM_PROMPT = SYSTEM_PROMPT.replace(
     "{chance_rule}", _CHANCE_ALLOWED if ALLOW_FREE_CHANCE_CREDIT else ""
 )
+
+if getattr(config, "SKIP_QUEST_PLATFORMS", True):
+    SYSTEM_PROMPT = SYSTEM_PROMPT.replace(
+        "- Sells something:",
+        "- Is a quest-platform campaign: the tasks are done on Galxe, Zealy, Layer3, "
+        "TaskOn, Intract, QuestN or a similar quest board (the owner finds these "
+        "low-paying and saturated). Reject even if a reward is stated.\n- Sells something:",
+        1,
+    )
 
 _RESPOND_SINGLE = SYSTEM_PROMPT[SYSTEM_PROMPT.index("Respond with ONLY a JSON object"):]
 _PROMPT_CORE = SYSTEM_PROMPT[:SYSTEM_PROMPT.index("Respond with ONLY a JSON object")]
@@ -403,7 +412,7 @@ def verify_opportunity(title, body, tier_hint=None):
     Backward-compatible wrapper for the current main.py.
     Returns (verified: bool, reason: str). The reason now starts with the tier
     label and carries the English summary, e.g.
-    "🪂 task airdrop — Connect X + wallet on Galxe to qualify for XYZ drop"
+    "🪂 task airdrop — Connect X + wallet to qualify for XYZ drop"
     """
     result = classify_opportunity(title, body, tier_hint)
     label = TIER_LABELS.get(result["tier"], "")
