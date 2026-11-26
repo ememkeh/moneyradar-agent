@@ -56,6 +56,10 @@ def load():
     data.setdefault("author_hits", {})   # per X author: 👍 / 👎 / alerts
     data.setdefault("watched", [])       # auto-discovered (or /watch) accounts
     data.setdefault("unwatched", [])     # accounts you removed — never auto-added again
+    data.setdefault("near_misses", {})   # AI-rejected but close — for the daily digest
+    data.setdefault("rescue_queue", [])  # 🔁 taps waiting to be turned into alerts
+    data.setdefault("digest_sent", "")   # date of the last near-miss digest
+    data.setdefault("digest_now", False) # /nearmiss asked for one at the next run
     return data
 
 
@@ -65,6 +69,10 @@ def save(data):
     if len(alerts) > MAX_ALERTS_KEPT:
         for k in list(alerts)[: len(alerts) - MAX_ALERTS_KEPT]:
             alerts.pop(k, None)
+    # near-misses: keep 3 days (so 🔁 taps on yesterday's digest still work)
+    cutoff = date.fromordinal(date.today().toordinal() - 3).isoformat()
+    for k in [k for k, v in data["near_misses"].items() if v.get("date", "") < cutoff]:
+        data["near_misses"].pop(k, None)
     if len(data["domain_cache"]) > 1500:
         for k in list(data["domain_cache"])[:-1500]:
             data["domain_cache"].pop(k, None)
@@ -97,18 +105,72 @@ def update_watchlist(data):
                 and h.get("up", 0) >= WATCH_AFTER_LIKES and h.get("down", 0) == 0
                 and len(data["watched"]) < MAX_WATCHED):
             data["watched"].append(a)
-            changes.append(f"👀 now watching @{a} directly ({h['up']} 👍, 0 👎). /unwatch @{a} to stop.")
+            changes.append(f"NEW SOURCE: now watching @{a} directly ({h['up']} good alerts, 0 bad). Send /unwatch @{a} to stop.")
     for a in list(data["watched"]):
         h = data["author_hits"].get(a, {})
         if h.get("down", 0) >= UNWATCH_AFTER_DISLIKES:
             data["watched"].remove(a)
-            changes.append(f"🙈 stopped watching @{a} ({h['down']} 👎).")
+            changes.append(f"SOURCE REMOVED: stopped watching @{a} ({h['down']} bad alerts).")
             continue
         last = h.get("last") or ""
         if last and (today - date.fromisoformat(last)).days > UNWATCH_IF_QUIET_DAYS:
             data["watched"].remove(a)
-            changes.append(f"🙈 stopped watching @{a} (no alerts in {UNWATCH_IF_QUIET_DAYS} days).")
+            changes.append(f"SOURCE REMOVED: stopped watching @{a} (no alerts in {UNWATCH_IF_QUIET_DAYS} days).")
     return changes
+
+
+# ── 🔁 NEAR-MISS DIGEST ──
+DIGEST_MAX_ITEMS = 15
+
+
+def add_near_miss(data, key, post, verdict, matched_amount):
+    """Store an AI-rejected-but-close post so it can show up in the daily digest."""
+    data["near_misses"][key] = {
+        "date": date.today().isoformat(),
+        "summary": (verdict.get("summary_en") or post.get("title") or "")[:200],
+        "reason": (verdict.get("reason") or "")[:140],
+        "project": verdict.get("project") or "",
+        "tier": verdict.get("tier_guess") or "cash",
+        "amount": matched_amount or "",
+        "post": {k: post.get(k) for k in ("id", "title", "body", "url", "permalink",
+                                          "author", "source", "lang", "links")},
+        "in_digest": False,
+        "rescued": False,
+    }
+
+
+def digest_items(data):
+    """Near-misses not yet shown in a digest, newest first."""
+    items = [(k, v) for k, v in data["near_misses"].items()
+             if not v.get("in_digest") and not v.get("rescued")]
+    return items[-DIGEST_MAX_ITEMS:][::-1]
+
+
+def build_digest(data):
+    """Returns (text, reply_markup) or (None, None) if there's nothing to show."""
+    items = digest_items(data)
+    if not items:
+        return None, None
+    lines = [f"NEAR-MISS DIGEST — {len(items)} post(s) the AI almost rejected",
+             "Tap \"Rescue\" + the number to get that post as a full alert. "
+             "Rescuing also teaches the AI you wanted it.", ""]
+    buttons_row, keyboard = [], []
+    for n, (k, v) in enumerate(items, 1):
+        link = (v["post"].get("permalink") or v["post"].get("url") or "")
+        amount = f" · {v['amount']}" if v.get("amount") else ""
+        lines.append(f"{n}. {v['summary'] or '(no summary)'}{amount}")
+        lines.append(f"   Rejected because: {v['reason'] or 'unclear'}")
+        if link:
+            lines.append(f"   Link: {link}")
+        lines.append("")
+        v["in_digest"] = True
+        buttons_row.append({"text": f"Rescue {n}", "callback_data": f"fb|rescue|{k}"[:64]})
+        if len(buttons_row) == 3:
+            keyboard.append(buttons_row)
+            buttons_row = []
+    if buttons_row:
+        keyboard.append(buttons_row)
+    return "\n".join(lines)[:4000], {"inline_keyboard": keyboard}
 
 
 def remember_alert(data, key, post, project, summary):
@@ -167,21 +229,22 @@ def _tg(method, token, **payload):
 # Commands you type to the bot. Like button taps, they're read at the start of
 # the next scan (every 2 hours), and the bot replies then.
 COMMANDS = [
-    ("pause", "stop alerts (no X or AI spend while paused)"),
+    ("pause", "stop all alerts until /resume (no X or AI spend)"),
     ("resume", "start alerts again, from now"),
-    ("stats", "alerts + spend for today, 7 days, this month"),
+    ("stats", "alerts and spend: today, 7 days, this month"),
     ("muted", "list muted projects"),
-    ("mute", "mute a project — /mute binance"),
-    ("unmute", "unmute a project — /unmute binance"),
-    ("blocked", "list authors skipped for 👎"),
-    ("unblock", "stop skipping an author — /unblock @name"),
-    ("sources", "list accounts watched directly"),
-    ("watch", "watch an X account directly — /watch @name"),
-    ("unwatch", "stop watching an account — /unwatch @name"),
-    ("undo", "undo your last tap or command"),
-    ("help", "show these commands"),
+    ("mute", "mute a project, e.g. /mute binance"),
+    ("unmute", "unmute a project, e.g. /unmute binance"),
+    ("blocked", "list authors skipped after bad-alert taps"),
+    ("unblock", "stop skipping an author, e.g. /unblock @name"),
+    ("sources", "list X accounts watched directly"),
+    ("watch", "watch an X account directly, e.g. /watch @name"),
+    ("unwatch", "stop watching an account, e.g. /unwatch @name"),
+    ("nearmiss", "send the near-miss digest at the next run"),
+    ("undo", "undo your last button tap or command"),
+    ("help", "show all commands"),
 ]
-COMMANDS_VERSION = 2
+COMMANDS_VERSION = 4
 
 
 def _remember(data, entry):
@@ -255,13 +318,14 @@ def _stats_text(data):
     m_alerts = sum(v.get("alerts", 0) for k, v in stats.items() if k.startswith(month))
     m_tweets = sum(v.get("tweets", 0) for k, v in stats.items() if k.startswith(month))
     return (
-        "📊 MoneyRadar stats\n\n"
+        "MONEYRADAR STATS\n\n"
         f"today: {d1['alerts']} alerts · {d1['runs']} runs · {d1['scanned']} posts scanned · AI ~${d1['ai']:.2f}\n"
         f"7 days: {d7['alerts']} alerts · AI ~${d7['ai']:.2f} · X ~${d7['tweets'] * 0.00015:.2f}\n"
         f"this month: {m_alerts} alerts · AI ~${data['spend'].get(month, 0):.2f} · X ~${m_tweets * 0.00015:.2f}\n\n"
-        f"👍 {len(data['likes'])} · 👎 {len(data['dislikes'])} · 🔇 {len(data['muted'])} muted · "
-        f"🚫 {sum(1 for c in data['bad_authors'].values() if c >= BAD_AUTHOR_THRESHOLD)} blocked\n"
-        f"status: {'⏸️ paused' if data['paused'] else '▶️ running'}"
+        f"Good alerts: {len(data['likes'])} · Bad alerts: {len(data['dislikes'])} · "
+        f"Muted projects: {len(data['muted'])} · "
+        f"Blocked authors: {sum(1 for c in data['bad_authors'].values() if c >= BAD_AUTHOR_THRESHOLD)}\n"
+        f"Status: {'PAUSED' if data['paused'] else 'RUNNING'}"
     )
 
 
@@ -275,24 +339,24 @@ def _run_command(data, text):
     arg = parts[1].strip() if len(parts) > 1 else ""
 
     if cmd in ("help", "start"):
-        return "🤖 MoneyRadar controls\n\n" + "\n".join(f"/{c} — {d}" for c, d in COMMANDS) + \
-               "\n\n⏳ commands run at the next scan (within ~2 hours)."
+        return "MONEYRADAR COMMANDS\n\n" + "\n".join(f"/{c} — {d}" for c, d in COMMANDS) + \
+               "\n\nCommands take effect at the next run (within ~30 minutes)."
     if cmd == "pause":
         if data["paused"]:
             return "already paused. /resume to start again."
         data["paused"] = True
         _remember(data, {"kind": "pause"})
-        return "⏸️ paused. no alerts and no X/AI spend until /resume."
+        return "PAUSED. No alerts and no X/AI spend until you send /resume."
     if cmd == "resume":
         if not data["paused"]:
             return "already running."
         data["paused"] = False
         _remember(data, {"kind": "resume"})
-        return "▶️ resumed. alerts start from now (no backlog flood)."
+        return "RESUMED. Alerts start again from now (no backlog flood)."
     if cmd == "stats":
         return _stats_text(data)
     if cmd == "muted":
-        return ("🔇 muted: " + ", ".join(sorted(data["muted"]))) if data["muted"] else "nothing muted."
+        return ("Muted projects: " + ", ".join(sorted(data["muted"]))) if data["muted"] else "Nothing muted."
     if cmd == "mute":
         p = _clean_name(arg).replace("_", "")
         if not p:
@@ -301,24 +365,24 @@ def _run_command(data, text):
             return f"{p} is already muted."
         data["muted"].append(p)
         _remember(data, {"kind": "mute", "project": p})
-        return f"🔇 {p} muted."
+        return f"Muted {p}. Use /unmute {p} to undo."
     if cmd == "unmute":
         p = _clean_name(arg).replace("_", "")
         if p not in data["muted"]:
             return f"{p or '(nothing)'} isn't muted. /muted shows the list."
         data["muted"].remove(p)
         _remember(data, {"kind": "unmute", "project": p})
-        return f"🔊 {p} unmuted."
+        return f"Unmuted {p}."
     if cmd == "blocked":
         names = sorted(a for a, c in data["bad_authors"].items() if c >= BAD_AUTHOR_THRESHOLD)
-        return ("🚫 skipped authors: " + ", ".join("@" + a for a in names)) if names else "no authors blocked."
+        return ("Blocked authors (skipped for bad alerts): " + ", ".join("@" + a for a in names)) if names else "no authors blocked."
     if cmd == "unblock":
         a = _clean_name(arg.lstrip("@"))
         if not a or a not in data["bad_authors"]:
             return "usage: /unblock @name — /blocked shows the list."
         _remember(data, {"kind": "unblock", "author": a, "count": data["bad_authors"][a]})
         data["bad_authors"][a] = 0
-        return f"✅ @{a} unblocked."
+        return f"Unblocked @{a}."
     if cmd == "sources":
         if not data["watched"]:
             return ("no accounts watched yet. accounts get added automatically after "
@@ -326,8 +390,8 @@ def _run_command(data, text):
         rows = []
         for a in data["watched"]:
             h = data["author_hits"].get(a, {})
-            rows.append(f"@{a} — {h.get('alerts', 0)} alerts · {h.get('up', 0)} 👍 · {h.get('down', 0)} 👎")
-        return "👀 watched accounts:\n" + "\n".join(rows)
+            rows.append(f"@{a} — {h.get('alerts', 0)} alerts · {h.get('up', 0)} good · {h.get('down', 0)} bad")
+        return "Watched accounts:\n" + "\n".join(rows)
     if cmd == "watch":
         a = _clean_name(arg.lstrip("@"))
         if not a:
@@ -338,7 +402,7 @@ def _run_command(data, text):
         if a in data["unwatched"]:
             data["unwatched"].remove(a)
         _remember(data, {"kind": "watch", "author": a})
-        return f"👀 watching @{a}. their posts still go through the AI check."
+        return f"Now watching @{a}. Their posts still go through the AI check."
     if cmd == "unwatch":
         a = _clean_name(arg.lstrip("@"))
         if a not in data["watched"]:
@@ -347,9 +411,15 @@ def _run_command(data, text):
         if a not in data["unwatched"]:
             data["unwatched"].append(a)
         _remember(data, {"kind": "unwatch", "author": a})
-        return f"🙈 stopped watching @{a} — won't be auto-added again."
+        return f"Stopped watching @{a}. They won't be auto-added again."
+    if cmd == "nearmiss":
+        n = len(digest_items(data))
+        if not n:
+            return "no new near-misses right now."
+        data["digest_now"] = True
+        return f"{n} near-miss(es) waiting — sending the near-miss digest now."
     if cmd == "undo":
-        return "↩️ " + _undo(data)
+        return "Undo: " + _undo(data)
     return "unknown command. /help shows what I can do."
 
 
@@ -409,7 +479,7 @@ def collect_taps(data):
             data["likes"].append({"summary": info.get("summary", ""), "date": today})
             _remember(data, {"kind": "like"})
             _hit(data, info, "up")
-            label = "✅ 👍 saved — more like this"
+            label = "Saved: GOOD alert — more like this"
         elif action == "down":
             data["dislikes"].append({"summary": info.get("summary", ""), "date": today})
             author = (info.get("author") or "").lower()
@@ -419,13 +489,30 @@ def collect_taps(data):
                 author = ""
             _remember(data, {"kind": "dislike", "author": author})
             _hit(data, info, "down")
-            label = "✅ 👎 saved — less like this"
+            label = "Saved: BAD alert — less like this"
+        elif action == "rescue":
+            nm = data["near_misses"].get(key)
+            if not nm:
+                label = "Too old to rescue (kept 3 days)"
+            elif nm.get("rescued"):
+                label = "Already rescued"
+            else:
+                nm["rescued"] = True
+                data["rescue_queue"].append(key)
+                # the AI was wrong here — teach it
+                data["likes"].append({"summary": nm.get("summary", ""), "date": today})
+                _remember(data, {"kind": "like"})
+                label = "Rescued — full alert coming at the next run"
+            applied += 1
+            print(f"[feedback] rescue: {key}")
+            _tg("answerCallbackQuery", token, callback_query_id=cq.get("id"), text=label[:60])
+            continue
         elif action == "mute":
             project = key  # mute buttons carry the project name
             if project and project not in data["muted"]:
                 data["muted"].append(project)
                 _remember(data, {"kind": "mute", "project": project})
-            label = f"✅ 🔇 {project} muted (/unmute {project} to undo)"
+            label = f"Muted {project} (/unmute {project} to undo)"
         else:
             continue
 
@@ -457,9 +544,9 @@ def record_run(data, alerts, scanned, ai_cost, tweets):
 def buttons(key, project):
     """Inline keyboard for an alert. callback_data must stay under 64 bytes."""
     row = [
-        {"text": "👍", "callback_data": f"fb|up|{key}"[:64]},
-        {"text": "👎", "callback_data": f"fb|down|{key}"[:64]},
+        {"text": "Good alert", "callback_data": f"fb|up|{key}"[:64]},
+        {"text": "Bad alert", "callback_data": f"fb|down|{key}"[:64]},
     ]
     if project:
-        row.append({"text": f"🔇 mute {project}"[:30], "callback_data": f"fb|mute|{project}"[:64]})
+        row.append({"text": f"Mute {project}"[:30], "callback_data": f"fb|mute|{project}"[:64]})
     return {"inline_keyboard": [row]}
