@@ -25,8 +25,8 @@ TIER_HEADERS = {
 }
 
 LANG_LABELS = {
-    "zh": "🇨🇳 chinese",
-    "ko": "🇰🇷 korean",
+    "zh": "Chinese post",
+    "ko": "Korean post",
 }
 
 MAX_ORIGINAL_CHARS = 600   # keeps alerts readable; full post is one tap away
@@ -36,14 +36,14 @@ def _source_line(post):
     source = post.get("source")
     author = post.get("author") or ""
     if source == "telegram":
-        line = f"✈️ Telegram · @{author}" if author else "✈️ Telegram"
+        line = f"Source: Telegram · @{author}" if author else "Source: Telegram"
     elif source == "reddit":
-        line = f"🔴 Reddit · r/{post['subreddit']}" if post.get("subreddit") else "🔴 Reddit"
+        line = f"Source: Reddit · r/{post['subreddit']}" if post.get("subreddit") else "Source: Reddit"
     else:
-        line = f"🐦 X · @{author}" if author else "🐦 X"
+        line = f"Source: X · @{author}" if author else "Source: X"
 
     if post.get("fast"):
-        line = "⚡ FAST LANE · " + line
+        line = "FAST LANE (caught early) · " + line
     lang_label = LANG_LABELS.get(post.get("lang"))
     if lang_label:
         line += f" · {lang_label}"
@@ -76,12 +76,12 @@ def send_alert(post, matched_amount, reply_markup=None):
     # Only cash offers show 💵 — for airdrops/points the number found is often a
     # prize pool or a trading requirement ("trade 500 USDT"), not your reward.
     if matched_amount and post.get("tier", "cash") == "cash":
-        lines.append(f"💵 {matched_amount}")
+        lines.append(f"Reward: {matched_amount}")
 
     summary = (post.get("summary_en") or "").strip()
     if summary:
         lines.append("")
-        lines.append(f"📝 {summary}")
+        lines.append(f"Summary: {summary}")
 
     original = (post.get("body") or post.get("title") or "").strip()
     if len(original) > MAX_ORIGINAL_CHARS:
@@ -92,13 +92,13 @@ def send_alert(post, matched_amount, reply_markup=None):
 
     if report.get("lines"):
         lines.append("")
-        lines.append("🛡️ LINK SAFETY CHECK:")
+        lines.append("LINK SAFETY CHECK:")
         lines.extend(report["lines"])
 
     link = _post_link(post)
     if link:
         lines.append("")
-        lines.append(f"🔗 {link}")
+        lines.append(f"Link: {link}")
 
     # Plain text, no Markdown — post/tweet content is unpredictable (can contain
     # *, _, [, ] etc.) and Telegram rejects the whole message with a 400 error
@@ -143,15 +143,17 @@ def send_summary(new_count, scanned_count, extra=""):
         pass
 
 
-def send_text(message):
-    """Send a plain message (used for warnings like 'AI credits empty')."""
+def send_text(message, reply_markup=None):
+    """Send a plain message (warnings, digests). Optional inline buttons."""
     token = os.environ.get("TELEGRAM_BOT_TOKEN")
     chat_id = os.environ.get("TELEGRAM_CHAT_ID")
     if not token or not chat_id:
         print(f"[telegram_alert] Would have sent: {message}")
         return
+    payload = {"chat_id": chat_id, "text": message[:4000], "disable_web_page_preview": True}
+    if reply_markup:
+        payload["reply_markup"] = reply_markup
     try:
-        requests.post(TELEGRAM_API_URL.format(token=token),
-                      json={"chat_id": chat_id, "text": message[:4000]}, timeout=15)
+        requests.post(TELEGRAM_API_URL.format(token=token), json=payload, timeout=15)
     except requests.RequestException as e:
         print(f"[telegram_alert] Failed to send message: {e}")
