@@ -68,7 +68,9 @@ def send_alert(post, matched_amount, reply_markup=None):
     header = TIER_HEADERS.get(post.get("tier"), "💰 NEW OPPORTUNITY")
 
     lines = [header, _source_line(post)]
-    if matched_amount:
+    # Only cash offers show 💵 — for airdrops/points the number found is often a
+    # prize pool or a trading requirement ("trade 500 USDT"), not your reward.
+    if matched_amount and post.get("tier", "cash") == "cash":
         lines.append(f"💵 {matched_amount}")
 
     summary = (post.get("summary_en") or "").strip()
