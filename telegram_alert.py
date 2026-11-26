@@ -42,6 +42,8 @@ def _source_line(post):
     else:
         line = f"🐦 X · @{author}" if author else "🐦 X"
 
+    if post.get("fast"):
+        line = "⚡ FAST LANE · " + line
     lang_label = LANG_LABELS.get(post.get("lang"))
     if lang_label:
         line += f" · {lang_label}"
