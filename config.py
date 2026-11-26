@@ -247,3 +247,9 @@ X_ENABLED = True
 # — that's how offers like the Blockchain.com $5 TRX bonus slipped through.
 # Higher = fewer misses, more TwitterAPI.io credits.
 X_MAX_PAGES = 3
+
+# ── LINK SAFETY CHECK ──
+# Every alert shows a 🛡️ line per link (✅ official/established, 🟡 very new,
+# 🔴 lookalike or brand-new claim site). False = 🔴 alerts still come through
+# with a 🚨 warning so you decide. True = 🔴 alerts are dropped entirely.
+BLOCK_DANGER = False
