@@ -136,6 +136,19 @@ def _record_campaign(seen_ids, project, summary):
     seen_ids.add(f"alert|{project}|{date.today().isoformat()}|{clean}")
 
 
+def _in_quiet_hours():
+    if not getattr(config, "QUIET_HOURS_ENABLED", False):
+        return False
+    from datetime import datetime, timezone, timedelta as _td
+    try:
+        from zoneinfo import ZoneInfo
+        hour = datetime.now(ZoneInfo(getattr(config, "QUIET_TIMEZONE", "Africa/Lagos"))).hour
+    except Exception:
+        hour = (datetime.now(timezone.utc) + _td(hours=1)).hour   # Lagos = UTC+1
+    start, end = getattr(config, "QUIET_START", 23), getattr(config, "QUIET_END", 6)
+    return (hour >= start or hour < end) if start > end else (start <= hour < end)
+
+
 def _quality(post, result, verdict):
     """Score how useful a post is, to pick the best of several versions."""
     score = 0
@@ -190,30 +203,65 @@ def run_scan():
     if fb["paused"]:
         # Paused with /pause: no X or AI spend. Keep "last run" at now so
         # /resume starts fresh instead of flooding you with the backlog.
-        for k in seen_ids.keys_starting("lastrun|"):
+        for k in seen_ids.keys_starting("lastrun|") + seen_ids.keys_starting("lastfull|"):
             seen_ids._ids.pop(k, None)
         seen_ids.add(f"lastrun|{int(_time.time())}")
+        seen_ids.add(f"lastfull|{int(_time.time())}")
         save_seen_posts(seen_ids)
         feedback.save(fb)
         print("⏸️  Paused via /pause — skipping this scan. Send /resume to start again.")
         return
 
+    # 🌙 Quiet hours: skip the scan entirely (no X/AI spend). "last run" is NOT
+    # moved forward, so the first run after QUIET_END catches up on the night.
+    if _in_quiet_hours():
+        save_seen_posts(seen_ids)
+        feedback.save(fb)
+        print("🌙 Quiet hours — no scan. Overnight posts will be caught up after "
+              f"{getattr(config, 'QUIET_END', 6)}:00.")
+        return
+
     reddit_posts = []  # Reddit disabled — no API access
 
-    # Read X only since the last successful run (minus 20 min overlap), so
-    # nothing is missed between runs and nothing old is re-paid for.
-    # Capped at 24h back in case the bot was off for a while.
+    # Read X only since the last successful run (minus overlap), so nothing is
+    # missed between runs and nothing old is re-paid for. Capped at 24h back.
+    #   lastrun  = any run (fast lane accounts read since then)
+    #   lastfull = last full keyword sweep
     now_ts = int(_time.time())
-    last_runs = [int(k.split("|")[1]) for k in seen_ids.keys_starting("lastrun|") if k.split("|")[1].isdigit()]
-    since_ts = max(max(last_runs) - 1200, now_ts - 86400) if last_runs else None
+    def _last(prefix):
+        vals = [int(k.split("|")[1]) for k in seen_ids.keys_starting(prefix) if k.split("|")[1].isdigit()]
+        return max(vals) if vals else None
+    last_any, last_full = _last("lastrun|"), _last("lastfull|")
+    full_every = getattr(config, "FULL_SWEEP_EVERY_MINUTES", 120) * 60
+    # 10-min slack so GitHub's cron delays don't push a sweep back a whole slot
+    full_sweep = last_full is None or now_ts - last_full >= full_every - 600
+    since_full = max(last_full - 1200, now_ts - 86400) if last_full else (
+        max(last_any - 1200, now_ts - 86400) if last_any else None)
+    since_any = max(last_any - 600, now_ts - 86400) if last_any else since_full
+    print("🔎 FULL SWEEP (keywords + accounts + Telegram)" if full_sweep else "⚡ FAST LANE (watched + official accounts only)")
+
+    # Morning catch-up: a long gap (e.g. after quiet hours) gets more result
+    # pages per search, so a busy night isn't cut off at the usual page limit.
+    gap_hours = (now_ts - since_full) / 3600 if since_full else 0
+    pages = None
+    if full_sweep and gap_hours >= 4:
+        pages = min(10, getattr(config, "X_MAX_PAGES", 3) * int(gap_hours // 2 + 1))
+        msg = f"☀️ morning catch-up — scanning the last ~{gap_hours:.0f}h of posts"
+        print(msg)
+        send_text(msg)
+
     for msg in feedback.update_watchlist(fb):
         print(f"[sources] {msg}")
         send_text(msg)
-    x_posts = scan_x(since_ts, fb["watched"])
+    x_posts = scan_x(since_full, fb["watched"], keywords=full_sweep, accounts_since=since_any,
+                     official=getattr(config, "X_OFFICIAL_ACCOUNTS", []), max_pages=pages)
+    if not full_sweep:
+        for p in x_posts:
+            p["fast"] = True
     print(f"Fetched {len(x_posts)} posts from X.")
 
     telegram_posts = []
-    if TELEGRAM_ENABLED:
+    if TELEGRAM_ENABLED and full_sweep:
         try:
             telegram_posts = scan_telegram_channels()
         except Exception as e:
@@ -361,8 +409,14 @@ def run_scan():
         for k in seen_ids.keys_starting("lastrun|"):
             seen_ids._ids.pop(k, None)
         seen_ids.add(f"lastrun|{now_ts}")
+        if full_sweep:
+            for k in seen_ids.keys_starting("lastfull|"):
+                seen_ids._ids.pop(k, None)
+            seen_ids.add(f"lastfull|{now_ts}")
     save_seen_posts(seen_ids)
-    send_summary(new_alerts, len(all_posts), spend_line)
+    if full_sweep:
+        # one summary per full sweep — fast-lane runs only send the alerts themselves
+        send_summary(new_alerts, len(all_posts), spend_line)
 
     # AI down (credits empty / bad key): one Telegram warning per day, no spam
     if ai_verify.AI_DOWN["reason"]:
