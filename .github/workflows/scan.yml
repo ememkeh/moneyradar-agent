@@ -2,8 +2,10 @@ name: MoneyRadar Scan
 
 on:
   schedule:
-    # Every 2 hours at :17 past (odd minute = less GitHub queue delay than :00)
-    - cron: "17 */2 * * *"
+    # Every 30 min at :07 and :37 (odd minutes = less GitHub queue delay).
+    # main.py decides each time: ⚡ fast lane (accounts only) or, every ~2h,
+    # the full keyword sweep. Free on a public repo.
+    - cron: "7,37 * * * *"
   workflow_dispatch: {}  # lets you trigger it manually from the Actions tab to test
 
 permissions:
