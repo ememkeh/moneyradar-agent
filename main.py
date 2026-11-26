@@ -136,15 +136,19 @@ def _record_campaign(seen_ids, project, summary):
     seen_ids.add(f"alert|{project}|{date.today().isoformat()}|{clean}")
 
 
-def _in_quiet_hours():
-    if not getattr(config, "QUIET_HOURS_ENABLED", False):
-        return False
+def _local_now():
     from datetime import datetime, timezone, timedelta as _td
     try:
         from zoneinfo import ZoneInfo
-        hour = datetime.now(ZoneInfo(getattr(config, "QUIET_TIMEZONE", "Africa/Lagos"))).hour
+        return datetime.now(ZoneInfo(getattr(config, "QUIET_TIMEZONE", "Africa/Lagos")))
     except Exception:
-        hour = (datetime.now(timezone.utc) + _td(hours=1)).hour   # Lagos = UTC+1
+        return datetime.now(timezone.utc) + _td(hours=1)   # Lagos = UTC+1
+
+
+def _in_quiet_hours():
+    if not getattr(config, "QUIET_HOURS_ENABLED", False):
+        return False
+    hour = _local_now().hour
     start, end = getattr(config, "QUIET_START", 23), getattr(config, "QUIET_END", 6)
     return (hour >= start or hour < end) if start > end else (start <= hour < end)
 
@@ -221,6 +225,23 @@ def run_scan():
               f"{getattr(config, 'QUIET_END', 6)}:00.")
         return
 
+    # 🔁 near-misses you rescued from the digest → send them as full alerts
+    for key in list(fb["rescue_queue"]):
+        nm = fb["near_misses"].get(key)
+        fb["rescue_queue"].remove(key)
+        if not nm:
+            continue
+        post = dict(nm["post"])
+        post["tier"] = nm.get("tier", "cash")
+        post["summary_en"] = nm.get("summary", "")
+        post["link_report"] = link_check.check_post(post, fb["domain_cache"])
+        if nm.get("project"):
+            _record_campaign(seen_ids, nm["project"], nm.get("summary", ""))
+        _record_text(seen_ids, _normalize(post.get("body", "")))
+        feedback.remember_alert(fb, key, post, nm.get("project", ""), nm.get("summary", ""))
+        print(f"🔁 RESCUED → alert: {nm.get('summary', '')[:60]}")
+        send_alert(post, nm.get("amount") or None, feedback.buttons(key, nm.get("project", "")))
+
     reddit_posts = []  # Reddit disabled — no API access
 
     # Read X only since the last successful run (minus overlap), so nothing is
@@ -246,7 +267,8 @@ def run_scan():
     pages = None
     if full_sweep and gap_hours >= 4:
         pages = min(10, getattr(config, "X_MAX_PAGES", 3) * int(gap_hours // 2 + 1))
-        msg = f"☀️ morning catch-up — scanning the last ~{gap_hours:.0f}h of posts"
+        msg = (("☀️ morning catch-up" if _local_now().hour < 10 else "🔄 catch-up")
+               + f" — scanning the last ~{gap_hours:.0f}h of posts")
         print(msg)
         send_text(msg)
 
@@ -330,7 +352,11 @@ def run_scan():
                 # Not a real rejection — hold it so it's checked again once AI is back
                 held_back.append(post["id"])
                 continue
-            print(f"🤖 AI REJECTED: {post['title'][:60]} — {verdict['reason']}")
+            if verdict.get("close"):
+                feedback.add_near_miss(fb, post["id"][-40:], post, verdict, result["matched_amount"])
+                print(f"🤏 NEAR MISS (saved for digest): {post['title'][:60]} — {verdict['reason']}")
+            else:
+                print(f"🤖 AI REJECTED: {post['title'][:60]} — {verdict['reason']}")
             continue
         post["link_report"] = link_check.check_post(post, fb["domain_cache"])
         approved.append((post, result, author_key, norm, verdict))
@@ -393,8 +419,8 @@ def run_scan():
     ai_cost = ai_verify.usage_cost()
     month_cost = feedback.add_spend(fb, ai_cost)
     x_cost = len(x_posts) * 0.00015   # TwitterAPI.io ≈ $0.15 per 1,000 tweets
-    spend_line = (f"🤖 AI: {ai_verify.USAGE['calls']} call(s), ~${ai_cost:.3f} "
-                  f"(this month ~${month_cost:.2f}) · 🐦 X: {len(x_posts)} tweets, ~${x_cost:.3f}")
+    spend_line = (f"Cost this scan: AI {ai_verify.USAGE['calls']} call(s) ~${ai_cost:.3f} "
+                  f"(this month ~${month_cost:.2f}) · X {len(x_posts)} tweets ~${x_cost:.3f}")
     print(spend_line)
     feedback.record_run(fb, new_alerts, len(all_posts), ai_cost, len(x_posts))
     feedback.save(fb)
@@ -417,6 +443,21 @@ def run_scan():
     if full_sweep:
         # one summary per full sweep — fast-lane runs only send the alerts themselves
         send_summary(new_alerts, len(all_posts), spend_line)
+
+    # 🔁 daily near-miss digest (or on demand via /nearmiss)
+    today_local = _local_now().date().isoformat()
+    due = (getattr(config, "DIGEST_ENABLED", True)
+           and _local_now().hour >= getattr(config, "DIGEST_HOUR", 20)
+           and fb["digest_sent"] != today_local)
+    if due or fb["digest_now"]:
+        text, markup = feedback.build_digest(fb)
+        if text:
+            send_text(text, markup)
+            print(f"🔁 near-miss digest sent ({len(markup['inline_keyboard'])} button row(s))")
+        if due:
+            fb["digest_sent"] = today_local
+        fb["digest_now"] = False
+        feedback.save(fb)
 
     # AI down (credits empty / bad key): one Telegram warning per day, no spam
     if ai_verify.AI_DOWN["reason"]:
