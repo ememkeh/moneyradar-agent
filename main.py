@@ -160,12 +160,29 @@ def run_scan():
     seen_ids = load_seen_posts()
     print(f"Loaded {len(seen_ids)} previously-seen post IDs.")
 
+    # ── your 👍 / 👎 / 🔇 taps and typed commands since last run ──
+    fb = feedback.load()
+    taps = feedback.collect_taps(fb)
+    if taps:
+        print(f"[controls] handled {taps} tap(s)/command(s)")
+
+    import time as _time
+    if fb["paused"]:
+        # Paused with /pause: no X or AI spend. Keep "last run" at now so
+        # /resume starts fresh instead of flooding you with the backlog.
+        for k in seen_ids.keys_starting("lastrun|"):
+            seen_ids._ids.pop(k, None)
+        seen_ids.add(f"lastrun|{int(_time.time())}")
+        save_seen_posts(seen_ids)
+        feedback.save(fb)
+        print("⏸️  Paused via /pause — skipping this scan. Send /resume to start again.")
+        return
+
     reddit_posts = []  # Reddit disabled — no API access
 
     # Read X only since the last successful run (minus 20 min overlap), so
     # nothing is missed between runs and nothing old is re-paid for.
     # Capped at 24h back in case the bot was off for a while.
-    import time as _time
     now_ts = int(_time.time())
     last_runs = [int(k.split("|")[1]) for k in seen_ids.keys_starting("lastrun|") if k.split("|")[1].isdigit()]
     since_ts = max(max(last_runs) - 1200, now_ts - 86400) if last_runs else None
@@ -186,11 +203,6 @@ def run_scan():
     held_back = []
     today_str = date.today().isoformat()
 
-    # ── your 👍 / 👎 / 🔇 taps since last run ──
-    fb = feedback.load()
-    taps = feedback.collect_taps(fb)
-    if taps:
-        print(f"[feedback] applied {taps} tap(s)")
     ai_verify.set_feedback_examples(feedback.liked_examples(fb), feedback.disliked_examples(fb))
 
     # ── PHASE 1: free checks (no AI) ──
@@ -294,6 +306,7 @@ def run_scan():
     spend_line = (f"🤖 AI: {ai_verify.USAGE['calls']} call(s), ~${ai_cost:.3f} "
                   f"(this month ~${month_cost:.2f}) · 🐦 X: {len(x_posts)} tweets, ~${x_cost:.3f}")
     print(spend_line)
+    feedback.record_run(fb, new_alerts, len(all_posts), ai_cost, len(x_posts))
     feedback.save(fb)
 
     if ai_verify.AI_DOWN["reason"]:
