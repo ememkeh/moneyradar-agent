@@ -106,6 +106,10 @@ def scan_x(since_timestamp=None):
                     author = tweet.get("author", {}) or {}
                     text = tweet.get("text", "") or ""
                     url = tweet.get("url") or f"https://x.com/i/web/status/{tweet_id}"
+                    # real destinations of the t.co links, for the link safety check
+                    ents = tweet.get("entities") or {}
+                    links = [u.get("expanded_url") for u in (ents.get("urls") or [])
+                             if isinstance(u, dict) and u.get("expanded_url")]
                     all_posts.append({
                         "id": f"x_{tweet_id}",
                         "source": "x",
@@ -117,6 +121,7 @@ def scan_x(since_timestamp=None):
                         "subreddit": None,
                         "author": author.get("userName", ""),
                         "created_at": tweet.get("createdAt", ""),
+                        "links": links,
                     })
                     lang_count += 1
 
