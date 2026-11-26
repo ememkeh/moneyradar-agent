@@ -33,6 +33,7 @@ from telegram_scanner import scan_telegram_channels
 from filters import evaluate_post
 from ai_verify import classify_many, is_same_campaign
 import feedback
+import link_check
 from telegram_alert import send_alert, send_summary, send_text
 import ai_verify
 
@@ -290,6 +291,15 @@ def run_scan():
         post["tier"] = verdict["tier"]
         post["tier_label"] = TIER_LABELS.get(verdict["tier"], "")
         post["summary_en"] = verdict["summary_en"]
+
+        # 🛡️ link safety check (only on posts about to be alerted)
+        report = link_check.check_post(post, fb["domain_cache"])
+        post["link_report"] = report
+        if report["level"] == "danger":
+            print(f"🚨 risky link: {report['lines']}")
+            if getattr(config, "BLOCK_DANGER", False):
+                print(f"🚫 BLOCKED (risky link, BLOCK_DANGER on): {post['title'][:60]}")
+                continue
 
         fb_key = post["id"][-40:]
         feedback.remember_alert(fb, fb_key, post, project, verdict["summary_en"])
