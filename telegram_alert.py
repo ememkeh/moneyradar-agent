@@ -66,6 +66,9 @@ def send_alert(post, matched_amount, reply_markup=None):
         return False
 
     header = TIER_HEADERS.get(post.get("tier"), "💰 NEW OPPORTUNITY")
+    report = post.get("link_report") or {}
+    if report.get("level") == "danger":
+        header = "🚨 WARNING: RISKY LINK — likely scam, check before you share\n" + header
 
     lines = [header, _source_line(post)]
     # Only cash offers show 💵 — for airdrops/points the number found is often a
@@ -84,6 +87,11 @@ def send_alert(post, matched_amount, reply_markup=None):
     if original:
         lines.append("")
         lines.append(original)
+
+    if report.get("lines"):
+        lines.append("")
+        lines.append("🛡️ LINK SAFETY CHECK:")
+        lines.extend(report["lines"])
 
     link = _post_link(post)
     if link:
