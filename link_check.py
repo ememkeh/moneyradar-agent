@@ -7,11 +7,13 @@ For each link in the post it:
   3. looks up how old the domain is (free RDAP lookup, no API key)
   4. marks known official domains as ✅
 
-Result levels:
-  ✅ ok        known official domain, or an established domain (1y+)
-  ⚪ unknown   couldn't check age (some country domains hide it) — be normal-careful
-  🟡 caution   domain under 90 days old, or a risky pattern
-  🔴 danger    lookalike of a known brand, punycode, or under 30 days old + claim/wallet words
+Each link in the alert gets a plain-words label:
+  ✅ OFFICIAL SITE                   a known brand's real domain
+  ✅ LOOKS LEGIT (established site)  domain registered 90+ days ago
+  ⚪ CAN'T VERIFY (age hidden)       age lookup not available (e.g. some .ng)
+  🟡 CAUTION — VERY NEW SITE         domain under 90 days old
+  🔴 DANGER — LIKELY SCAM            lookalike of a big brand, disguised letters,
+                                     or under 30 days old + claim/wallet words
 
 The alert shows one 🛡️ line per link. 🔴 adds a 🚨 warning at the top.
 Nothing is ever blocked by this check — you decide. (Set BLOCK_DANGER = True
@@ -215,7 +217,14 @@ def check_url(url, cache):
     return "ok", f"{root} — {_age_text(days)}"
 
 
-ICON = {"ok": "✅", "unknown": "⚪", "caution": "🟡", "danger": "🔴"}
+# Plain-words labels so you never have to remember what a colour means
+LABEL = {
+    "official": "✅ OFFICIAL SITE",
+    "ok": "✅ LOOKS LEGIT (established site)",
+    "unknown": "⚪ CAN'T VERIFY (age hidden) — be careful",
+    "caution": "🟡 CAUTION — VERY NEW SITE",
+    "danger": "🔴 DANGER — LIKELY SCAM",
+}
 RANK = {"skip": 0, "ok": 1, "unknown": 2, "caution": 3, "danger": 4}
 
 
@@ -242,7 +251,8 @@ def check_post(post, cache):
         if level == "skip" or dest in seen:
             continue
         seen.add(dest)
-        lines.append(f"{ICON[level]} {text}")
+        label = LABEL["official"] if text.endswith("(official)") else LABEL[level]
+        lines.append(f"{label}\n   {text.replace(' (official)', '')}")
         if RANK[level] > RANK[worst]:
             worst = level
     return {"level": worst, "lines": lines}
