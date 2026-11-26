@@ -249,7 +249,9 @@ def _classify_chunk(chunk):
             },
             json={
                 "model": MODEL,
-                "max_tokens": 120 * len(chunk) + 100,
+                # generous cap — you only pay for tokens actually written, and a
+                # cut-off reply would force 10 separate (pricier) calls
+                "max_tokens": 250 * len(chunk) + 300,
                 "system": _system(batch=True),
                 "messages": [{"role": "user", "content": content}],
             },
@@ -260,6 +262,8 @@ def _classify_chunk(chunk):
         resp.raise_for_status()
         data = resp.json()
         _track(data)
+        if data.get("stop_reason") == "max_tokens":
+            print("[ai_verify] batch reply was cut off (max_tokens)")
         parsed = json.loads(_strip_fences(data["content"][0]["text"]))
         by_n = {int(v.get("n", 0)): v for v in parsed if isinstance(v, dict)}
         out = []
