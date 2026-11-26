@@ -31,8 +31,10 @@ PROJECT_DEDUPE_DAYS = getattr(config, "PROJECT_DEDUPE_DAYS", 7)
 from x_scanner import scan_x
 from telegram_scanner import scan_telegram_channels
 from filters import evaluate_post
-from ai_verify import classify_opportunity, is_same_campaign
-from telegram_alert import send_alert, send_summary
+from ai_verify import classify_many, is_same_campaign
+import feedback
+from telegram_alert import send_alert, send_summary, send_text
+import ai_verify
 
 
 class SeenPosts:
@@ -181,11 +183,21 @@ def run_scan():
 
     all_posts = reddit_posts + x_posts + telegram_posts
     new_alerts = 0
+    held_back = []
     today_str = date.today().isoformat()
 
+    # ── your 👍 / 👎 / 🔇 taps since last run ──
+    fb = feedback.load()
+    taps = feedback.collect_taps(fb)
+    if taps:
+        print(f"[feedback] applied {taps} tap(s)")
+    ai_verify.set_feedback_examples(feedback.liked_examples(fb), feedback.disliked_examples(fb))
+
+    # ── PHASE 1: free checks (no AI) ──
+    candidates = []
     for post in all_posts:
         if post["id"] in seen_ids:
-            continue  # already alerted on this one
+            continue  # already handled
 
         seen_ids.add(post["id"])  # mark as seen regardless of pass/fail — don't re-evaluate it next run
 
@@ -199,10 +211,18 @@ def run_scan():
         author = post.get("author")
         author_key = None
         if author and post.get("source") != "telegram":
+            if feedback.is_bad_author(fb, author):
+                print(f"👎 SKIPPED (author you downvoted 2+ times, no AI used): @{author}")
+                continue
             author_key = f"authorday_{author}_{today_str}"
             if author_key in seen_ids:
                 print(f"⏭️  SKIPPED (already alerted this author today): {post['title'][:60]}")
                 continue
+
+        muted = feedback.muted_project_in_text(fb, post["body"])
+        if muted:
+            print(f"🔇 SKIPPED (muted project '{muted}', no AI used): {post['title'][:60]}")
+            continue
 
         # Free copy-paste check — near-identical to something already alerted?
         norm = _normalize(post["body"])
@@ -210,15 +230,38 @@ def run_scan():
             print(f"📋 SKIPPED (copy-paste of an alerted post, no AI used): {post['title'][:60]}")
             continue
 
-        # AI verification: confirms it's real + live, picks the tier, writes an English summary.
-        verdict = classify_opportunity(post["title"], post["body"], result["tier_hint"])
+        candidates.append((post, result, author_key, norm))
+
+    # ── PHASE 2: AI check, 10 posts per call ──
+    if candidates:
+        print(f"🤖 AI checking {len(candidates)} post(s) in batches of {ai_verify.BATCH_SIZE}")
+    verdicts = classify_many([(p["title"], p["body"], r["tier_hint"]) for p, r, _, _ in candidates])
+
+    # ── PHASE 3: dedupe + alert ──
+    for (post, result, author_key, norm), verdict in zip(candidates, verdicts):
         if not verdict["verified"]:
+            if ai_verify.AI_DOWN["reason"]:
+                # Not a real rejection — hold it so it's checked again once AI is back
+                held_back.append(post["id"])
+                continue
             print(f"🤖 AI REJECTED: {post['title'][:60]} — {verdict['reason']}")
+            continue
+
+        # re-check things that may have changed earlier in this same run
+        if author_key and author_key in seen_ids:
+            print(f"⏭️  SKIPPED (already alerted this author today): {post['title'][:60]}")
+            continue
+        if _is_copy_paste(norm, _recent_texts(seen_ids, PROJECT_DEDUPE_DAYS)):
+            print(f"📋 SKIPPED (copy-paste of a post alerted this run): {post['title'][:60]}")
+            continue
+
+        project = verdict.get("project") or ""
+        if project and project in fb["muted"]:
+            print(f"🔇 SKIPPED (muted project '{project}'): {post['title'][:60]}")
             continue
 
         # Same-campaign dedupe: 10 KOLs shilling one campaign = 1 alert,
         # but a NEW campaign from the same project still alerts.
-        project = verdict.get("project") or ""
         if project:
             previous = _recent_campaigns(seen_ids, project, PROJECT_DEDUPE_DAYS)
             if previous and is_same_campaign(project, verdict["summary_en"], post["body"], previous):
@@ -236,16 +279,48 @@ def run_scan():
         post["tier_label"] = TIER_LABELS.get(verdict["tier"], "")
         post["summary_en"] = verdict["summary_en"]
 
+        fb_key = post["id"][-40:]
+        feedback.remember_alert(fb, fb_key, post, project, verdict["summary_en"])
+
         print(f"✅ MATCH [{verdict['tier']}]: {post['title'][:80]} ({result['matched_amount']})")
-        success = send_alert(post, result["matched_amount"])
+        success = send_alert(post, result["matched_amount"], feedback.buttons(fb_key, project))
         if success:
             new_alerts += 1
 
-    for k in seen_ids.keys_starting("lastrun|"):
-        seen_ids._ids.pop(k, None)
-    seen_ids.add(f"lastrun|{now_ts}")
+    # ── spend this run ──
+    ai_cost = ai_verify.usage_cost()
+    month_cost = feedback.add_spend(fb, ai_cost)
+    x_cost = len(x_posts) * 0.00015   # TwitterAPI.io ≈ $0.15 per 1,000 tweets
+    spend_line = (f"🤖 AI: {ai_verify.USAGE['calls']} call(s), ~${ai_cost:.3f} "
+                  f"(this month ~${month_cost:.2f}) · 🐦 X: {len(x_posts)} tweets, ~${x_cost:.3f}")
+    print(spend_line)
+    feedback.save(fb)
+
+    if ai_verify.AI_DOWN["reason"]:
+        # AI was down: forget held-back posts and keep the old "last run" time,
+        # so the first run after you top up re-reads them (up to 24h back).
+        for pid in held_back:
+            seen_ids._ids.pop(pid, None)
+        print(f"⏸️  AI unavailable — {len(held_back)} post(s) held for the next run")
+    else:
+        for k in seen_ids.keys_starting("lastrun|"):
+            seen_ids._ids.pop(k, None)
+        seen_ids.add(f"lastrun|{now_ts}")
     save_seen_posts(seen_ids)
-    send_summary(new_alerts, len(all_posts))
+    send_summary(new_alerts, len(all_posts), spend_line)
+
+    # AI down (credits empty / bad key): one Telegram warning per day, no spam
+    if ai_verify.AI_DOWN["reason"]:
+        warn_key = f"aidown_warned_{date.today().isoformat()}"
+        if warn_key not in seen_ids:
+            send_text(
+                "⚠️ MoneyRadar paused alerts — the Claude AI check isn't working.\n\n"
+                f"Reason: {ai_verify.AI_DOWN['reason'][:200]}\n\n"
+                "Most likely the Anthropic credits ran out. Top up at "
+                "platform.claude.com → Billing. Alerts resume on the next run after that."
+            )
+            seen_ids.add(warn_key)
+            save_seen_posts(seen_ids)
 
     print(f"=== Scan complete. {new_alerts} new alert(s) sent out of {len(all_posts)} posts scanned. ===")
 
