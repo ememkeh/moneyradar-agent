@@ -90,6 +90,11 @@ def send_alert(post, matched_amount, reply_markup=None):
         lines.append("")
         lines.append(original)
 
+    elig = post.get("eligibility")
+    if elig and elig.get("line"):
+        lines.append("")
+        lines.append(elig["line"])
+
     if report.get("lines"):
         lines.append("")
         lines.append("LINK SAFETY CHECK:")
