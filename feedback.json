@@ -485,6 +485,69 @@
    "project": "trustwallet",
    "summary": "bStocks trading race on Trust Wallet: ≥$10k trades + top-300 rank to win from 100k USDC pool; leader gets 10k USDC.",
    "date": "2026-11-27"
+  },
+  "x_2126357159340351909": {
+   "author": "DEXRiseIO",
+   "source": "x",
+   "project": "dexrise",
+   "summary": "Claim Airdrop #4 now if eligible; 100 new winners every 3 days.",
+   "date": "2026-11-27"
+  },
+  "x_2126365377961840759": {
+   "author": "Bitbase_Ex",
+   "source": "x",
+   "project": "bitbase",
+   "summary": "Claim 1 $HYPE airdrop instantly on Bitbase; earn up to 27 $HYPE in referral pool.",
+   "date": "2026-11-27"
+  },
+  "x_2126346786235416813": {
+   "author": "DOGEligible",
+   "source": "x",
+   "project": "cryptogirls",
+   "summary": "Up to $100 USDC welcome bonus on Web3 social platform after verification; free join.",
+   "date": "2026-11-27"
+  },
+  "x_2126369037278122363": {
+   "author": "lucky44889",
+   "source": "x",
+   "project": "eadx",
+   "summary": "$10 USDT signup bonus + $5 per referral on crypto exchange EADX; complete KYC.",
+   "date": "2026-11-27"
+  },
+  "x_2126361509525643385": {
+   "author": "Gee_Oh_Vaa",
+   "source": "x",
+   "project": "unnamed",
+   "summary": "Up to $100 USDC welcome bonus on social/content platform after verification; free join.",
+   "date": "2026-11-27"
+  },
+  "x_2126345911257498005": {
+   "author": "monirnexus",
+   "source": "x",
+   "project": "laserbeam",
+   "summary": "LaserBeam waitlist airdrop: enter email, verify, connect X, complete task.",
+   "date": "2026-11-27"
+  },
+  "x_2126369308364398834": {
+   "author": "Oxmaroon",
+   "source": "x",
+   "project": "elyonnetwork",
+   "summary": "Elyon Network airdrop: connect wallet, complete quests, earn PTS.",
+   "date": "2026-11-27"
+  },
+  "x_2126365737581482205": {
+   "author": "Bitbase_cn",
+   "source": "x",
+   "project": "hype",
+   "summary": "[Chinese users] Login to claim 1 $HYPE; refer friends to earn up to 27 $HYPE + 1M Coinbase credits weekly.",
+   "date": "2026-11-27"
+  },
+  "x_2126362422277787793": {
+   "author": "Milania_Cult",
+   "source": "x",
+   "project": "zentra",
+   "summary": "Sign up with Google, create Zentra wallet, complete quests on Canton Network beta airdrop.",
+   "date": "2026-11-27"
   }
  },
  "likes": [],
@@ -504,7 +567,7 @@
  },
  "muted": [],
  "spend": {
-  "2026-11": 0.521966
+  "2026-11": 0.56467
  },
  "stats": {
   "2026-11-26": {
@@ -515,11 +578,11 @@
    "tweets": 107
   },
   "2026-11-27": {
-   "alerts": 41,
-   "scanned": 1187,
-   "runs": 7,
-   "ai": 0.3247,
-   "tweets": 1074
+   "alerts": 50,
+   "scanned": 1410,
+   "runs": 8,
+   "ai": 0.367404,
+   "tweets": 1241
   }
  },
  "history": [
@@ -688,6 +751,30 @@
   },
   "agent.family": {
    "created": "2026-07-06",
+   "checked": "2026-11-27"
+  },
+  "eadxexchange.com": {
+   "created": "2024-06-17",
+   "checked": "2026-11-27"
+  },
+  "cryptogirls.net": {
+   "created": "2025-01-08",
+   "checked": "2026-11-27"
+  },
+  "laserbeam.xyz": {
+   "created": "2022-09-24",
+   "checked": "2026-11-27"
+  },
+  "elyon.network": {
+   "created": "2026-05-14",
+   "checked": "2026-11-27"
+  },
+  "zentraone.xyz": {
+   "created": "2026-11-06",
+   "checked": "2026-11-27"
+  },
+  "dexrise.io": {
+   "created": null,
    "checked": "2026-11-27"
   }
  },
@@ -934,6 +1021,60 @@
    "last": "2026-11-27"
   },
   "crypto_pumpman": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "dexriseio": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "bitbase_ex": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "dogeligible": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "lucky44889": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "gee_oh_vaa": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "monirnexus": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "oxmaroon": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "bitbase_cn": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "milania_cult": {
    "up": 0,
    "down": 0,
    "alerts": 1,
@@ -2157,6 +2298,164 @@
    },
    "in_digest": false,
    "rescued": false
+  },
+  "x_2126339814408802619": {
+   "date": "2026-11-27",
+   "summary": "💸 Instant $0.15 To $5 In USDT FCFS 25K Users\n\nKukdooo is a new tap-to-earn game on Telegram - tap th",
+   "reason": "Mystery box rewards are random/raffle-based, not guaranteed per user; $EGG token value unconfirmed.",
+   "project": "kukdooo",
+   "tier": "cash",
+   "amount": "$1,250,000.00",
+   "post": {
+    "id": "x_2126339814408802619",
+    "title": "💸 Instant $0.15 To $5 In USDT FCFS 25K Users\n\nKukdooo is a new tap-to-earn game on Telegram - tap th",
+    "body": "💸 Instant $0.15 To $5 In USDT FCFS 25K Users\n\nKukdooo is a new tap-to-earn game on Telegram - tap the hen, collect $EGG, and open Mystery Boxes that drop real USDT.\n\n⇨ Cost: $0 FREE\n⇨ Funding: $1.25M seed round\n⇨ Backed By: Zerone Venture\n\n🔗https://t.co/M12QRSRtiS\n\n📌Joining Full Guide:\n\n» Open the link and launch the game bot\n» Tap the Spinning Hen to collect $EGG\n» Open Daily Mystery Boxes and try to win USDT\n» Complete Daily Missions and Check-ins\n» Invite friends to climb the league\n» Done\n\n→ Honest Note:\n\n» $EGG token value and airdrop are not confirmed yet - the instant USDT boxes are the real prize here\n\nI am opening my Mystery Box today. How much USDT did you get from yours? 👇\n\n#Kukdooo #Telegram #Airdrop",
+    "url": "https://x.com/income360pro/status/2126339814408802619",
+    "permalink": "https://x.com/income360pro/status/2126339814408802619",
+    "author": "income360pro",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://t.me/kukdooobot?start=5439677501"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126366325341610113": {
+   "date": "2026-11-27",
+   "summary": "Tokenizing a real-world asset is one thing. Making sure that ownership, permissions and transfers fo",
+   "reason": "Vague mention of Quest Hub and 'potential future airdrop'; no concrete tasks, reward, or live date.",
+   "project": "mmix",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126366325341610113",
+    "title": "Tokenizing a real-world asset is one thing. Making sure that ownership, permissions and transfers fo",
+    "body": "Tokenizing a real-world asset is one thing. Making sure that ownership, permissions and transfers follow the right rules is another.\n\nThis is the part of @MMIX_io that I find interesting.\n\nMMIX is building an EVM-compatible Layer 1 focused on businesses and real-world assets. Its approach is different from open networks where anyone can deploy freely. Projects go through a review process, and validators are appointed by the MMIX Foundation.\n\nA few things stand out to me:\n\nIssuer permissions to control asset creation.\nWhitelisting to define eligible participants.\nProject reviews before deployment.\nTransfer restrictions to keep ownership compliant.\nThink about tokenized real estate. Someone may be eligible to buy a property token, but that doesn't automatically mean every future buyer is eligible too.\nHaving these rules built into the infrastructure makes a real difference.\nBringing assets onchain is not the hardest part. Building a system that can handle real ownership and regulatory requirements is where the real challenge begins.\n\nWith mainnet planned for 2027, I'm looking forward to seeing how MMIX develops.\n\nFor now, the Quest Hub is a good way to explore the ecosystem, complete tasks and collect points for potential future airdrop and NFT opportunities.",
+    "url": "https://x.com/Btcozgurr/status/2126366325341610113",
+    "permalink": "https://x.com/Btcozgurr/status/2126366325341610113",
+    "author": "Btcozgurr",
+    "source": "x",
+    "lang": "en",
+    "links": []
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126344836169282004": {
+   "date": "2026-11-27",
+   "summary": "Haven't tried @acepyr  yet? You can still get started👀\n\nAcepyr is a prediction market platform with ",
+   "reason": "Speculative points farming with no instant conversion; token launch in 2027, no stated reward amount.",
+   "project": "acepyr",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126344836169282004",
+    "title": "Haven't tried @acepyr  yet? You can still get started👀\n\nAcepyr is a prediction market platform with ",
+    "body": "Haven't tried @acepyr  yet? You can still get started👀\n\nAcepyr is a prediction market platform with 15% of its total supply allocated to testnet users. The token launch is expected in 2027\n\nGetting started is pretty simple:\n🔗https://t.co/OxgVA9WmPp\n\n• Connect with your wallet, X account, or Gmail\n• New users can get some $ACEPYR tokens to start\n• Complete tasks, maintain your daily streak, and unlock badges\n\nI've been keeping this one on my radar. It looks worth exploring, especially if you enjoy testnet farming\n\nIf you haven't joined, you can check it out. Just do your own research before spending time on it",
+    "url": "https://x.com/shadatofficial1/status/2126344836169282004",
+    "permalink": "https://x.com/shadatofficial1/status/2126344836169282004",
+    "author": "shadatofficial1",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://www.acepyr.com/home?ref=Y3XY4XSPXY"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126349542295777461": {
+   "date": "2026-11-27",
+   "summary": "💥 \n@Kukdooobot\n  MINING  on Telegram!\n\n• Funding: $1.25M Seed Round.\n• Backers: Zerone Venture \nJOIN",
+   "reason": "Vague offer with no stated reward amount; mentions 'Get usdc' but no specific payout or steps.",
+   "project": "kukdooo",
+   "tier": "cash",
+   "amount": "$1,250,000.00",
+   "post": {
+    "id": "x_2126349542295777461",
+    "title": "💥 \n@Kukdooobot\n  MINING  on Telegram!\n\n• Funding: $1.25M Seed Round.\n• Backers: Zerone Venture \nJOIN",
+    "body": "💥 \n@Kukdooobot\n  MINING  on Telegram!\n\n• Funding: $1.25M Seed Round.\n• Backers: Zerone Venture \nJOIN 👇 \nhttps://t.co/ayRotHJfoz \n- Join &amp; complete tasks \n- Refer &amp; Tapping  \n- Get usdc also \n❤️ Like \n♻️ Repost \n🖊️ Comment \nDYOR - NFA  \n#Airdrop #Mining #Cryp https://t.co/WbYorkyk2v",
+    "url": "https://x.com/pdy_rc/status/2126349542295777461",
+    "permalink": "https://x.com/pdy_rc/status/2126349542295777461",
+    "author": "pdy_rc",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://t.me/kukdooobot?start=821202227"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126353855734554878": {
+   "date": "2026-11-27",
+   "summary": "Sign up, verify email, complete tasks, withdraw PEX to Web3 wallet instantly.",
+   "reason": "Matches disliked pattern: sign up, verify email, complete tasks, withdraw to Web3 wallet with no stated reward amount.",
+   "project": "pexel",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126353855734554878",
+    "title": "Join the PEXEL EXCHANGE Airdrop and earn PEX.\n\nPEX withdraws instantly to your Web3 wallet.\n\n1. Sign",
+    "body": "Join the PEXEL EXCHANGE Airdrop and earn PEX.\n\nPEX withdraws instantly to your Web3 wallet.\n\n1. Sign up \n2. Verify email \n3. Complete airdrop tasks\n\n@PEXELExchange \n\n#PEXELExchange #PEX #Airdrop #Web3 #Trading",
+    "url": "https://x.com/d_aveyy/status/2126353855734554878",
+    "permalink": "https://x.com/d_aveyy/status/2126353855734554878",
+    "author": "d_aveyy",
+    "source": "x",
+    "lang": "en",
+    "links": []
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126365404515930242": {
+   "date": "2026-11-27",
+   "summary": "KuCoin Learn & Earn: 2–12 VERITY for trades; lucky draw pools, not fixed rewards.",
+   "reason": "Prize pool ($75k–$60k split) and leaderboard reward; not guaranteed per-user cash.",
+   "project": "kucoin",
+   "tier": "cash",
+   "amount": "$600.00",
+   "post": {
+    "id": "x_2126365404515930242",
+    "title": "Instant $10 To $60 Worth Of Verity Token Rewards On Kucoin!🤑\n\n@kucoincom Learn & Earn is offering 2–",
+    "body": "Instant $10 To $60 Worth Of Verity Token Rewards On Kucoin!🤑\n\n@kucoincom Learn & Earn is offering 2–12 VERITY for eligible new users.\n\n⏳ Campaign Ends: December 3\n\nI checked and got 2 VERITY (around $10)! 😎\n\nHow To Join Step-by-Step Guide 👇\n\n1: Open : https://t.co/3tt7fnVKG1\n2: Trade $VERITY on KuCoin Spot\n3: Complete 250 USDT trading volume to be included in the lucky draw\n4: Check your rewards on the campaign page\n\n🎁 Two reward opportunities\n\nLucky Draw: 75,000 VERITY prize pool\n\nTrading Carnival: 60,000 VERITY prize pool (600 USDT volume required)\n\nIf you are already using KuCoin, check out the campaign before time runs out👇\n\nFollow @Airdrop_Farming for more early crypto guides & updates 🔔\n\n#KuCoin #VERITY #CryptoAirdrop #Web3",
+    "url": "https://x.com/Airdrop_Farming/status/2126365404515930242",
+    "permalink": "https://x.com/Airdrop_Farming/status/2126365404515930242",
+    "author": "Airdrop_Farming",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://www.kucoin.com/learn-and-earn/newlisting-verity-verifiable-reputation-for-digital-markets?rcode=QBSST3HZ"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126375498494464147": {
+   "date": "2026-11-27",
+   "summary": "PopDex trader campaign: $12k leaderboard + $17k pool, early-bird match; first-come-first-served.",
+   "reason": "Trader campaign is leaderboard-based ($1k top-5) and ticket pool with first-come limits, not guaranteed cash.",
+   "project": "popdex",
+   "tier": "cash",
+   "amount": "$131,227.00",
+   "post": {
+    "id": "x_2126375498494464147",
+    "title": "two ways to get paid on @popdex_ right now 👇\n \n1. fund it: the vault\n \n26.3% APR, and 100% of it goe",
+    "body": "two ways to get paid on @popdex_ right now 👇\n \n1. fund it: the vault\n \n26.3% APR, and 100% of it goes to depositors. no performance cut, no management fee\n \nthe yield comes from real trading on popdex, not emissions\n \ndon't want to trade? just deposit and let the vault do the work\n \none honest note: trading-backed vaults can have bad weeks when traders win big. size it like any other yield play\n \n2. trade it: the new trader campaign\n \nthis thanksgiving, popdex is giving back with $17,000 USDT + 2,000 Pop Tickets for new traders, running until dec 6:\n• early bird bonus: every ticket you earn gets matched 1:1, up to 2,000 bonus tickets. first come, first served\n• a $12,000 leaderboard, top 5 get $1,000 each\n• every trade earns MegaPop tickets on top\n \nand the last MegaPop paid one quiet arb team $131,227\n \ntrade it or fund it. either way, popdex pays you\n \nvault: https://t.co/luSbViv1oI\nnew traders, register before you trade: https://t.co/H7QRTcby7D",
+    "url": "https://x.com/givenoxbt/status/2126375498494464147",
+    "permalink": "https://x.com/givenoxbt/status/2126375498494464147",
+    "author": "givenoxbt",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "http://app.popdex.xyz/vaults",
+     "http://popdex.org/1125_new_user"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
   }
  },
  "rescue_queue": [],
@@ -2286,6 +2585,36 @@
   "cerebree.com": {
    "status": "unclear",
    "evidence": "couldn't read cerebree.com's terms — check manually",
+   "checked": "2026-11-27"
+  },
+  "dexrise.io": {
+   "status": "unclear",
+   "evidence": "couldn't read dexrise.io's terms — check manually",
+   "checked": "2026-11-27"
+  },
+  "cryptogirls.net": {
+   "status": "unclear",
+   "evidence": "couldn't read cryptogirls.net's terms — check manually",
+   "checked": "2026-11-27"
+  },
+  "eadxexchange.com": {
+   "status": "unclear",
+   "evidence": "couldn't read eadxexchange.com's terms — check manually",
+   "checked": "2026-11-27"
+  },
+  "laserbeam.xyz": {
+   "status": "unclear",
+   "evidence": "couldn't read laserbeam.xyz's terms — check manually",
+   "checked": "2026-11-27"
+  },
+  "elyon.network": {
+   "status": "unclear",
+   "evidence": "couldn't read elyon.network's terms — check manually",
+   "checked": "2026-11-27"
+  },
+  "zentraone.xyz": {
+   "status": "unclear",
+   "evidence": "couldn't read zentraone.xyz's terms — check manually",
    "checked": "2026-11-27"
   }
  }
