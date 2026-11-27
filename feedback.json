@@ -548,6 +548,41 @@
    "project": "zentra",
    "summary": "Sign up with Google, create Zentra wallet, complete quests on Canton Network beta airdrop.",
    "date": "2026-11-27"
+  },
+  "x_2126378191090786602": {
+   "author": "0xsagor7",
+   "source": "x",
+   "project": "wen",
+   "summary": "Download Wen, create wallet, enter code R6UDC3R, invite 1, trade $10, claim reward box up to $10.",
+   "date": "2026-11-27"
+  },
+  "x_2126381377750966281": {
+   "author": "0x_Antor",
+   "source": "x",
+   "project": "wenwallet",
+   "summary": "Wen Wallet: $1–$10 reward box. Sign up, enter code EL08T4V, trade $10.",
+   "date": "2026-11-27"
+  },
+  "x_2126380086429708358": {
+   "author": "AirdropNeuz",
+   "source": "x",
+   "project": "wenwallet",
+   "summary": "Wen Wallet: $1–$10 reward box. Code G47Y7XY, $10 trade, invite 1 friend.",
+   "date": "2026-11-27"
+  },
+  "x_2126392657681301639": {
+   "author": "Henry_Lucas01",
+   "source": "x",
+   "project": "paripesa",
+   "summary": "Deposit ₦2k minimum to earn ₦230,000 welcome bonus on PariPesa.",
+   "date": "2026-11-27"
+  },
+  "x_2126381986520736000": {
+   "author": "CoinListingBot",
+   "source": "x",
+   "project": "gateweb3",
+   "summary": "$USDD airdrop: complete tasks to share 500 $USDD. Campaign until Dec 4.",
+   "date": "2026-11-27"
   }
  },
  "likes": [],
@@ -567,7 +602,7 @@
  },
  "muted": [],
  "spend": {
-  "2026-11": 0.56467
+  "2026-11": 0.595541
  },
  "stats": {
   "2026-11-26": {
@@ -578,11 +613,11 @@
    "tweets": 107
   },
   "2026-11-27": {
-   "alerts": 50,
-   "scanned": 1414,
-   "runs": 12,
-   "ai": 0.367404,
-   "tweets": 1245
+   "alerts": 55,
+   "scanned": 1596,
+   "runs": 13,
+   "ai": 0.398275,
+   "tweets": 1372
   }
  },
  "history": [
@@ -775,6 +810,18 @@
   },
   "dexrise.io": {
    "created": null,
+   "checked": "2026-11-27"
+  },
+  "wenwallet.ai": {
+   "created": "2026-03-24",
+   "checked": "2026-11-27"
+  },
+  "paripesa.bet": {
+   "created": "2020-11-23",
+   "checked": "2026-11-27"
+  },
+  "paripesa.com": {
+   "created": "2017-06-24",
    "checked": "2026-11-27"
   }
  },
@@ -1075,6 +1122,36 @@
    "last": "2026-11-27"
   },
   "milania_cult": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "0xsagor7": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "0x_antor": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "airdropneuz": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "henry_lucas01": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "coinlistingbot": {
    "up": 0,
    "down": 0,
    "alerts": 1,
@@ -2456,6 +2533,209 @@
    },
    "in_digest": true,
    "rescued": false
+  },
+  "x_2126392948409725021": {
+   "date": "2026-11-27",
+   "summary": "🎁 YUBIT × AIRDROP VOYAGER – NEW USERS WELCOME BONUS!🚀 \n\nExciting opportunity for new YUBIT users! Ge",
+   "reason": "Position coupons are trading credit, not stated withdrawal/cash conversion; deposit required ($100+) makes this pay-to-earn.",
+   "project": "",
+   "tier": "cash",
+   "amount": "$50,000.00",
+   "post": {
+    "id": "x_2126392948409725021",
+    "title": "🎁 YUBIT × AIRDROP VOYAGER – NEW USERS WELCOME BONUS!🚀 \n\nExciting opportunity for new YUBIT users! Ge",
+    "body": "🎁 YUBIT × AIRDROP VOYAGER – NEW USERS WELCOME BONUS!🚀 \n\nExciting opportunity for new YUBIT users! Get various trading bonuses by completing the following steps: \n\n🎯 BONUSES YOU CAN GET:\n\n📱 Download the App → $100 Position Coupon\n 💰 Deposit ≥ $100 → $200 Position Coupon \n📈  Volume ≥ $10,000 → $500 Position Coupon \n\n🔥 TRADE & WIN UP TO:\n $50,000 Position Coupon\n $2,000 CFD Bonus 🚀 \n\nREGISTER NOW VIA THE LINK BELOW: https://t.co/msk62sXrfd \n\n🎁 Don't miss your chance to win various exciting prizes from YUBIT! Join now & start trading! 🔥\n\n#YUBIT #AirdropVoyager #WelcomeBonus #Crypto #Trading #Futures",
+    "url": "https://x.com/AirdropVoyager1/status/2126392948409725021",
+    "permalink": "https://x.com/AirdropVoyager1/status/2126392948409725021",
+    "author": "AirdropVoyager1",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://www.yubit.com/register?inviteCode=VOYAGER"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126404732994637915": {
+   "date": "2026-11-27",
+   "summary": "Every traveler is a potential courier.\n@MovitOn_P2P is unlocking a new global economy, one delivery ",
+   "reason": "Vague 'complete tasks' and 'get airdrop eligibility' with no concrete steps, project name, or reward details.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126404732994637915",
+    "title": "Every traveler is a potential courier.\n@MovitOn_P2P is unlocking a new global economy, one delivery ",
+    "body": "Every traveler is a potential courier.\n@MovitOn_P2P is unlocking a new global economy, one delivery at a time.\n\nMovitOn App :\n🔗 https://t.co/c5aPgNmPTC\n\nMovitOn Loyalty Program :\n🔗 https://t.co/9xTGc2jEoe\n\nComplete Tasks &gt; Earn Move Points &gt; Get Airdrop Eligibility",
+    "url": "https://x.com/cumariee/status/2126404732994637915",
+    "permalink": "https://x.com/cumariee/status/2126404732994637915",
+    "author": "cumariee",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://app.moviton.com/r/390019",
+     "https://hub.moviton.com/loyalty?referral_code=WT9HJIY2"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126389931144798430": {
+   "date": "2026-11-27",
+   "summary": "🚀 Building the future of decentralized finance starts with an active community.\n\n@Elyon_Network is b",
+   "reason": "Vague 'complete tasks and discover opportunities' with no concrete steps, reward amount, or project name clarity.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126389931144798430",
+    "title": "🚀 Building the future of decentralized finance starts with an active community.\n\n@Elyon_Network is b",
+    "body": "🚀 Building the future of decentralized finance starts with an active community.\n\n@Elyon_Network is bringing together Web3 innovation, DeFi and blockchain adoption. Explore the ecosystem, complete tasks and discover new opportunities.\n\n🔗 Join here: https://t.co/4BaOFoV9Qk\n\n#ElyonAirdrop #Crypto #Web3 #DeFi #Airdrop #Blockchain",
+    "url": "https://x.com/MenelaosKatsiva/status/2126389931144798430",
+    "permalink": "https://x.com/MenelaosKatsiva/status/2126389931144798430",
+    "author": "MenelaosKatsiva",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://airdrop.elyon.network/r/X3AC2UX"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126403377965994404": {
+   "date": "2026-11-27",
+   "summary": "🚀 TROBEX EXCHANGE IS LIVE!\n\nA new trading gateway for the growing TrobChain ecosystem! 💙\n\n🔹 TROB/USD",
+   "reason": "Purchase $10+ TROB required + raffle draw (1,000 lucky winners); not a stated per-user reward, and deposit/purchase obligation.",
+   "project": "",
+   "tier": "cash",
+   "amount": "$10.00",
+   "post": {
+    "id": "x_2126403377965994404",
+    "title": "🚀 TROBEX EXCHANGE IS LIVE!\n\nA new trading gateway for the growing TrobChain ecosystem! 💙\n\n🔹 TROB/USD",
+    "body": "🚀 TROBEX EXCHANGE IS LIVE!\n\nA new trading gateway for the growing TrobChain ecosystem! 💙\n\n🔹 TROB/USDT Trading Now LIVE\n🔹 More TrobChain Token Pairs Planned\n\n🎁 LAUNCH AIRDROP — 1,000 LUCKY WINNERS!\n\nHow to participate?\n\n1️⃣ Register on TROBEX using my referral link below.\n2️⃣ Buy a minimum of 10 USDT worth of TROB.\n3️⃣ Follow @Trobium on X.\n4️⃣ Publish a post tagging @Trobium with your public TROBEX deposit address.\n\nGet a chance to win TROB airdrop rewards!\n\n🔥 JOIN NOW:\nhttps://t.co/BEAfDOaYW8\n\n🎯 Referral Code: 2D7A403F\n\nFollow https://t.co/FlhTvZHtMR for official updates.\n\n#TROBEX #Trobium #TROB #Airdrop #Web3",
+    "url": "https://x.com/Xcryptoberlin/status/2126403377965994404",
+    "permalink": "https://x.com/Xcryptoberlin/status/2126403377965994404",
+    "author": "Xcryptoberlin",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://trobex.online/signup?ref=2D7A403F",
+     "https://x.com/Trobium"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126394862060904920": {
+   "date": "2026-11-27",
+   "summary": "🇳🇬 SMALL P2P DEPOSIT, BIGGER OPPORTUNITY: WHAT @MEXC_AfricaBU IS BRINGING TO NEW USERS\n\nOne thing th",
+   "reason": "Vague P2P airdrop with no stated reward amount, eligibility criteria, or concrete qualifying deposit size.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126394862060904920",
+    "title": "🇳🇬 SMALL P2P DEPOSIT, BIGGER OPPORTUNITY: WHAT @MEXC_AfricaBU IS BRINGING TO NEW USERS\n\nOne thing th",
+    "body": "🇳🇬 SMALL P2P DEPOSIT, BIGGER OPPORTUNITY: WHAT @MEXC_AfricaBU IS BRINGING TO NEW USERS\n\nOne thing that often discourages people from exploring crypto campaigns is the assumption that they need a large amount of money to get started.\n\n@MEXC is taking a different approach with its P2P Airdrop Campaign – Small Deposit, Big Rewards.\n\nThe idea is simple: users can participate through a small P2P deposit and unlock opportunities to receive rewards from a larger airdrop pool.\n\nWhy does this matter?\n\n🔹 Lower entry barrier: New users may find it easier to participate without starting with a large deposit.\n\n🔹 P2P accessibility: Users can explore the campaign through MEXC's peer-to-peer deposit option.\n\n🔹 Airdrop opportunity: A relatively small qualifying deposit can open access to rewards from a bigger campaign pool.\n\nI like the concept because it puts more attention on accessibility. Not everyone entering crypto has substantial capital, and campaigns with lower entry requirements can create more opportunities for beginners to explore an exchange.\n\nOf course, always check the official eligibility requirements, qualifying deposit amount and campaign terms before participating. Rewards are not guaranteed.\n\n🔗 Join or explore the campaign:\nhttps://t.co/dpJtpN1HhA\n\nA question for the community:\n\nWould you be more interested in a crypto campaign that requires a large deposit or one that allows you to start small while still having an opportunity to earn rewards?\n\n#MEXC #P2P #Airdrop #Crypto",
+    "url": "https://x.com/sirkparaka/status/2126394862060904920",
+    "permalink": "https://x.com/sirkparaka/status/2126394862060904920",
+    "author": "sirkparaka",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://www.mexc.co/campaigns/nov-p2p-airdrop"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126390718465728960": {
+   "date": "2026-11-27",
+   "summary": "MyAge app code AGE4WTPL; claim steps unclear.",
+   "reason": "Vague engagement bait; no reward stated, no steps, only a referral code.",
+   "project": "appmyage",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126390718465728960",
+    "title": "🚨 @appmyage CODE 6 IS HERE! 🔓🔥\n\nAGE4WTPL\nAGE4WTPL\nAGE4WTPL\n\nDon't miss out! Follow me and stay tuned",
+    "body": "🚨 @appmyage CODE 6 IS HERE! 🔓🔥\n\nAGE4WTPL\nAGE4WTPL\nAGE4WTPL\n\nDon't miss out! Follow me and stay tuned for more legit crypto and airdrops updates.🎁\n\n go and claim now!🚀\n\n#MyAgeApp #age #crypto #airdrops #myage https://t.co/EgKRWtzkAE",
+    "url": "https://x.com/ramsey81091/status/2126390718465728960",
+    "permalink": "https://x.com/ramsey81091/status/2126390718465728960",
+    "author": "ramsey81091",
+    "source": "x",
+    "lang": "en",
+    "links": []
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126389329039954332": {
+   "date": "2026-11-27",
+   "summary": "MyAge app code AGE4WTPL; claim steps unclear.",
+   "reason": "Vague engagement bait; no reward stated, no steps, only a referral code.",
+   "project": "appmyage",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126389329039954332",
+    "title": "🚨 @appmyage CODE 6 IS HERE! 🔓🔥\n\nAGE4WTPL\nAGE4WTPL\nAGE4WTPL\n\nDon't miss out! Follow me and stay tuned",
+    "body": "🚨 @appmyage CODE 6 IS HERE! 🔓🔥\n\nAGE4WTPL\nAGE4WTPL\nAGE4WTPL\n\nDon't miss out! Follow me and stay tuned for more legit crypto and airdrops updates.🎁\n\n go and claim now!🚀",
+    "url": "https://x.com/longphan73/status/2126389329039954332",
+    "permalink": "https://x.com/longphan73/status/2126389329039954332",
+    "author": "longphan73",
+    "source": "x",
+    "lang": "en",
+    "links": []
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126380232722571751": {
+   "date": "2026-11-27",
+   "summary": "MyAge code AGE4WTPL shared; unclear reward or eligibility.",
+   "reason": "Personal farming update; no official link or stated reward for the code.",
+   "project": "appmyage",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126380232722571751",
+    "title": "My AGE Code 6/10\n\nAGE4WTPL\nAGE4WTPL\nAGE4WTPL\n\nDon't miss out! Follow me and stay tuned for more legi",
+    "body": "My AGE Code 6/10\n\nAGE4WTPL\nAGE4WTPL\nAGE4WTPL\n\nDon't miss out! Follow me and stay tuned for more legit crypto and airdrops updates.🎁\n\n go and claim now!🚀\n\n#MyAgeApp #age #crypto #airdrops #myage https://t.co/UM5vX4fvpU",
+    "url": "https://x.com/miizzuo/status/2126380232722571751",
+    "permalink": "https://x.com/miizzuo/status/2126380232722571751",
+    "author": "miizzuo",
+    "source": "x",
+    "lang": "en",
+    "links": []
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126394037183943104": {
+   "date": "2026-11-27",
+   "summary": "The new @moovexyz app just made crypto feel like a normal money app 💛\n\nIn 60 seconds I show you how ",
+   "reason": "Vague hype with no stated reward amount or concrete steps; mentions 'earn USDC in Rewards' but no specifics.",
+   "project": "",
+   "tier": "cash",
+   "amount": "$79.00",
+   "post": {
+    "id": "x_2126394037183943104",
+    "title": "The new @moovexyz app just made crypto feel like a normal money app 💛\n\nIn 60 seconds I show you how ",
+    "body": "The new @moovexyz app just made crypto feel like a normal money app 💛\n\nIn 60 seconds I show you how to claim your handle, top up, send by name, swap, cash out to naira and earn USDC in Rewards\n\nMy Moove Handle is teejay001\nJoin with my link https://t.co/oGq79U1yds\n\nYour Money. Your Move.",
+    "url": "https://x.com/ej_onx/status/2126394037183943104",
+    "permalink": "https://x.com/ej_onx/status/2126394037183943104",
+    "author": "ej_onx",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "http://moove.xyz/@teejay001/refer"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
   }
  },
  "rescue_queue": [],
@@ -2615,6 +2895,11 @@
   "zentraone.xyz": {
    "status": "unclear",
    "evidence": "couldn't read zentraone.xyz's terms — check manually",
+   "checked": "2026-11-27"
+  },
+  "wenwallet.ai": {
+   "status": "unclear",
+   "evidence": "couldn't read wenwallet.ai's terms — check manually",
    "checked": "2026-11-27"
   }
  }
