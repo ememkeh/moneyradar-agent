@@ -283,6 +283,14 @@ QUIET_TIMEZONE = "Africa/Lagos"
 DIGEST_ENABLED = True
 DIGEST_HOUR = 20        # 8 pm your local time (first run at/after this hour)
 
+# ── NIGERIA ELIGIBILITY CHECK ──
+# Every alert gets a line: NIGERIA ELIGIBILITY: YES / NO / UNCLEAR, with the
+# reason (e.g. quoted from the platform's terms). Opportunities from anywhere
+# in the world are still sent — this just tells you if Nigerians can join.
+# HIDE_NOT_ELIGIBLE = True drops alerts that clearly say Nigeria is excluded.
+ELIGIBILITY_CHECK = True
+HIDE_NOT_ELIGIBLE = False
+
 # ── LINK SAFETY CHECK ──
 # Every alert shows a 🛡️ line per link (✅ official/established, 🟡 very new,
 # 🔴 lookalike or brand-new claim site). False = 🔴 alerts still come through
