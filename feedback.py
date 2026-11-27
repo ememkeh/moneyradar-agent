@@ -446,8 +446,21 @@ def collect_taps(data):
 
     res = _tg("getUpdates", token, offset=data["offset"] + 1 if data["offset"] else 0,
               timeout=0, allowed_updates=["callback_query", "message"])
+    # ── diagnostics: say exactly what Telegram returned ──
+    if not res.get("ok"):
+        desc = res.get("description", "no reply")
+        print(f"[controls] ⚠️ Telegram getUpdates FAILED: {desc}")
+        if "webhook" in desc.lower():
+            print("[controls] ⚠️ This bot has a webhook set by another service — taps go there, not here.")
+        if "conflict" in desc.lower():
+            print("[controls] ⚠️ Another program is reading this bot's updates at the same time.")
+        return 0
+    updates = res.get("result", []) or []
+    n_taps = sum(1 for u in updates if u.get("callback_query"))
+    n_msgs = sum(1 for u in updates if u.get("message"))
+    print(f"[controls] Telegram returned {len(updates)} update(s): {n_taps} button tap(s), {n_msgs} message(s)")
     applied = 0
-    for upd in res.get("result", []) or []:
+    for upd in updates:
         data["offset"] = max(data["offset"], int(upd.get("update_id", 0)))
 
         # ── typed commands ──
@@ -470,6 +483,8 @@ def collect_taps(data):
             continue
         msg = cq.get("message") or {}
         if str((msg.get("chat") or {}).get("id", "")) != chat_id:
+            print(f"[controls] ignored a tap from chat {(msg.get('chat') or {}).get('id')} "
+                  f"(TELEGRAM_CHAT_ID is {chat_id})")
             continue
 
         parts = (cq.get("data") or "").split("|", 2)
@@ -524,9 +539,11 @@ def collect_taps(data):
         print(f"[feedback] {action}: {info.get('summary') or key}")
         # swap the buttons for a confirmation so you can see it was recorded
         if msg.get("message_id"):
-            _tg("editMessageReplyMarkup", token, chat_id=msg["chat"]["id"],
-                message_id=msg["message_id"],
-                reply_markup={"inline_keyboard": [[{"text": label[:60], "callback_data": "fb|noop|x"}]]})
+            er = _tg("editMessageReplyMarkup", token, chat_id=msg["chat"]["id"],
+                     message_id=msg["message_id"],
+                     reply_markup={"inline_keyboard": [[{"text": label[:60], "callback_data": "fb|noop|x"}]]})
+            if not er.get("ok"):
+                print(f"[controls] ⚠️ couldn't update the buttons: {er.get('description')}")
         _tg("answerCallbackQuery", token, callback_query_id=cq.get("id"))  # may be too old; harmless
     return applied
 
