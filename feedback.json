@@ -502,10 +502,10 @@
   },
   "2026-11-27": {
    "alerts": 41,
-   "scanned": 1175,
-   "runs": 2,
+   "scanned": 1177,
+   "runs": 3,
    "ai": 0.3247,
-   "tweets": 1062
+   "tweets": 1064
   }
  },
  "history": [],
