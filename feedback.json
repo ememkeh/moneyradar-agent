@@ -385,6 +385,104 @@
    "project": "orb",
    "summary": "Complete testnet tasks to earn ORB Credits, share 20M ORB (2%) by point proportion; snapshot pre-mainnet.",
    "date": "2026-11-27"
+  },
+  "x_2126326079040483653": {
+   "author": "cn_dgrid_ai",
+   "source": "x",
+   "project": "dgrid",
+   "summary": "Connect wallet to DGrid Staking page, stake to claim $DGAI airdrop (deadline 11/30 UTC).",
+   "date": "2026-11-27"
+  },
+  "x_2126286665522291178": {
+   "author": "card2dream",
+   "source": "x",
+   "project": "card2dream",
+   "summary": "Complete starter tasks (link account, first trade) to earn up to ₦10,000.",
+   "date": "2026-11-27"
+  },
+  "x_2126253975158882640": {
+   "author": "META_STARx",
+   "source": "x",
+   "project": "kucoin",
+   "summary": "KuCoin Learn & Earn: new users earn 2–12 VERITY (~$10–$63) via signup, KYC, quiz & trade.",
+   "date": "2026-11-27"
+  },
+  "x_2126228537594282144": {
+   "author": "iwk331",
+   "source": "x",
+   "project": "termix",
+   "summary": "Agent Trading Challenge: ≥20 USDT trade on 42 = 0.5 USDT + top-20 prizes (100–12 USDT+TP). Nov 27–Dec 10.",
+   "date": "2026-11-27"
+  },
+  "x_2126247272694620475": {
+   "author": "love_doge123",
+   "source": "x",
+   "project": "memebitcoin",
+   "summary": "Follow & login, open MBTC card pack free, share to earn 2nd pack, refer friends; earn points and card rewards.",
+   "date": "2026-11-27"
+  },
+  "x_2126295628904796280": {
+   "author": "francis_cgl",
+   "source": "x",
+   "project": "blofin",
+   "summary": "BloFin: instant VIP1 (30 spots) + up to $1,600 bonus via deposit & trade tiers by Dec 2.",
+   "date": "2026-11-27"
+  },
+  "x_2126236422554427486": {
+   "author": "pprgb888",
+   "source": "x",
+   "project": "termix",
+   "summary": "Agent Trading Challenge: ≥20 USDT trade on 42 = 0.5 USDT bonus + top-20 leaderboard prizes up to 100 USDT. Jan 27–Dec 10.",
+   "date": "2026-11-27"
+  },
+  "x_2126282388343067105": {
+   "author": "Fnyaobo",
+   "source": "x",
+   "project": "darkhorse",
+   "summary": "Complete DarkHorse Genesis tasks, become Knight, earn 1,000 Horseshoes + NFT for future token distribution.",
+   "date": "2026-11-27"
+  },
+  "x_2126268213147406419": {
+   "author": "VIP8888883",
+   "source": "x",
+   "project": "dopplerxtengalxe",
+   "summary": "Three imminent airdrops: Doppler claim by Nov 29; XTEN sign by Nov 29 (TGE Nov 30); Galxe close Dec 15.",
+   "date": "2026-11-27"
+  },
+  "x_2126338841393193032": {
+   "author": "shaweeenx",
+   "source": "x",
+   "project": "giwachain",
+   "summary": "Trade on Giwa testnet (deposit USDC, swap, perpetuals) to earn points and $ZAYRO tokens; stake $ZAYRO for rewards.",
+   "date": "2026-11-27"
+  },
+  "x_2126235732175884676": {
+   "author": "web3_attorney",
+   "source": "x",
+   "project": "pulsarmoney",
+   "summary": "Sign up, deposit USDC to earn commission, earn cashback on card spend, $120/month referral bonus.",
+   "date": "2026-11-27"
+  },
+  "x_2126253076893843542": {
+   "author": "SalamCryptobro",
+   "source": "x",
+   "project": "pexelexchange",
+   "summary": "35 PEX reward. Sign up, verify email, complete tasks, withdraw instantly to Web3 wallet.",
+   "date": "2026-11-27"
+  },
+  "x_2126275429069971840": {
+   "author": "ibtc2023",
+   "source": "x",
+   "project": "cerebreo",
+   "summary": "Connect EVM wallet, complete social tasks (X, Discord, Telegram), daily check-in; earn points toward $CRX airdrop.",
+   "date": "2026-11-27"
+  },
+  "x_2126297166247338194": {
+   "author": "crypto_pumpman",
+   "source": "x",
+   "project": "trustwallet",
+   "summary": "bStocks trading race on Trust Wallet: ≥$10k trades + top-300 rank to win from 100k USDC pool; leader gets 10k USDC.",
+   "date": "2026-11-27"
   }
  },
  "likes": [],
@@ -392,7 +490,7 @@
  "bad_authors": {},
  "muted": [],
  "spend": {
-  "2026-11": 0.367039
+  "2026-11": 0.521966
  },
  "stats": {
   "2026-11-26": {
@@ -403,11 +501,11 @@
    "tweets": 107
   },
   "2026-11-27": {
-   "alerts": 27,
-   "scanned": 618,
-   "runs": 1,
-   "ai": 0.169773,
-   "tweets": 561
+   "alerts": 41,
+   "scanned": 1175,
+   "runs": 2,
+   "ai": 0.3247,
+   "tweets": 1062
   }
  },
  "history": [],
@@ -543,6 +641,30 @@
   },
   "ether.fi": {
    "created": null,
+   "checked": "2026-11-27"
+  },
+  "blofin.com": {
+   "created": "2019-08-02",
+   "checked": "2026-11-27"
+  },
+  "dgrid.ai": {
+   "created": "2025-07-02",
+   "checked": "2026-11-27"
+  },
+  "dhorse.fun": {
+   "created": "2026-08-08",
+   "checked": "2026-11-27"
+  },
+  "cerebree.com": {
+   "created": "2019-02-11",
+   "checked": "2026-11-27"
+  },
+  "t.co": {
+   "created": null,
+   "checked": "2026-11-27"
+  },
+  "agent.family": {
+   "created": "2026-07-06",
    "checked": "2026-11-27"
   }
  },
@@ -705,6 +827,90 @@
    "last": "2026-11-27"
   },
   "gzj12345678": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "cn_dgrid_ai": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "card2dream": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "meta_starx": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "iwk331": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "love_doge123": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "francis_cgl": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "pprgb888": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "fnyaobo": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "vip8888883": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "shaweeenx": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "web3_attorney": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "salamcryptobro": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "ibtc2023": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-27"
+  },
+  "crypto_pumpman": {
    "up": 0,
    "down": 0,
    "alerts": 1,
@@ -1228,6 +1434,706 @@
    },
    "in_digest": false,
    "rescued": false
+  },
+  "x_2126341841465516431": {
+   "date": "2026-11-27",
+   "summary": "Trade 100K USDT futures to unlock VIP1 (7 days) + $600 free position + 20% deposit bonus.",
+   "reason": "Requires trading 100K USDT to unlock VIP; reward is conditional on user spending, not a stated cash bonus.",
+   "project": "blofin",
+   "tier": "cash",
+   "amount": "$100,000.00",
+   "post": {
+    "id": "x_2126341841465516431",
+    "title": "New to BloFin? Trade 100K USDT in Futures and unlock 7 days of VIP1 — lower fees, premium privileges",
+    "body": "New to BloFin? Trade 100K USDT in Futures and unlock 7 days of VIP1 — lower fees, premium privileges, the works. 🏆\n\nStack that on top of a $600 free position + 20% deposit bonus.\n📅 Ends Dec 2\n\n👉 Join here: https://t.co/oFOQRZ3BX2\n\n#BloFin #Crypto #Futures https://t.co/WARAB20lZ0",
+    "url": "https://x.com/Iam_Jay77/status/2126341841465516431",
+    "permalink": "https://x.com/Iam_Jay77/status/2126341841465516431",
+    "author": "Iam_Jay77",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://blofin.com/register?referral_code=VFFJAY"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126292687632617972": {
+   "date": "2026-11-27",
+   "summary": "10% first deposit bonus; IB partnership with 40% spread commission, $20/lot gold, $500–$5,000 monthly rewards.",
+   "reason": "10% deposit bonus is conditional on user depositing; IB commissions are for partners recruiting others, not direct user earnings.",
+   "project": "kosmarkets",
+   "tier": "cash",
+   "amount": "$100,000.00",
+   "post": {
+    "id": "x_2126292687632617972",
+    "title": "🚀 Discover More Opportunities with KOS Markets!\n\nWhether you're a trader, content creator, or commun",
+    "body": "🚀 Discover More Opportunities with KOS Markets!\n\nWhether you're a trader, content creator, or community leader, we've got something for you.\n\n🎁 10% First Deposit Bonus\n💻 5 Demo Accounts — $100,000 Each\n📊 Forex, Gold & Crypto CFDs on MT5\n🤝 Become a KOS Markets IB Partner:\n🔥 40% Commission on Eligible Spread Revenue\n💰 $20 per Standard Lot on Gold (XAUUSD)\n🎁 10% First Deposit Referral Bonus\n🏆 $500–$5,000 Monthly Performance Rewards\n🌍 Long-Term Partnership Opportunities\n\nGrow your community. Expand your opportunities.\n\n🔗 https://t.co/IT5qXIKUwr\nDM us for partnership details!\nTerms and eligibility requirements apply. Trading CFDs involves significant risk.\n#FX #XAUUSD #Gold #MT5 #ForexTrading",
+    "url": "https://x.com/SofiaKOSoh2/status/2126292687632617972",
+    "permalink": "https://x.com/SofiaKOSoh2/status/2126292687632617972",
+    "author": "SofiaKOSoh2",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://www.kosmarkets.com"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126292537627607175": {
+   "date": "2026-11-27",
+   "summary": "10% first deposit bonus; IB partnership with 40% spread commission, $20/lot gold, $500–$5,000 monthly rewards.",
+   "reason": "10% deposit bonus is conditional on user depositing; IB commissions are for partners recruiting others, not direct user earnings.",
+   "project": "kosmarkets",
+   "tier": "cash",
+   "amount": "$100,000.00",
+   "post": {
+    "id": "x_2126292537627607175",
+    "title": "🚀 Discover More Opportunities with KOS Markets!\n\nWhether you're a trader, content creator, or commun",
+    "body": "🚀 Discover More Opportunities with KOS Markets!\n\nWhether you're a trader, content creator, or community leader, we've got something for you.\n\n🎁 10% First Deposit Bonus\n💻 5 Demo Accounts — $100,000 Each\n📊 Forex, Gold & Crypto CFDs on MT5\n🤝 Become a KOS Markets IB Partner:\n🔥 40% Commission on Eligible Spread Revenue\n💰 $20 per Standard Lot on Gold (XAUUSD)\n🎁 10% First Deposit Referral Bonus\n🏆 $500–$5,000 Monthly Performance Rewards\n🌍 Long-Term Partnership Opportunities\n\nGrow your community. Expand your opportunities.\n\n🔗 https://t.co/xACRILQjuL\nDM us for partnership details!\nTerms and eligibility requirements apply. Trading CFDs involves significant risk.\n#FX  #XAUUSD #Gold #MT5",
+    "url": "https://x.com/SuzukiFXjp/status/2126292537627607175",
+    "permalink": "https://x.com/SuzukiFXjp/status/2126292537627607175",
+    "author": "SuzukiFXjp",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://www.kosmarkets.com"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126292187294109699": {
+   "date": "2026-11-27",
+   "summary": "10% first deposit bonus; IB partnership with 40% spread commission, $20/lot gold, $500–$5,000 monthly rewards.",
+   "reason": "10% deposit bonus is conditional on user depositing; IB commissions are for partners recruiting others, not direct user earnings.",
+   "project": "kosmarkets",
+   "tier": "cash",
+   "amount": "$100,000.00",
+   "post": {
+    "id": "x_2126292187294109699",
+    "title": "🚀 Discover More Opportunities with KOS Markets!\n\nWhether you're a trader, content creator, or commun",
+    "body": "🚀 Discover More Opportunities with KOS Markets!\n\nWhether you're a trader, content creator, or community leader, we've got something for you.\n\n🎁 10% First Deposit Bonus\n💻 5 Demo Accounts — $100,000 Each\n📊 Forex, Gold & Crypto CFDs on MT5\n🤝 Become a KOS Markets IB Partner:\n🔥 40% Commission on Eligible Spread Revenue\n💰 $20 per Standard Lot on Gold (XAUUSD)\n🎁 10% First Deposit Referral Bonus\n🏆 $500–$5,000 Monthly Performance Rewards\n🌍 Long-Term Partnership Opportunities\n\nGrow your community. Expand your opportunities.\n\n🔗 https://t.co/KTfhnOCWTP\nDM us for partnership details!\nTerms and eligibility requirements apply. Trading CFDs involves significant risk.\n#FX  #XAUUSD #Gold #MT5",
+    "url": "https://x.com/tobyKOSMarkets/status/2126292187294109699",
+    "permalink": "https://x.com/tobyKOSMarkets/status/2126292187294109699",
+    "author": "tobyKOSMarkets",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://www.kosmarkets.com"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126290498151485636": {
+   "date": "2026-11-27",
+   "summary": "10% first deposit bonus; IB partnership with 40% spread commission, $20/lot gold, $500–$5,000 monthly rewards.",
+   "reason": "10% deposit bonus is conditional on user depositing; IB commissions are for partners recruiting others, not direct user earnings.",
+   "project": "kosmarkets",
+   "tier": "cash",
+   "amount": "$5,000.00",
+   "post": {
+    "id": "x_2126290498151485636",
+    "title": "🚀 Discover More Opportunities with KOS Markets!\n\nWhether you're a trader, content creator, or commun",
+    "body": "🚀 Discover More Opportunities with KOS Markets!\n\nWhether you're a trader, content creator, or community leader, we've got something for you.\n\n🎁 10% First Deposit Bonus\n📊 Forex, Gold & Crypto CFDs on MT5\n🤝 Become a KOS Markets IB Partner:\n🔥 40% Commission on Eligible Spread Revenue\n💰 $20 per Standard Lot on Gold (XAUUSD)\n🎁 10% First Deposit Referral Bonus\n🏆 $500–$5,000 Monthly Performance Rewards\n🌍 Long-Term Partnership Opportunities\n\nGrow your community. Expand your opportunities.\n\n🔗 https://t.co/Nuv5iORWAh \n\nDM us for partnership details!\n#KOSMarkets #Forex #XAUUSD #GoldTrading #MT5 #ForexTrading #IBPartner",
+    "url": "https://x.com/Moompufd/status/2126290498151485636",
+    "permalink": "https://x.com/Moompufd/status/2126290498151485636",
+    "author": "Moompufd",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://client.kosbackoffice.com/register/trader?link_id=jsphf8eq&referrer_id=qf6of0fo"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126258296462200947": {
+   "date": "2026-11-27",
+   "summary": "Trade 100K USDT futures to unlock VIP1 (7 days) + $600 free position + 20% deposit bonus; limited to 100 users.",
+   "reason": "Requires trading 100K USDT to unlock VIP; reward is conditional on user spending, not a stated cash bonus.",
+   "project": "blofin",
+   "tier": "cash",
+   "amount": "$100,000.00",
+   "post": {
+    "id": "x_2126258296462200947",
+    "title": "Trade 100K USDT in Futures → unlock VIP1 for 7 days \n\nLower fees. Premium privileges. Plus a $600 fr",
+    "body": "Trade 100K USDT in Futures → unlock VIP1 for 7 days \n\nLower fees. Premium privileges. Plus a $600 free position &amp; 20% deposit bonus waiting when you register.\n\n📅 Nov 24 – Dec 2 (limited to first 100 users)\n\n👉 Join here: https://t.co/ywDoJ5E2Yz\n\n#BloFin #Crypto #FuturesTrading https://t.co/FDPh673Aob",
+    "url": "https://x.com/AbdullahAkramET/status/2126258296462200947",
+    "permalink": "https://x.com/AbdullahAkramET/status/2126258296462200947",
+    "author": "AbdullahAkramET",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://blofin.com/register?referral_code=AAkramET"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126331184460574852": {
+   "date": "2026-11-27",
+   "summary": "MMIX: complete tasks, earn points toward potential airdrop eligibility; no token amount or conversion rate stated.",
+   "reason": "Speculative points farming with no instant conversion or confirmed airdrop amount; eligibility unclear.",
+   "project": "mmix",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126331184460574852",
+    "title": "RWAs keep coming up in every serious CT conversation lately\n\nBut most chains talk about tokenizing r",
+    "body": "RWAs keep coming up in every serious CT conversation lately\n\nBut most chains talk about tokenizing real world assets without asking who is actually building on them\n\n@MMIX_io is taking a different route.\n\nIt's a permissioned Layer 1 built for real world adoption\n\nVetted projects\nKnown validators\nCompliance built into the network\n\nNot everything needs to be open to everyone If banks, businesses and institutions are going to come onchain this kind of structure makes sense to me.\n\nIt's EVM compatible so builders don't have to start from zero. MMIX Coin is the native asset, used for fees and ecosystem utility.\n\nSectors they're targeting:\n>> RWA tokenization\n>> Financial services\n>> eCommerce\n>> DeFi\n>> Hospitality\n\nThey also just launched the Quest Hub with the MMIX Points Program You complete tasks earn points and work toward eligibility for the upcoming airdrop and NFT opportunities (subject to campaign rules).\n\nWorth checking out the trailer and exploring the quests early.\n\nStill early, so DYOR.",
+    "url": "https://x.com/VexaWeb3/status/2126331184460574852",
+    "permalink": "https://x.com/VexaWeb3/status/2126331184460574852",
+    "author": "VexaWeb3",
+    "source": "x",
+    "lang": "en",
+    "links": []
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126311319968379148": {
+   "date": "2026-11-27",
+   "summary": "MMIX: complete tasks, earn points toward potential airdrop/NFT eligibility; no token amount or conversion rate stated.",
+   "reason": "Speculative points farming with no instant conversion or confirmed airdrop/NFT amount; eligibility unclear.",
+   "project": "mmix",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126311319968379148",
+    "title": "RWAs need more than assets onchain. Businesses need trust and compliance.\n\n@MMIX_io is building an E",
+    "body": "RWAs need more than assets onchain. Businesses need trust and compliance.\n\n@MMIX_io is building an EVM-compatible, permissioned L1 with vetted projects and known validators.\n\nIts Quest Hub is live: complete tasks, earn points and explore potential airdrop/NFT eligibility. 👇",
+    "url": "https://x.com/0xIngresso/status/2126311319968379148",
+    "permalink": "https://x.com/0xIngresso/status/2126311319968379148",
+    "author": "0xIngresso",
+    "source": "x",
+    "lang": "en",
+    "links": []
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126271996002816495": {
+   "date": "2026-11-27",
+   "summary": "🚀 KOR Protocol unveils $KOR rewards!\n\nRewarding early creators, outpacing ethereum:0x6de037ef9ad2725",
+   "reason": "Vague steps with no concrete reward amount or claim date stated; looks like engagement bait.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126271996002816495",
+    "title": "🚀 KOR Protocol unveils $KOR rewards!\n\nRewarding early creators, outpacing ethereum:0x6de037ef9ad2725",
+    "body": "🚀 KOR Protocol unveils $KOR rewards!\n\nRewarding early creators, outpacing ethereum:0x6de037ef9ad2725eb40118bb1702ebb27e4aeb24's AI art engine.\n\nReward Flow:\n🖥️ Open portal allocation\n🔑 Connect wallet drop\n💎 Claim $KOR pool\n\n🔗 https://t.co/SQVQ1CfNly\n\n#EVM #AI #Airdrop https://t.co/0in3W8jbi2",
+    "url": "https://x.com/fluxneterc20/status/2126271996002816495",
+    "permalink": "https://x.com/fluxneterc20/status/2126271996002816495",
+    "author": "fluxneterc20",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://tr.ee/kor"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126271935348711631": {
+   "date": "2026-11-27",
+   "summary": "Hi guys there is a new airdrop in town now it's called @PEXELExchange download the app and register ",
+   "reason": "No reward amount or concrete steps given; vague 'complete tasks' instruction.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126271935348711631",
+    "title": "Hi guys there is a new airdrop in town now it's called @PEXELExchange download the app and register ",
+    "body": "Hi guys there is a new airdrop in town now it's called @PEXELExchange download the app and register the airdrop section to complete tasks and wait fr listing",
+    "url": "https://x.com/bashiratjorke/status/2126271935348711631",
+    "permalink": "https://x.com/bashiratjorke/status/2126271935348711631",
+    "author": "bashiratjorke",
+    "source": "x",
+    "lang": "en",
+    "links": []
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126262640658067832": {
+   "date": "2026-11-27",
+   "summary": "🚀 Join the PEXEL EXCHANGE Airdrop and earn PEX!\n\n• Sign up\n• Verify your email\n• Complete tasks \n• W",
+   "reason": "No reward amount stated; only 'earn PEX rewards' without specifics or live confirmation.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126262640658067832",
+    "title": "🚀 Join the PEXEL EXCHANGE Airdrop and earn PEX!\n\n• Sign up\n• Verify your email\n• Complete tasks \n• W",
+    "body": "🚀 Join the PEXEL EXCHANGE Airdrop and earn PEX!\n\n• Sign up\n• Verify your email\n• Complete tasks \n• Withdraw your PEX rewards directly to your Web3 wallet.\n\n🔗 https://t.co/9Re0FRxcYG\n\n#PEXELExchange #PEX #Airdrop #Web3 #Trading",
+    "url": "https://x.com/soft_kid01/status/2126262640658067832",
+    "permalink": "https://x.com/soft_kid01/status/2126262640658067832",
+    "author": "soft_kid01",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://pexelexchange.com/register?ref=92713401"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126229078332289384": {
+   "date": "2026-11-27",
+   "summary": "@ama_protocol trust the airdrop🚀 Ready to explore the next wave of AI + blockchain? Join AMA Hub and",
+   "reason": "Vague hype with no specific reward amount, project name unclear (AMA Hub vs Amadeus), and no concrete steps stated.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126229078332289384",
+    "title": "@ama_protocol trust the airdrop🚀 Ready to explore the next wave of AI + blockchain? Join AMA Hub and",
+    "body": "@ama_protocol trust the airdrop🚀 Ready to explore the next wave of AI + blockchain? Join AMA Hub and complete tasks to earn points : https://t.co/ndjoCRZmZ9 around the Amadeus ecosystem and its vision for autonomous AI agents #Amadeus #AMA #AMAHub #AI #Web3 #Airdrop",
+    "url": "https://x.com/raretyverse/status/2126229078332289384",
+    "permalink": "https://x.com/raretyverse/status/2126229078332289384",
+    "author": "raretyverse",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://amahub.ama.one/quests?ref=OJ85T0MHBuilt"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126226784589160909": {
+   "date": "2026-11-27",
+   "summary": "New Airdrops: Longyu Network\nReward: Mined $LONG (locked until TGE)\n\nRegister: https://t.co/MTd7mp85",
+   "reason": "Tokens are locked until TGE with no claim date stated; speculative airdrop with unclear current eligibility or distribution timeline.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126226784589160909",
+    "title": "New Airdrops: Longyu Network\nReward: Mined $LONG (locked until TGE)\n\nRegister: https://t.co/MTd7mp85",
+    "body": "New Airdrops: Longyu Network\nReward: Mined $LONG (locked until TGE)\n\nRegister: https://t.co/MTd7mp85h8\n\n• Code: KWL9EXGU\n• Log in with X account\n• Create wallet and save the key\n• Complete tasks for boosters\n• Start mining every 24 hours\n• Done\n\nTotal supply 3B, cuma dari mining.\n\n@LongyuNetwork  \n\n#airdrop #mining #longyu #bnb  #l2",
+    "url": "https://x.com/AirdropVoyager1/status/2126226784589160909",
+    "permalink": "https://x.com/AirdropVoyager1/status/2126226784589160909",
+    "author": "AirdropVoyager1",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://mine.longyu.network/?invite=KWL9EXGU"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126309835129893102": {
+   "date": "2026-11-27",
+   "summary": "🚀 Obzidian AI Airdrop\n\nJoin the waitlist, verify your email, complete tasks &amp; invite friends!\n\n🔗",
+   "reason": "No reward amount or token named; vague steps ('complete tasks & invite friends') with no concrete specifics.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126309835129893102",
+    "title": "🚀 Obzidian AI Airdrop\n\nJoin the waitlist, verify your email, complete tasks &amp; invite friends!\n\n🔗",
+    "body": "🚀 Obzidian AI Airdrop\n\nJoin the waitlist, verify your email, complete tasks &amp; invite friends!\n\n🔗 Join: https://t.co/gHe2TwvNSK\n\n#ObzidianAI #Airdrop #Crypto #Web3 #AI @obzidian_ai https://t.co/Kxv85yOfJf",
+    "url": "https://x.com/RehanCivilEng/status/2126309835129893102",
+    "permalink": "https://x.com/RehanCivilEng/status/2126309835129893102",
+    "author": "RehanCivilEng",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://obzidian.ai/r/rehan22"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126331814147158520": {
+   "date": "2026-11-27",
+   "summary": "Join the PEXEL EXCHANGE Airdrop and earn PEX.\n\nSign up: https://t.co/1g82aS8Xy6\nSign up, verify your",
+   "reason": "No reward amount stated; truncated post provides insufficient detail on what 'tasks' are or what participants earn.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126331814147158520",
+    "title": "Join the PEXEL EXCHANGE Airdrop and earn PEX.\n\nSign up: https://t.co/1g82aS8Xy6\nSign up, verify your",
+    "body": "Join the PEXEL EXCHANGE Airdrop and earn PEX.\n\nSign up: https://t.co/1g82aS8Xy6\nSign up, verify your email and complete the tasks",
+    "url": "https://x.com/sowrovking39/status/2126331814147158520",
+    "permalink": "https://x.com/sowrovking39/status/2126331814147158520",
+    "author": "sowrovking39",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://pexelexchange.com/register?ref=58231329"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126311580061331770": {
+   "date": "2026-11-27",
+   "summary": "Tired of losing money to high futures trading fees?\n\nMeet Paybacks  @Paybacks2026 , a trading-fee ca",
+   "reason": "No specific reward amount stated; describes a cashback platform in early stage without concrete live offer or sign-up bonus amount.",
+   "project": "",
+   "tier": "cash",
+   "amount": "$10,000,000.00",
+   "post": {
+    "id": "x_2126311580061331770",
+    "title": "Tired of losing money to high futures trading fees?\n\nMeet Paybacks  @Paybacks2026 , a trading-fee ca",
+    "body": "Tired of losing money to high futures trading fees?\n\nMeet Paybacks  @Paybacks2026 , a trading-fee cashback platform that just raised $10M in a             Pre-Series A round led by Foresight Ventures. It's in the early stage, so keep an eye.\n\nHow it works:\n\n- Sign up via their referral links for top exchanges like Binance, MEXC, Bitget, Gate, and WOO X Pro.\n\n- Link your exchange UID.\n\n- Get automatic next-day USDT cashback on eligible futures fees, backed by 24/7 support and bonus deposit events.\n\nIt’s still super early and definitely worth keeping on your radar!\n@rarelistio \n\n#Crypto #DeFi #Trading #Paybacks #Airdrop #Web3",
+    "url": "https://x.com/lavanyalakshma2/status/2126311580061331770",
+    "permalink": "https://x.com/lavanyalakshma2/status/2126311580061331770",
+    "author": "lavanyalakshma2",
+    "source": "x",
+    "lang": "en",
+    "links": []
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126293468846969179": {
+   "date": "2026-11-27",
+   "summary": "🚀 New opportunity: Pexel Exchange is offering an airdrop for early users.\n\nCreate an account and get",
+   "reason": "Vague hype with no concrete steps, reward amount, or project details beyond name.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126293468846969179",
+    "title": "🚀 New opportunity: Pexel Exchange is offering an airdrop for early users.\n\nCreate an account and get",
+    "body": "🚀 New opportunity: Pexel Exchange is offering an airdrop for early users.\n\nCreate an account and get involved:\n\n🔗 Join here: https://t.co/IRTWF96HJP",
+    "url": "https://x.com/real_bee_jayy/status/2126293468846969179",
+    "permalink": "https://x.com/real_bee_jayy/status/2126293468846969179",
+    "author": "real_bee_jayy",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://pexelexchange.com/register?ref=36938445"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126342647333695774": {
+   "date": "2026-11-27",
+   "summary": "We’re buying lunch for the fastest chefs in Lagos Life! 🍛\n\nHow to join:\n* Form a crew with 3 friends",
+   "reason": "Brand giveaway/game with unknown project, no clear crypto earning mechanism, appears to be a food app contest.",
+   "project": "",
+   "tier": "cash",
+   "amount": "₦5,000",
+   "post": {
+    "id": "x_2126342647333695774",
+    "title": "We’re buying lunch for the fastest chefs in Lagos Life! 🍛\n\nHow to join:\n* Form a crew with 3 friends",
+    "body": "We’re buying lunch for the fastest chefs in Lagos Life! 🍛\n\nHow to join:\n* Form a crew with 3 friends and spread across the cities.\n* Discover markets: any market found by one teammate unlocks for the whole squad! 👀\n* Cook your pot of Jollof!\n\n🏆 Prize: The first 20 to complete their pot win ₦5,000 cash each for lunch on us.\n\nDon't wait, gather your squad and get cooking!\n\n#JollofRun #LagosLife #Vatar",
+    "url": "https://x.com/LagosLifeApp/status/2126342647333695774",
+    "permalink": "https://x.com/LagosLifeApp/status/2126342647333695774",
+    "author": "LagosLifeApp",
+    "source": "x",
+    "lang": "en",
+    "links": []
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126296018421494128": {
+   "date": "2026-11-27",
+   "summary": "Big platforms aren't built by millions of users. They're built by the first 1,000 who show up, speak",
+   "reason": "Vague offer with no stated reward amount or clear cash conversion; 40% referral fee is a structure, not a user reward.",
+   "project": "",
+   "tier": "cash",
+   "amount": "$100.00",
+   "post": {
+    "id": "x_2126296018421494128",
+    "title": "Big platforms aren't built by millions of users. They're built by the first 1,000 who show up, speak",
+    "body": "Big platforms aren't built by millions of users. They're built by the first 1,000 who show up, speak up and bring their friends.\n\nWe have 348 of them. Today we're opening 652 more seats.\n\nEvery founder gets, starting today:\n• Founder badge, for good\n• 40% of your friends' fees for 12 months (everyone else gets 25%)\n• 250 agent messages a day, for good\n• Founder Chat with the team, going live today\n\nAlready have the Founder badge? You're in. All of this is yours from today.\n\nTo join, have a total balance of $100 or more in your Onagi wallet, then tap Become a founder.\n\nOne seat per person, first come, first served.",
+    "url": "https://x.com/tryonagi/status/2126296018421494128",
+    "permalink": "https://x.com/tryonagi/status/2126296018421494128",
+    "author": "tryonagi",
+    "source": "x",
+    "lang": "en",
+    "links": []
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126279904279003224": {
+   "date": "2026-11-27",
+   "summary": "💥 KUKDOO Is Live on Telegram!\n\n• Funding: $1.25M Seed Round.\n• Backers: Zerone Venture.\n\n@Kukdooobot",
+   "reason": "Tap-to-earn game with speculative rewards; mystery boxes and $EGG have no stated conversion rate or guaranteed payout.",
+   "project": "",
+   "tier": "cash",
+   "amount": "$1,250,000.00",
+   "post": {
+    "id": "x_2126279904279003224",
+    "title": "💥 KUKDOO Is Live on Telegram!\n\n• Funding: $1.25M Seed Round.\n• Backers: Zerone Venture.\n\n@Kukdooobot",
+    "body": "💥 KUKDOO Is Live on Telegram!\n\n• Funding: $1.25M Seed Round.\n• Backers: Zerone Venture.\n\n@Kukdooobot is a tap-to-earn game where players tap a spinning hen, collect $EGG, build their farm, and earn rewards through daily activities.\n\nShort Guide:\n\nJoin here:\nhttps://t.co/f5LZgZOVOV\n\n1. Open the Telegram bot.\n2. Tap Start and launch the game.\n3. Tap the hen to collect EGG.\n4. Open your daily mystery box for a chance to win USDT.\n5. Complete daily tasks and check-ins.\n6. Invite friends and participate in leagues.\n\nCampaign & Rewards:\n\n- $EGG from tapping the hen.\n- Daily mystery boxes with USDT rewards.\n- USDT giveaway for 25,000 players on a first-come, first-served basis.\n- Daily check-ins and missions.\n- Leagues and referral rewards.",
+    "url": "https://x.com/airdropblogs/status/2126279904279003224",
+    "permalink": "https://x.com/airdropblogs/status/2126279904279003224",
+    "author": "airdropblogs",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://t.me/kukdooobot?start=618824912"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126232188836585685": {
+   "date": "2026-11-27",
+   "summary": "HTX is offering new users a $2 NVDA airdrop for trading $100+ in designated US stock spot markets, f",
+   "reason": "Analysis commentary on an HTX offer; lacks direct campaign details, link, or steps to claim.",
+   "project": "",
+   "tier": "cash",
+   "amount": "$100.00",
+   "post": {
+    "id": "x_2126232188836585685",
+    "title": "HTX is offering new users a $2 NVDA airdrop for trading $100+ in designated US stock spot markets, f",
+    "body": "HTX is offering new users a $2 NVDA airdrop for trading $100+ in designated US stock spot markets, first\ncome, first served.\nMy math:\n– $2 / $100 = 2% of the minimum qualifying trade\n– That's the subsidy to get a crypto user to try a tokenized stock once\nWhat the number tells you:\n• The cost is tiny because the hard part isn't the first trade. It's the second one. Acquisition only pays if the\nuser comes back.\n• The reward is a fraction of a share of the stock being promoted. Giving the asset itself teaches the\nproduct: you now hold tokenized NVDA and can watch it move.\n• For TRON, every exchange that normalizes stocks bought with stablecoins grows the pool of users who\nmight later do it on-chain.\nWhat I'd want to know: 30-day retention of users who joined through this offer. If it's high, $2 is the\ncheapest marketing in crypto.\nThe first trade is bought. The habit has to be earned.\n#TRONEcoStar @justinsuntron @HTX_Global #TokenizedStocks #NVDA #HTX",
+    "url": "https://x.com/tomdrawneth/status/2126232188836585685",
+    "permalink": "https://x.com/tomdrawneth/status/2126232188836585685",
+    "author": "tomdrawneth",
+    "source": "x",
+    "lang": "en",
+    "links": []
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126295990684602557": {
+   "date": "2026-11-27",
+   "summary": "Black Friday is hitting crypto too 😂\n\n@LBank_Exchange is dropping $100K in rewards:\n\n📱 iPhone 18 Pro",
+   "reason": "Prize pool and lucky draw, not a stated per-user reward; $10 futures bonus is real but post is primarily hype around raffle prizes.",
+   "project": "",
+   "tier": "cash",
+   "amount": "$100,000.00",
+   "post": {
+    "id": "x_2126295990684602557",
+    "title": "Black Friday is hitting crypto too 😂\n\n@LBank_Exchange is dropping $100K in rewards:\n\n📱 iPhone 18 Pro",
+    "body": "Black Friday is hitting crypto too 😂\n\n@LBank_Exchange is dropping $100K in rewards:\n\n📱 iPhone 18 Pro\n₿ 0.01 BTC\n🔥 $SOL, $XRP, $DOGE & more\n💰 $1,000 ETH position vouchers\n\nAnd every lucky draw wins something. No dead spins.\n\nNew users can also unlock a $10 futures bonus after completing the eligible first-trade tasks.\n\nWorth checking out 👇\nhttps://t.co/tFi6LolX9v",
+    "url": "https://x.com/ElCryptoDoc/status/2126295990684602557",
+    "permalink": "https://x.com/ElCryptoDoc/status/2126295990684602557",
+    "author": "ElCryptoDoc",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://www.lbank.com/event-new/10004003-BlackFriday-organic?qcode=9i4n9&scode=smarket-kl&utm_source=kl&utm_medium=post&utm_campaign=activity-mkt&utm_term=of&utm_content=lbank-mkt"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126258078475509889": {
+   "date": "2026-11-27",
+   "summary": "Titan Exchange vs Acepyr – Comparison 🪂\n\nBoth are free testnets.  \nVery different risk/reward.\n\n@Tit",
+   "reason": "Personal farming review/commentary comparing two projects; no official campaign link or steps to qualify, just 'guides on my page'.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126258078475509889",
+    "title": "Titan Exchange vs Acepyr – Comparison 🪂\n\nBoth are free testnets.  \nVery different risk/reward.\n\n@Tit",
+    "body": "Titan Exchange vs Acepyr – Comparison 🪂\n\nBoth are free testnets.  \nVery different risk/reward.\n\n@TitanExchange_\n- Perp DEX on Canton\n- Points system + weekly distribution\n- First trade ~250 pts\n- No confirmed airdrop yet\n- Pure points + leaderboard grind\n\n@acepyr\n- Prediction market\n- 15% supply confirmed for testnet users\n- Allocation based on trading days + market variety\n- Badges + daily activity matter\n- Clearer path to actual tokens\n\nTitan is pure points + volume.  \nAcepyr has a confirmed 15% allocation.\n\nI’m running both as side farms for now.\n\nI already made guides for each one search my page if you want to join.\n\nWhich one are you prioritizing right now?",
+    "url": "https://x.com/Sk_Official04/status/2126258078475509889",
+    "permalink": "https://x.com/Sk_Official04/status/2126258078475509889",
+    "author": "Sk_Official04",
+    "source": "x",
+    "lang": "en",
+    "links": []
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126293408197271587": {
+   "date": "2026-11-27",
+   "summary": "这种行情能赚钱就赚钱吧，不懂就学，别跟钱过不去😵\n\n这个文就教你怎么赚比别人多，大家都看得到很多人在嘴撸 TermiX 积分，到现在大部分都只参与Kaito嘴撸、做社交任务，有些人输太多就不撸了，我前",
+   "reason": "Speculative points farming with no instant conversion rate or stated reward amount; emphasizes earning potential, not guaranteed payout.",
+   "project": "",
+   "tier": "cash",
+   "amount": "$1,000.00",
+   "post": {
+    "id": "x_2126293408197271587",
+    "title": "这种行情能赚钱就赚钱吧，不懂就学，别跟钱过不去😵\n\n这个文就教你怎么赚比别人多，大家都看得到很多人在嘴撸 TermiX 积分，到现在大部分都只参与Kaito嘴撸、做社交任务，有些人输太多就不撸了，我前",
+    "body": "这种行情能赚钱就赚钱吧，不懂就学，别跟钱过不去😵\n\n这个文就教你怎么赚比别人多，大家都看得到很多人在嘴撸 TermiX 积分，到现在大部分都只参与Kaito嘴撸、做社交任务，有些人输太多就不撸了，我前几天用AI找到一种拿 TermiX 官方TP最简单粗暴力的方式，权重最高、还能一直重复，大部分人没发现🤫\n\nTermiX 是 BNB Chain 上的 AI Agent 结算层，旗下的 https://t.co/iGvklToPJj 是一个「AI 雇 AI」的链上市场，Agent 接单、交付、托管结算全部上链。项目拿过 YZi Labs 投资（100 万美元种子轮）$TMT  已确认会 TGE，积分（TP）将来用来兑换代币，最近他们跟42预测市场合作，也是币安投资的，估计这个项目是个大毛，行情不好，撸毛赚钱也是收入，总比每天打狗赌博、开合约还不一定赚钱来得好😂\n\n重点来了，Termix 在官方网站积分页写得很清楚，已结算的任务才是拿积分的核心权重，我个人理解的意思是撸 Kaito 的积分权重没有那么多，而TermiX 官方最基本拿分数就是绑 X、进 Discord各 500 分，也只能拿一次，另外Kaito 嘴撸要排进创作者榜单才分得到奖励🤷‍♀️\n\n本篇文章的主题是如何才能拿高积分？\n前几天我用AI找到的是Termix 存款年化策略任务，这是CP值最高的任务了，每存1U 跑满一轮 = 100 TP，可以一直重复，很多人没注意到✌️✌️\n\n我算一下，Termix 官方规定一个策略一次最多只能存入 1000 USDC，最短时间跑6 小时，最长时间有一天以上的，但没什么效益，跑6小时的效益最高了，6小时之后提出来就是 10 万 TP，如果你参与的是一天，一天跑完之后也是拿10万分，跑6小时最划算，24小时最多能跑 4 轮，那就是40万TP，嘴撸一季都不如存24小时，这边要担心的问题是策略不够用😂😂，因为一个策略同时只能一个人用\n\n大家最在意的磨损呢？我自己实测过，本金到期全额退回，每轮“固定成本”约 0.002 BNB 的授权 gas，再加一点管理费（1000U 一轮约 0.014U），没用到的gas fee会退还，成本是固定的，存超过100 U才越划算，跑完一轮收到存款年化的利息退回之后，每一轮的磨损几乎看不见😬\n\n目前在 https://t.co/iGvklToPJj 上架全部只做 USDC的存款策略只有13个，Venus 存款生息，或单纯持有 USDC，这意味着只有13个人可以占用，名额非常有限，其中12个是我昨天给Termix 官方的策略，并且今天中午通过了官方的审核，不然之前都是我一个人长期占用一个策略，别人都没办法用😆😆😆\n\n为什么我会建议大家去用这个策略任务呢？\n✅ 不换币、不开杠杆，没有币价涨跌风险\n✅ 时间一到本金就退回你自己的钱包\n不像其他撸毛要花比较多的成本，也有涨跌的风险\n\n大家可以进入Termix 网站 https://t.co/iGvklToPJj  ，找 Quant 页面，打开「Include not yet active」就能看到全部策略\n\n另外我做了一个小工具，给用币安 AI 钱包的朋友，因为每六个小时要起来手动存款跟提款很麻烦，这个工具会帮你每 6 小时自动存、到期自动收回，不用定闹钟手动操作\n\n用不用我设计的工具你自己决定，手动操作钱包一样拿TP分，工具网址在下方，你可以自己手动下载手动设定工具，但我比较建议把网址丢给AI让它执行，AI的项目就让AI来做吧❤️：https://t.co/QbmtF5iG5S\n\n如果你还没有开始参与 TermiX ，可以用我的链接：https://t.co/edQyahRpZx\n\n#TermiX #AIAgent #kaito #BNBChain #撸毛 #空投 #Airdrop",
+    "url": "https://x.com/nancy_c813/status/2126293408197271587",
+    "permalink": "https://x.com/nancy_c813/status/2126293408197271587",
+    "author": "nancy_c813",
+    "source": "x",
+    "lang": "zh",
+    "links": [
+     "http://agent.family",
+     "http://agent.family",
+     "http://agent.family",
+     "https://github.com/nancyc0813-maker/termix-autodeposit",
+     "https://www.agent.family/r/X8UTKPUM"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126270560388935851": {
+   "date": "2026-11-27",
+   "summary": "别再把自己的数字身份当成一堆分散的平台账号了。\n\n真正有价值的是你在不同平台留下的行为，能不能被证明、被理解，并在保护隐私的前提下形成可信记录。\n\n想象一下你在 GitHub 有持续贡献，在交易平台有",
+   "reason": "Speculative points/XP with no instant conversion; emphasizes future possibility (声誉系统, 金融准入) and explicitly disclaims token distribution cer",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126270560388935851",
+    "title": "别再把自己的数字身份当成一堆分散的平台账号了。\n\n真正有价值的是你在不同平台留下的行为，能不能被证明、被理解，并在保护隐私的前提下形成可信记录。\n\n想象一下你在 GitHub 有持续贡献，在交易平台有",
+    "body": "别再把自己的数字身份当成一堆分散的平台账号了。\n\n真正有价值的是你在不同平台留下的行为，能不能被证明、被理解，并在保护隐私的前提下形成可信记录。\n\n想象一下你在 GitHub 有持续贡献，在交易平台有真实交易记录，在社交平台有自己的影响力，也使用过不同的 AI 工具。\n\n这些经历分别存在于不同网站，彼此之间缺少可信连接。\n\n@primus_labs 的 Primus Points 正在尝试让这些链下行为变得可验证。\n\n通过 zkTLS 技术，用户可以针对不同平台完成证明任务，在不直接交出全部原始数据的情况下，验证特定账户信息或活动记录。\n\nPrimus Points 则把这些验证活动组织成不同任务，让用户逐步建立自己的数字身份记录和 Reputation Score。\n\n目前可以重点关注几个方向：\n\n身份验证，包括 X、LinkedIn、GitHub 等平台的账户信息；\n平台活动验证，例如社交账号活动、GitHub 贡献；Agentic Era 相关任务，则涉及交易表现、AI 工具使用和数字游民身份等不同维度。\n\n这件事的价值不只是完成几个任务、增加一些 XP。\n\n它更像是在探索一种新的数字身份表达方式：你不必把所有私人信息公开给别人，却可以在需要时证明某项经历真实存在。\n\n对于 Web3 用户，这种能力未来可能连接声誉系统、金融准入、社区身份和 AI Agent 的可信数据来源。\n\n如果你想亲自体验，不妨打开 Primus Points，连接钱包和浏览器扩展，挑选自己能够完成的验证任务。\n\n每项任务的具体要求、费用和可用状态以页面显示为准。\n\nXP 是参与和贡献记录，不代表已经确定的代币分配或空投资格。\n\n从建立第一条可验证记录开始，也许比单纯追逐一个积分数字更有意义。\n\n你最希望先把哪一种链下经历变成可验证的数字凭证？交易记录、开发贡献，还是社交身份？\n\n立即探索 Primus XP：https://t.co/dKSGTizO15\n\n@primus_labs",
+    "url": "https://x.com/Malalasekara_S/status/2126270560388935851",
+    "permalink": "https://x.com/Malalasekara_S/status/2126270560388935851",
+    "author": "Malalasekara_S",
+    "source": "x",
+    "lang": "zh",
+    "links": [
+     "https://points.primuslabs.xyz?ref=17IT9Q6"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126242010491469864": {
+   "date": "2026-11-27",
+   "summary": "RGB X PPRGB 社区日报11月27日 双语版  \n\nRGBStone持有者获得宝箱空投\n可开出UNSEEN系列NFT的白名单和FREE MINT资格\n还有spark积分\n\n龙一PPRGB先于B",
+   "reason": "Vague airdrop mention with no concrete tasks, eligibility criteria, or how to claim; NFT whitelist unclear.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126242010491469864",
+    "title": "RGB X PPRGB 社区日报11月27日 双语版  \n\nRGBStone持有者获得宝箱空投\n可开出UNSEEN系列NFT的白名单和FREE MINT资格\n还有spark积分\n\n龙一PPRGB先于B",
+    "body": "RGB X PPRGB 社区日报11月27日 双语版  \n\nRGBStone持有者获得宝箱空投\n可开出UNSEEN系列NFT的白名单和FREE MINT资格\n还有spark积分\n\n龙一PPRGB先于BTC回到前高，突破在即\n\n #RGB #PPRGB https://t.co/f7xtygwiDW",
+    "url": "https://x.com/Cyberzks/status/2126242010491469864",
+    "permalink": "https://x.com/Cyberzks/status/2126242010491469864",
+    "author": "Cyberzks",
+    "source": "x",
+    "lang": "zh",
+    "links": []
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126338013873737766": {
+   "date": "2026-11-27",
+   "summary": "胖迪把 Agentic Mining 的逻辑讲得很清楚，币安要养成的是用 AI Agent 交易的习惯，补贴就是在铺用户，而现在这个早期试验场，就在币安钱包和 @42space 一起做的这套玩法上。\n",
+   "reason": "Analysis/commentary on 42space mining; no current stated reward amount, claim date, or concrete steps to qualify.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126338013873737766",
+    "title": "胖迪把 Agentic Mining 的逻辑讲得很清楚，币安要养成的是用 AI Agent 交易的习惯，补贴就是在铺用户，而现在这个早期试验场，就在币安钱包和 @42space 一起做的这套玩法上。\n",
+    "body": "胖迪把 Agentic Mining 的逻辑讲得很清楚，币安要养成的是用 AI Agent 交易的习惯，补贴就是在铺用户，而现在这个早期试验场，就在币安钱包和 @42space 一起做的这套玩法上。\n\n@CindyCreation 自己在42平台已经撸到前5，积分到了131270，不太喜欢单纯炒图的 NFT，但觉得 Agentic Pass 能持续赚积分，还有更高的挖矿加成，TGE前还可以把积分归到 NFT 上。\n\n1️⃣ 币安在用补贴教人用 Agent\n\n从2026年开始，币安已经在铺 Binance AI Pro、Agentic Wallet 和 Agent ID，缺的是用户习惯。胖迪的判断是，交易所和公链才是 Agent 全天候交易真正的受益方，手续费和Gas都会被放大，所以会用积分、空投这类补贴，把人教会用 Agent。币安钱包和 @42space 做的 #AgenticMining，在胖迪看来就是这一轮补贴的早期试验场。\n\n2️⃣ 积分成本已经起来了\n\n第一周大约是0.006 U一个积分，第三周就到了0.13 U，涨了20多倍，现在活跃用户才大约2000人。全网挖矿抢的是70%的积分池，NFT 持有者另有30%专属分配。同样的有效交易量，普通用户是1X，Agent ID 和符合条件的 Clawby SBT 最高1.5X，Agentic Pass 是1.7X，这就是更想拿着 NFT 挖的原因。\n\n3️⃣ 这张卡还可能变成能交易的挖矿账户\n\n积分不能在地址之间直接转，NFT 之间也不能直接转，但TGE前可以把地址上的积分一次性转到指定 NFT 上，还有额外10%的助力积分池。后面的稀有编号权益、TGE后用途、以及其他项目空投，目前都没有官宣，先当成想象空间。普通玩家的配法是按预算看1到4张，不建议盲目mint几百几千张😼\n#AgenticMining #BNBChain\n@CindyCreation @42space https://t.co/aiI6DKjeUj",
+    "url": "https://x.com/_mlnbro/status/2126338013873737766",
+    "permalink": "https://x.com/_mlnbro/status/2126338013873737766",
+    "author": "_mlnbro",
+    "source": "x",
+    "lang": "zh",
+    "links": [
+     "https://x.com/CindyCreation/status/2126234258608116196"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126284494596653476": {
+   "date": "2026-11-27",
+   "summary": "📌 今日零撸清单｜11月27日更新\n今天跟了 14 个零成本项目，进度都记在这条。\n\n✅ 正在做\n· $LAB：1,750,000 已领齐在位，等 12 月 2 号开池\n· Agent Roll Ca",
+   "reason": "Personal progress tracker on multiple projects; not announcing a live campaign, just documenting own participation.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126284494596653476",
+    "title": "📌 今日零撸清单｜11月27日更新\n今天跟了 14 个零成本项目，进度都记在这条。\n\n✅ 正在做\n· $LAB：1,750,000 已领齐在位，等 12 月 2 号开池\n· Agent Roll Ca",
+    "body": "📌 今日零撸清单｜11月27日更新\n今天跟了 14 个零成本项目，进度都记在这条。\n\n✅ 正在做\n· $LAB：1,750,000 已领齐在位，等 12 月 2 号开池\n· Agent Roll Call：今日签到已做，链上已确认\n· TaskOn https://t.co/zy7uZ9PB2s：关注 X 任务，0.5 USDT 先到先得\n· Mivoo、American Fortress、Alephium Bridge：三个任务类跟进中，等窗口\n· Bullshot：每日签到已做，6,674.8 GEMS 在位\n· MATRIX：免费 mint 余约 26 个\n\n⏳ 等待做\n· eSHD：首轮 eDrop 明天 11 月 28 号\n· ASTROPOPS：公开窗口 12 月 2 号\n· 4D Labs：社区抽奖 12 月 7 号后开奖\n· FLOP：水龙头等官方公告\n· AGPASS：余约 62 个，领完即止\n\n只记我自己实际参与的，不喊单、不承诺收益；项目方合作私信聊。",
+    "url": "https://x.com/huan_qiu9853/status/2126284494596653476",
+    "permalink": "https://x.com/huan_qiu9853/status/2126284494596653476",
+    "author": "huan_qiu9853",
+    "source": "x",
+    "lang": "zh",
+    "links": [
+     "http://Four.meme"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126231924947796066": {
+   "date": "2026-11-27",
+   "summary": "最近这段时间，有不少朋友来找猴子问有没有加密的工作\n\n其实整个加密圈都是相互关联的\n\n如果大盘一直持续低迷的话，收到影响的可不止二级现货用户\n\n交易所、撸毛、空投、项目方、VC，甚至整个就业环境都会受",
+   "reason": "Ambassador recruitment post with vague terms; no specific rewards stated, no concrete qualification details, and links to job opportunities ",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126231924947796066",
+    "title": "最近这段时间，有不少朋友来找猴子问有没有加密的工作\n\n其实整个加密圈都是相互关联的\n\n如果大盘一直持续低迷的话，收到影响的可不止二级现货用户\n\n交易所、撸毛、空投、项目方、VC，甚至整个就业环境都会受",
+    "body": "最近这段时间，有不少朋友来找猴子问有没有加密的工作\n\n其实整个加密圈都是相互关联的\n\n如果大盘一直持续低迷的话，收到影响的可不止二级现货用户\n\n交易所、撸毛、空投、项目方、VC，甚至整个就业环境都会受到非常大的影响\n\n身边有不少人因市场环境不好，要么被降薪，要么被裁员\n\n持有的代币价值在不断缩水，稳定的收入来源也在减少\n\n想离开这个圈子，又不甘心\n\n生怕这个圈子突然又来了牛市\n\n在这个圈子里面想要不彻底出局，就要保证自身的现金流\n\n现在加密的工作只会越来越少，并且待遇也会越来越差\n\n如果想要在这个圈子里面存活，除了在交易所或者项目方工作外，也可以寻找一些项目方的大使计划\n\n也许大使的薪资Token并不会很高，但至少能让你存活过这轮熊市\n\n注：并不是所有的大使都值得去参与，一定要提前做好项目调研\n\n现在有明确空投预期的大使招聘有两个\n\n一、Predict大使\n\n门槛：20000PP+有一定的影响力\n\n报名链接：https://t.co/CwwtbizGSO\n\n二、Kairos大使\n\n门槛：目前暂未公布\n\n已跟团队确认是会进行大使计划，并且会给予一些积分\n\n报名链接：可以等待后续官方通知  \n\n一定要记住，活得久才是赢家\n\n永远需要保证自身的现金流不要断\n#大使 #奖励 @predictdotfun @KairosTradeX @0xNexi",
+    "url": "https://x.com/web3houzi/status/2126231924947796066",
+    "permalink": "https://x.com/web3houzi/status/2126231924947796066",
+    "author": "web3houzi",
+    "source": "x",
+    "lang": "zh",
+    "links": [
+     "https://docs.google.com/forms/d/e/1FAIpQLSdRV6nphK_rWahBTxW2MAZIZYiUHDhMqiNYTThMxUlpgsu8Ng/alreadyresponded"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126278320837038468": {
+   "date": "2026-11-27",
+   "summary": "Referral raffle: invite 10 friends for lottery entry; max 120 USDT prize pool, Nov 27–Dec 4.",
+   "reason": "Referral campaign with vague reward structure; mentions '100% chance' in a lottery but actual distribution mechanism is unclear and prize po",
+   "project": "hotcoin",
+   "tier": "cash",
+   "amount": "$120.00",
+   "post": {
+    "id": "x_2126278320837038468",
+    "title": "⚽ 传奇阵容召集令｜最高得 120 USDT！\n和小罗一起组建你的传奇首发阵容！🔥\n\n👥 邀请 3 / 5 / 8 / 10 位好友进群，解锁阶梯奖励！\n🍀 集齐 10 位好友，再享 100% 中奖的",
+    "body": "⚽ 传奇阵容召集令｜最高得 120 USDT！\n和小罗一起组建你的传奇首发阵容！🔥\n\n👥 邀请 3 / 5 / 8 / 10 位好友进群，解锁阶梯奖励！\n🍀 集齐 10 位好友，再享 100% 中奖的幸运抽奖！\n🎁 最高可得 120 USDT 合约体验金！\n\n⏰ 11/27 15:30 — 12/04 23:59（UTC+8）\n\n前往社区(https://t.co/9hsq8bF740)，发送 /invite 召集你的传奇队友！\n\n#Hotcoin #Ronaldinho #HotcoinMagic",
+    "url": "https://x.com/hotcoinzh/status/2126278320837038468",
+    "permalink": "https://x.com/hotcoinzh/status/2126278320837038468",
+    "author": "hotcoinzh",
+    "source": "x",
+    "lang": "zh",
+    "links": [
+     "https://t.me/hotcoinglobalcn"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126250485829247031": {
+   "date": "2026-11-27",
+   "summary": "😆 빗썸 - 총 3.4억원 상당, 비트웨이(BTW) 원화마켓 추가 기념 에어드랍 이벤트\n\n➡️ 이벤트 바로가기\nhttps://t.co/SlDfxSPEm5\n🎙 혜택 지급일 : 12.",
+   "reason": "Requires deposit of 10M+ KRW; reward is 1% USDT cashback on deposits, not a fixed per-user amount — resembles a deposit bonus tied to tradin",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126250485829247031",
+    "title": "😆 빗썸 - 총 3.4억원 상당, 비트웨이(BTW) 원화마켓 추가 기념 에어드랍 이벤트\n\n➡️ 이벤트 바로가기\nhttps://t.co/SlDfxSPEm5\n🎙 혜택 지급일 : 12.",
+    "body": "😆 빗썸 - 총 3.4억원 상당, 비트웨이(BTW) 원화마켓 추가 기념 에어드랍 이벤트\n\n➡️ 이벤트 바로가기\nhttps://t.co/SlDfxSPEm5\n🎙 혜택 지급일 : 12. 15 (화)\n\n⏰ 이벤트 기간\n\n➡️ 11. 27 (금) 입금 개시 ~ 11. 30 (월)\n✅ 이벤트 참여방법\n\n➡️ (링크) https://t.co/SlDfxSPEm5거래 이벤트 신청 완료\n➡️ 참여 기간 내 타 거래소 또는 외부 지갑에서 비트웨이 (BTW) 1,000만원 이상 순입금\n🎁 혜택\n➡️ 인정 금액의 1% 상당 테더(USDT)\n\n#빗썸 #광고X #비트웨이 #BTW",
+    "url": "https://x.com/MegaAirdropKR3/status/2126250485829247031",
+    "permalink": "https://x.com/MegaAirdropKR3/status/2126250485829247031",
+    "author": "MegaAirdropKR3",
+    "source": "x",
+    "lang": "ko",
+    "links": [
+     "https://feed.bithumb.com/notice/1655889",
+     "https://feed.bithumb.com/notice/1655889"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
   }
  },
  "rescue_queue": [],
@@ -1327,6 +2233,36 @@
   "coinw.com": {
    "status": "unclear",
    "evidence": "couldn't read coinw.com's terms — check manually",
+   "checked": "2026-11-27"
+  },
+  "dgrid.ai": {
+   "status": "unclear",
+   "evidence": "couldn't read dgrid.ai's terms — check manually",
+   "checked": "2026-11-27"
+  },
+  "agent.family": {
+   "status": "unclear",
+   "evidence": "couldn't read agent.family's terms — check manually",
+   "checked": "2026-11-27"
+  },
+  "blofin.com": {
+   "status": "unclear",
+   "evidence": "nothing clear in blofin.com's terms",
+   "checked": "2026-11-27"
+  },
+  "dhorse.fun": {
+   "status": "unclear",
+   "evidence": "couldn't read dhorse.fun's terms — check manually",
+   "checked": "2026-11-27"
+  },
+  "doppler.finance": {
+   "status": "unclear",
+   "evidence": "couldn't read doppler.finance's terms — check manually",
+   "checked": "2026-11-27"
+  },
+  "cerebree.com": {
+   "status": "unclear",
+   "evidence": "couldn't read cerebree.com's terms — check manually",
    "checked": "2026-11-27"
   }
  }
