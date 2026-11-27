@@ -135,15 +135,31 @@ def _lookalike(root, host):
     return None
 
 
+_RESOLVED = {}
+
+
 def _resolve(url):
     """Follow redirects (short links) to the final URL. Never downloads the page body."""
+    if url in _RESOLVED:
+        return _RESOLVED[url]
     try:
         r = requests.get(url, headers=HEADERS, timeout=8, allow_redirects=True, stream=True)
         final = r.url
         r.close()
-        return final
     except requests.RequestException:
-        return url
+        final = url
+    _RESOLVED[url] = final
+    return final
+
+
+def final_url(url):
+    """Where a link really goes (short links followed), for the eligibility check."""
+    if not url.lower().startswith("http"):
+        url = "https://" + url
+    host = (urlparse(url).hostname or "").lower()
+    if _root(host) in SHORTENERS or host in SHORTENERS:
+        return _resolve(url)
+    return url
 
 
 def _domain_age_days(root, cache):
@@ -239,6 +255,14 @@ def check_post(post, cache):
             urls.append(m)
 
     seen, lines, worst = set(), [], "skip"
+    finals = []
+    for url in urls[:MAX_LINKS + 2]:
+        try:
+            fu = final_url(url.rstrip(".,!?:;…"))
+            if fu not in finals:
+                finals.append(fu)
+        except Exception:
+            pass
     for url in urls:
         if len(lines) >= MAX_LINKS:
             break
@@ -255,4 +279,4 @@ def check_post(post, cache):
         lines.append(f"{label}\n   {text.replace(' (official)', '')}")
         if RANK[level] > RANK[worst]:
             worst = level
-    return {"level": worst, "lines": lines}
+    return {"level": worst, "lines": lines, "urls": finals}
