@@ -60,6 +60,7 @@ def load():
     data.setdefault("rescue_queue", [])  # 🔁 taps waiting to be turned into alerts
     data.setdefault("digest_sent", "")   # date of the last near-miss digest
     data.setdefault("digest_now", False) # /nearmiss asked for one at the next run
+    data.setdefault("elig_cache", {})    # per-site Nigeria eligibility answers
     return data
 
 
@@ -73,6 +74,9 @@ def save(data):
     cutoff = date.fromordinal(date.today().toordinal() - 3).isoformat()
     for k in [k for k, v in data["near_misses"].items() if v.get("date", "") < cutoff]:
         data["near_misses"].pop(k, None)
+    if len(data["elig_cache"]) > 800:
+        for k in list(data["elig_cache"])[:-800]:
+            data["elig_cache"].pop(k, None)
     if len(data["domain_cache"]) > 1500:
         for k in list(data["domain_cache"])[:-1500]:
             data["domain_cache"].pop(k, None)
