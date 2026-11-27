@@ -579,10 +579,10 @@
   },
   "2026-11-27": {
    "alerts": 50,
-   "scanned": 1412,
-   "runs": 10,
+   "scanned": 1413,
+   "runs": 11,
    "ai": 0.367404,
-   "tweets": 1243
+   "tweets": 1244
   }
  },
  "history": [
@@ -2136,7 +2136,7 @@
      "https://www.agent.family/r/X8UTKPUM"
     ]
    },
-   "in_digest": false,
+   "in_digest": true,
    "rescued": false
   },
   "x_2126270560388935851": {
@@ -2159,7 +2159,7 @@
      "https://points.primuslabs.xyz?ref=17IT9Q6"
     ]
    },
-   "in_digest": false,
+   "in_digest": true,
    "rescued": false
   },
   "x_2126242010491469864": {
@@ -2180,7 +2180,7 @@
     "lang": "zh",
     "links": []
    },
-   "in_digest": false,
+   "in_digest": true,
    "rescued": false
   },
   "x_2126338013873737766": {
@@ -2203,7 +2203,7 @@
      "https://x.com/CindyCreation/status/2126234258608116196"
     ]
    },
-   "in_digest": false,
+   "in_digest": true,
    "rescued": false
   },
   "x_2126284494596653476": {
@@ -2226,7 +2226,7 @@
      "http://Four.meme"
     ]
    },
-   "in_digest": false,
+   "in_digest": true,
    "rescued": false
   },
   "x_2126231924947796066": {
@@ -2249,7 +2249,7 @@
      "https://docs.google.com/forms/d/e/1FAIpQLSdRV6nphK_rWahBTxW2MAZIZYiUHDhMqiNYTThMxUlpgsu8Ng/alreadyresponded"
     ]
    },
-   "in_digest": false,
+   "in_digest": true,
    "rescued": false
   },
   "x_2126278320837038468": {
@@ -2272,7 +2272,7 @@
      "https://t.me/hotcoinglobalcn"
     ]
    },
-   "in_digest": false,
+   "in_digest": true,
    "rescued": false
   },
   "x_2126250485829247031": {
@@ -2296,7 +2296,7 @@
      "https://feed.bithumb.com/notice/1655889"
     ]
    },
-   "in_digest": false,
+   "in_digest": true,
    "rescued": false
   },
   "x_2126339814408802619": {
@@ -2319,7 +2319,7 @@
      "https://t.me/kukdooobot?start=5439677501"
     ]
    },
-   "in_digest": false,
+   "in_digest": true,
    "rescued": false
   },
   "x_2126366325341610113": {
@@ -2340,7 +2340,7 @@
     "lang": "en",
     "links": []
    },
-   "in_digest": false,
+   "in_digest": true,
    "rescued": false
   },
   "x_2126344836169282004": {
@@ -2363,7 +2363,7 @@
      "https://www.acepyr.com/home?ref=Y3XY4XSPXY"
     ]
    },
-   "in_digest": false,
+   "in_digest": true,
    "rescued": false
   },
   "x_2126349542295777461": {
@@ -2386,7 +2386,7 @@
      "https://t.me/kukdooobot?start=821202227"
     ]
    },
-   "in_digest": false,
+   "in_digest": true,
    "rescued": false
   },
   "x_2126353855734554878": {
@@ -2407,7 +2407,7 @@
     "lang": "en",
     "links": []
    },
-   "in_digest": false,
+   "in_digest": true,
    "rescued": false
   },
   "x_2126365404515930242": {
@@ -2430,7 +2430,7 @@
      "https://www.kucoin.com/learn-and-earn/newlisting-verity-verifiable-reputation-for-digital-markets?rcode=QBSST3HZ"
     ]
    },
-   "in_digest": false,
+   "in_digest": true,
    "rescued": false
   },
   "x_2126375498494464147": {
@@ -2454,12 +2454,12 @@
      "http://popdex.org/1125_new_user"
     ]
    },
-   "in_digest": false,
+   "in_digest": true,
    "rescued": false
   }
  },
  "rescue_queue": [],
- "digest_sent": "",
+ "digest_sent": "2026-11-27",
  "digest_now": false,
  "elig_cache": {
   "kucoin.com": {
