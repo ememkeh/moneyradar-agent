@@ -34,6 +34,7 @@ from filters import evaluate_post
 from ai_verify import classify_many, is_same_campaign
 import feedback
 import link_check
+import eligibility
 from telegram_alert import send_alert, send_summary, send_text
 import ai_verify
 
@@ -235,6 +236,11 @@ def run_scan():
         post["tier"] = nm.get("tier", "cash")
         post["summary_en"] = nm.get("summary", "")
         post["link_report"] = link_check.check_post(post, fb["domain_cache"])
+        if getattr(config, "ELIGIBILITY_CHECK", True):
+            try:
+                post["eligibility"] = eligibility.check(post, fb["elig_cache"])
+            except Exception:
+                pass
         if nm.get("project"):
             _record_campaign(seen_ids, nm["project"], nm.get("summary", ""))
         _record_text(seen_ids, _normalize(post.get("body", "")))
@@ -405,6 +411,19 @@ def run_scan():
             print(f"🚨 risky link: {report['lines']}")
             if getattr(config, "BLOCK_DANGER", False):
                 print(f"🚫 BLOCKED (risky link, BLOCK_DANGER on): {post['title'][:60]}")
+                continue
+
+        # Nigeria eligibility (free checks first; one tiny AI call only if terms were found)
+        if getattr(config, "ELIGIBILITY_CHECK", True):
+            try:
+                elig = eligibility.check(post, fb["elig_cache"])
+            except Exception as e:      # never let this stop an alert
+                print(f"[eligibility] failed: {e}")
+                elig = {"status": "unclear", "line": "NIGERIA ELIGIBILITY: UNCLEAR — check failed"}
+            post["eligibility"] = elig
+            print(f"🇳🇬 {elig['line']}")
+            if elig["status"] == "no" and getattr(config, "HIDE_NOT_ELIGIBLE", False):
+                print(f"🚫 HIDDEN (not available in Nigeria): {post['title'][:60]}")
                 continue
 
         fb_key = post["id"][-40:]
