@@ -1,5 +1,5 @@
 {
- "offset": 100371379,
+ "offset": 100371395,
  "alerts": {
   "x_2126041814427931130": {
    "author": "ashfisarkar",
@@ -384,7 +384,8 @@
    "source": "x",
    "project": "orb",
    "summary": "Complete testnet tasks to earn ORB Credits, share 20M ORB (2%) by point proportion; snapshot pre-mainnet.",
-   "date": "2026-11-27"
+   "date": "2026-11-27",
+   "voted": "down"
   },
   "x_2126326079040483653": {
    "author": "cn_dgrid_ai",
@@ -468,7 +469,8 @@
    "source": "x",
    "project": "pexelexchange",
    "summary": "35 PEX reward. Sign up, verify email, complete tasks, withdraw instantly to Web3 wallet.",
-   "date": "2026-11-27"
+   "date": "2026-11-27",
+   "voted": "down"
   },
   "x_2126275429069971840": {
    "author": "ibtc2023",
@@ -486,8 +488,20 @@
   }
  },
  "likes": [],
- "dislikes": [],
- "bad_authors": {},
+ "dislikes": [
+  {
+   "summary": "Complete testnet tasks to earn ORB Credits, share 20M ORB (2%) by point proportion; snapshot pre-mainnet.",
+   "date": "2026-11-27"
+  },
+  {
+   "summary": "35 PEX reward. Sign up, verify email, complete tasks, withdraw instantly to Web3 wallet.",
+   "date": "2026-11-27"
+  }
+ ],
+ "bad_authors": {
+  "gzj12345678": 1,
+  "salamcryptobro": 1
+ },
  "muted": [],
  "spend": {
   "2026-11": 0.521966
@@ -502,13 +516,22 @@
   },
   "2026-11-27": {
    "alerts": 41,
-   "scanned": 1177,
-   "runs": 3,
+   "scanned": 1181,
+   "runs": 4,
    "ai": 0.3247,
-   "tweets": 1064
+   "tweets": 1068
   }
  },
- "history": [],
+ "history": [
+  {
+   "kind": "dislike",
+   "author": "gzj12345678"
+  },
+  {
+   "kind": "dislike",
+   "author": "salamcryptobro"
+  }
+ ],
  "paused": false,
  "domain_cache": {
   "ift.tt": {
@@ -828,7 +851,7 @@
   },
   "gzj12345678": {
    "up": 0,
-   "down": 0,
+   "down": 1,
    "alerts": 1,
    "last": "2026-11-27"
   },
@@ -900,7 +923,7 @@
   },
   "salamcryptobro": {
    "up": 0,
-   "down": 0,
+   "down": 1,
    "alerts": 1,
    "last": "2026-11-27"
   },
