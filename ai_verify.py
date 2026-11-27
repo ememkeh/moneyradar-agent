@@ -419,6 +419,60 @@ def is_same_campaign(project, new_summary, new_text, previous_summaries):
         return new_summary.strip().lower() in [s.strip().lower() for s in previous_summaries]
 
 
+ELIGIBILITY_PROMPT = """You read excerpts from a platform's terms, FAQ or country pages \
+and decide whether a person living in NIGERIA can sign up and take part (pass KYC \
+and receive rewards).
+
+"yes"     — Nigeria is named as supported, OR the platform says it's available \
+globally / worldwide / in most countries AND Nigeria isn't in any restricted list
+"no"      — Nigeria (or "all of Africa", or "OFAC/high-risk countries" lists that \
+include Nigeria) is restricted, excluded or unsupported
+"unclear" — the excerpts don't say enough. Never guess.
+
+evidence: max 15 words, quote or closely paraphrase the deciding sentence.
+
+Respond with ONLY JSON: {"status": "yes" | "no" | "unclear", "evidence": "..."}"""
+
+
+def check_nigeria_eligibility(site, snippets):
+    """One small AI call on just the country/eligibility sentences of a site."""
+    if AI_DOWN["reason"]:
+        return {"status": "unclear", "evidence": ""}
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        return {"status": "unclear", "evidence": ""}
+    content = f"Site: {site}\n\nExcerpts:\n" + "\n---\n".join(snippets)[:4000]
+    try:
+        resp = requests.post(
+            ANTHROPIC_API_URL,
+            headers={
+                "x-api-key": api_key,
+                "anthropic-version": "2023-06-01",
+                "content-type": "application/json",
+            },
+            json={
+                "model": MODEL,
+                "max_tokens": 120,
+                "system": ELIGIBILITY_PROMPT,
+                "messages": [{"role": "user", "content": content}],
+            },
+            timeout=20,
+        )
+        if _check_account_error(resp):
+            return {"status": "unclear", "evidence": ""}
+        resp.raise_for_status()
+        data = resp.json()
+        _track(data)
+        v = json.loads(_strip_fences(data["content"][0]["text"]))
+        status = str(v.get("status", "unclear")).lower()
+        if status not in ("yes", "no", "unclear"):
+            status = "unclear"
+        return {"status": status, "evidence": str(v.get("evidence", ""))[:140]}
+    except Exception as e:
+        print(f"[ai_verify] eligibility check failed: {e}")
+        return {"status": "unclear", "evidence": ""}
+
+
 def verify_opportunity(title, body, tier_hint=None):
     """
     Backward-compatible wrapper for the current main.py.
