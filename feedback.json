@@ -681,6 +681,48 @@
    "project": "",
    "summary": "🚨 SCAM ALERT!\n\nBe careful with the PEXEL Exchange airdrop.\n\nUsers are being asked to deposit USDT be",
    "date": "2026-11-28"
+  },
+  "x_2126546003482599807": {
+   "author": "income360pro",
+   "source": "x",
+   "project": "binance",
+   "summary": "$100–$19,800 USDC welcome bonus; deposit $101+, trade $3K+, claim from Rewards Hub.",
+   "date": "2026-11-28"
+  },
+  "x_2126557203754778779": {
+   "author": "mrptechofficial",
+   "source": "x",
+   "project": "phygitals",
+   "summary": "Up to $50 deposit-match welcome bonus; download app, fund, bonus matches 1:1 up to region cap.",
+   "date": "2026-11-28"
+  },
+  "x_2126548070494351407": {
+   "author": "heymhk",
+   "source": "x",
+   "project": "dappos",
+   "summary": "DAPPOS ($DOS) airdrop for xBubble users; connect wallet, check & claim boxes.",
+   "date": "2026-11-28"
+  },
+  "x_2126569310533607439": {
+   "author": "OkkTawhid",
+   "source": "x",
+   "project": "tonfish",
+   "summary": "$6–$100 $FISH per account; join FEED bot, check eligibility, claim, complete tasks & spins by Dec.",
+   "date": "2026-11-28"
+  },
+  "x_2126556449253830834": {
+   "author": "ChainLabs0",
+   "source": "x",
+   "project": "tonfish",
+   "summary": "$2–$10 $FISH per account; join, complete tasks, check in daily, connect TON wallet by Dec 31.",
+   "date": "2026-11-28"
+  },
+  "x_2126544865714716752": {
+   "author": "syncthedj",
+   "source": "x",
+   "project": "pexel",
+   "summary": "PEXEL Exchange: deposit $10 get $10 bonus, deposit $25 get $25 bonus (first 500 each).",
+   "date": "2026-11-28"
   }
  },
  "likes": [],
@@ -700,7 +742,7 @@
  },
  "muted": [],
  "spend": {
-  "2026-11": 0.698658
+  "2026-11": 0.736368
  },
  "stats": {
   "2026-11-26": {
@@ -718,11 +760,11 @@
    "tweets": 1377
   },
   "2026-11-28": {
-   "alerts": 14,
-   "scanned": 331,
-   "runs": 4,
-   "ai": 0.103117,
-   "tweets": 282
+   "alerts": 20,
+   "scanned": 497,
+   "runs": 5,
+   "ai": 0.140827,
+   "tweets": 400
   }
  },
  "history": [
@@ -955,6 +997,14 @@
   },
   "htx.com": {
    "created": "1995-12-13",
+   "checked": "2026-11-28"
+  },
+  "dappos.com": {
+   "created": "2004-09-13",
+   "checked": "2026-11-28"
+  },
+  "pump.fun": {
+   "created": "2023-09-19",
    "checked": "2026-11-28"
   }
  },
@@ -1357,6 +1407,42 @@
    "last": "2026-11-28"
   },
   "omaroairdrop": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "income360pro": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "mrptechofficial": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "heymhk": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "okktawhid": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "chainlabs0": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "syncthedj": {
    "up": 0,
    "down": 0,
    "alerts": 1,
@@ -3238,6 +3324,210 @@
    },
    "in_digest": false,
    "rescued": false
+  },
+  "x_2126544548830785629": {
+   "date": "2026-11-28",
+   "summary": "💎@vannaprotocol Points Campaign Is Live!\n\nVanna Protocol is building composable credit infrastructur",
+   "reason": "Points campaign with no stated conversion rate or instant redemption; speculative airdrop potential.",
+   "project": "",
+   "tier": "cash",
+   "amount": "$145,000.00",
+   "post": {
+    "id": "x_2126544548830785629",
+    "title": "💎@vannaprotocol Points Campaign Is Live!\n\nVanna Protocol is building composable credit infrastructur",
+    "body": "💎@vannaprotocol Points Campaign Is Live!\n\nVanna Protocol is building composable credit infrastructure for DeFi. The project has launched its waitlist and points campaign.\n\nReceived a $145K Stellar Community Fund Build Award and Supported by Stellar Community Fund, Stellar, Solana, and Draper University.\n\n👉 How to Join:\n1️⃣ Visit: https://t.co/iOtn0XNVqj\n2️⃣ Sign up using your email\n3️⃣ Connect your X account for verification\n4️⃣ Get your personal referral link\n5️⃣ Invite friends to improve your waitlist position\n6️⃣ Complete quests and explore available modules to earn Points\n7️⃣ Climb the leaderboard and unlock higher tiers through eligible referral activity \n\n🔔 DYOR & take responsibility before joining!\n#Crypto #Airdrop #Web3",
+    "url": "https://x.com/Milania_Cult/status/2126544548830785629",
+    "permalink": "https://x.com/Milania_Cult/status/2126544548830785629",
+    "author": "Milania_Cult",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "http://vanna.finance/waitlist"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126570144285536281": {
+   "date": "2026-11-28",
+   "summary": "FREE Airdrop : potential $5000 🪂\n\n$FISH is distributing $130K in \n\n21.66% of $FISH supply is allocat",
+   "reason": "Vague reward distribution (rank-based, potential $5,000); pool split by rank, not guaranteed per user; speculative points farm.",
+   "project": "",
+   "tier": "cash",
+   "amount": "$130,000.00",
+   "post": {
+    "id": "x_2126570144285536281",
+    "title": "FREE Airdrop : potential $5000 🪂\n\n$FISH is distributing $130K in \n\n21.66% of $FISH supply is allocat",
+    "body": "FREE Airdrop : potential $5000 🪂\n\n$FISH is distributing $130K in \n\n21.66% of $FISH supply is allocated to community rewards.\n\nTo get started \ngo to  https://t.co/6JOGS6EVJY\nRegister \nconnect Wallet \nComplete tasks\n*Spin and earn points\n\n$FISH is paid on 31 Dec, once, by rank\n\nlike and Retweet for others",
+    "url": "https://x.com/Monothiez/status/2126570144285536281",
+    "permalink": "https://x.com/Monothiez/status/2126570144285536281",
+    "author": "Monothiez",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://t.me/FEEDonTONbot?startapp=r_hKVj06wONunA"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126559832345842142": {
+   "date": "2026-11-28",
+   "summary": "Exploring PEXEL Exchange and trying out its airdrop tasks.\n\nSign up: https://t.co/zmF2V6MYHA\n1. Sign",
+   "reason": "Personal farming update (\"trying out its airdrop tasks\") with no reward amount or concrete campaign details stated.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126559832345842142",
+    "title": "Exploring PEXEL Exchange and trying out its airdrop tasks.\n\nSign up: https://t.co/zmF2V6MYHA\n1. Sign",
+    "body": "Exploring PEXEL Exchange and trying out its airdrop tasks.\n\nSign up: https://t.co/zmF2V6MYHA\n1. Sign up\n2. Verify email\n3. Complete tasks\n\n#PEXELExchange #PEX",
+    "url": "https://x.com/Kasif37513/status/2126559832345842142",
+    "permalink": "https://x.com/Kasif37513/status/2126559832345842142",
+    "author": "Kasif37513",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://pexelexchange.com/register?ref=67132633"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126551444799271313": {
+   "date": "2026-11-28",
+   "summary": "🚀 Get in early with @raycashxyz!\n\n✅ Complete tasks 💎 Earn Raycash Points (RP) 🔥 Join the whitelist &",
+   "reason": "Speculative points farm with no conversion rate or redemption mechanism; \"future opportunities\" is vague hype.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126551444799271313",
+    "title": "🚀 Get in early with @raycashxyz!\n\n✅ Complete tasks 💎 Earn Raycash Points (RP) 🔥 Join the whitelist &",
+    "body": "🚀 Get in early with @raycashxyz!\n\n✅ Complete tasks 💎 Earn Raycash Points (RP) 🔥 Join the whitelist &amp; stay active\n\nEarly participation may unlock future opportunities!\n\n🔗 [https://t.co/O7Hrr83SBs](https://t.co/TZKerjfMwg)\n\n#Raycash #Web3 #Crypto #Airdrop https://t.co/ugbGOyLW57",
+    "url": "https://x.com/NazimOnChain/status/2126551444799271313",
+    "permalink": "https://x.com/NazimOnChain/status/2126551444799271313",
+    "author": "NazimOnChain",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://raycash.xyz/r/TTV5BS",
+     "https://raycash.xyz/r/TTV5BS?utm_source=chatgpt.com"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126546117064356332": {
+   "date": "2026-11-28",
+   "summary": "FISH mining campaign, $130K pool split 31 Dec 2026, tasks & points earn spots.",
+   "reason": "Prize pool with distribution date far in future; no stated per-user reward, unclear if live now.",
+   "project": "fish",
+   "tier": "cash",
+   "amount": "$130,000.00",
+   "post": {
+    "id": "x_2126546117064356332",
+    "title": "⛏️ FEED MINING ON TG ⛏️ \n$FISH will distribute ~$130K  on 31 Dec. 2026  \n\nJoin 👇 \nhttps://t.co/911h7",
+    "body": "⛏️ FEED MINING ON TG ⛏️ \n$FISH will distribute ~$130K  on 31 Dec. 2026  \n\nJoin 👇 \nhttps://t.co/911h7Uv32V  \n\n&gt; Connect TON WALLET \n&gt; Complete tasks, spin and earn points;\n&gt; Prize spots, so the distribution will be fair. \n🔥 Launchpad with buyback 🔥\nDYOR , NFA  \n#airdrop #fish https://t.co/9DQQ8lqHyl",
+    "url": "https://x.com/pdy_rc/status/2126546117064356332",
+    "permalink": "https://x.com/pdy_rc/status/2126546117064356332",
+    "author": "pdy_rc",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://t.me/FEEDonTONbot?startapp=r_nNGj6bxNWiQR"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126554375371792416": {
+   "date": "2026-11-28",
+   "summary": "PEXEL Exchange airdrop, 5M $PEX pool, free, tasks earn $PEX.",
+   "reason": "5M PEX pool is not per-user reward; no stated amount per task, unclear if live.",
+   "project": "pexel",
+   "tier": "airdrop",
+   "amount": "$5,000,000.00",
+   "post": {
+    "id": "x_2126554375371792416",
+    "title": "🪂 PEXEL Exchange Airdrop Is LIVE — 5,000,000 $PEX Reward Pool! 💰\n\nExchange airdrop hai, join karna b",
+    "body": "🪂 PEXEL Exchange Airdrop Is LIVE — 5,000,000 $PEX Reward Pool! 💰\n\nExchange airdrop hai, join karna bilkul FREE hai! 🔥\n\nDetails:\n💵 Reward: $PEX per task\n🏦 Pool: 5,000,000 $PEX (limited)\n💸 Cost: $0 — completely free\n\nKaise join karein:\nBelow 👇👇 https://t.co/IRphypx71S",
+    "url": "https://x.com/YKOff6l/status/2126554375371792416",
+    "permalink": "https://x.com/YKOff6l/status/2126554375371792416",
+    "author": "YKOff6l",
+    "source": "x",
+    "lang": "en",
+    "links": []
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126545829880312293": {
+   "date": "2026-11-28",
+   "summary": "MontraXYZ Season 2 airdrop live, points for launching, trading, creating content.",
+   "reason": "Personal KOL commentary about MontraXYZ; mentions airdrop Season 2 with points but no stated reward or steps.",
+   "project": "montra",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126545829880312293",
+    "title": "Been exploring @MontraXYZ and what stood out to me is how simple it makes launching a token: pick a ",
+    "body": "Been exploring @MontraXYZ and what stood out to me is how simple it makes launching a token: pick a name, launch, and you're on the platform with swap and buyback built in.\n\nSeason 2 of the airdrop is live too, with points for launching, trading and creating content. https://t.co/tIcXMbO0yO",
+    "url": "https://x.com/orvix9/status/2126545829880312293",
+    "permalink": "https://x.com/orvix9/status/2126545829880312293",
+    "author": "orvix9",
+    "source": "x",
+    "lang": "en",
+    "links": []
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126545494520558018": {
+   "date": "2026-11-28",
+   "summary": "PEXEL 5M $PEX group airdrop live, link X & Telegram to claim.",
+   "reason": "5M PEX is a pool, not per-user reward; no stated amount per user.",
+   "project": "pexel",
+   "tier": "airdrop",
+   "amount": "$5,000,000.00",
+   "post": {
+    "id": "x_2126545494520558018",
+    "title": "5 M PEX Airdrop Is Live 🪂\n\nYou gotta link both your X and telegram before you can claim anything\n\nTh",
+    "body": "5 M PEX Airdrop Is Live 🪂\n\nYou gotta link both your X and telegram before you can claim anything\n\nThe team at @PEXELExchange opened a group airdrop with 5,000,000 $PEX 💰 in rewards.\n\nCheck out other farms while you wait:\nhttps://t.co/O71ZrIhnGS https://t.co/UhFGsQ84Be",
+    "url": "https://x.com/naim0x_/status/2126545494520558018",
+    "permalink": "https://x.com/naim0x_/status/2126545494520558018",
+    "author": "naim0x_",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://pexelexchange.com/register"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126567389646975289": {
+   "date": "2026-11-28",
+   "summary": "if you haven't traded on PopDEX yet, this is a good time to take a first look. \n\n@popdex_ just launc",
+   "reason": "Leaderboard pool and referral pool are not guaranteed per-user rewards; first-come-first-served bonus tickets are limited supply, not a stat",
+   "project": "",
+   "tier": "cash",
+   "amount": "$17,000.00",
+   "post": {
+    "id": "x_2126567389646975289",
+    "title": "if you haven't traded on PopDEX yet, this is a good time to take a first look. \n\n@popdex_ just launc",
+    "body": "if you haven't traded on PopDEX yet, this is a good time to take a first look. \n\n@popdex_ just launched a new-user campaign with $17,000 USDT + 2,000 bonus PopTickets up for grabs.\n\nrunning November 25 to December 6, 12 PM UTC.\n\nhere's how the opportunity breaks down:\n\n 2,000 bonus PopTickets\n\nfirst-time traders can earn matching bonus tickets:\n\nearn 1 ticket, get 1 extra.\n\nearn 5 tickets, get 5 extra.\n\nlimited supply, first come, first served.\n\n $12,000 leaderboard pool\n\nTop 5: $1,000 each\n\n6–10: $500 each\n\n11–20: $150 each\n\n21–50: $100 each\n\n $5,000 invite pool\n\nexisting users can participate too:\n\ninvite 3 valid users for a chance to claim $10 USDT from the first $2K pool.\n\nanother $3K is distributed proportionally among qualifying referrals.\n\nbut there's another reason i'm paying attention.\n\nPopDEX's MegaPop has already grown into a substantial rewards ecosystem. PopTickets give holders a chance to share 40% of platform fees through MegaPop.\n\nso this isn't just about a one-off welcome bonus. it's another way to get involved in the wider PopDEX ecosystem.\n\nmy take: campaigns like this are useful entry points, especially when the platform is still expanding its markets, integrations and trading features.\n\njust remember to register on the campaign page before trading. only eligible first-time trading addresses qualify for the new-user leaderboard and early-bird bonuses, and rewards have specific deposit and trading requirements.\n\ncampaign details:\nhttps://t.co/BUXUoEPDVp\n\n$17K in USDT. 2,000 bonus tickets. A growing MegaPop ecosystem.\n\nlet's see who makes the most of it.",
+    "url": "https://x.com/tinzeyxyz/status/2126567389646975289",
+    "permalink": "https://x.com/tinzeyxyz/status/2126567389646975289",
+    "author": "tinzeyxyz",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://popdex.org/1125_new_user"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
   }
  },
  "rescue_queue": [],
@@ -3437,6 +3727,16 @@
   "smart-events.xyz": {
    "status": "unclear",
    "evidence": "Excerpts describe technical participation steps but contain no geographic eligibility or country restriction information. (smart-events.xyz)",
+   "checked": "2026-11-28"
+  },
+  "pump.fun": {
+   "status": "unclear",
+   "evidence": "couldn't read pump.fun's terms — check manually",
+   "checked": "2026-11-28"
+  },
+  "dappos.com": {
+   "status": "unclear",
+   "evidence": "couldn't read dappos.com's terms — check manually",
    "checked": "2026-11-28"
   }
  }
