@@ -583,6 +583,104 @@
    "project": "gateweb3",
    "summary": "$USDD airdrop: complete tasks to share 500 $USDD. Campaign until Dec 4.",
    "date": "2026-11-27"
+  },
+  "x_2126540589143412757": {
+   "author": "kucoincom",
+   "source": "x",
+   "project": "kucoin",
+   "summary": "KuCoin Crypto Loans: take a loan, earn up to 20 USDT interest rebate + share 3,000 USDT rewards + 500 USDT referral pool; ends Dec 1.",
+   "date": "2026-11-28"
+  },
+  "x_2126514081045881078": {
+   "author": "mjjwiki",
+   "source": "x",
+   "project": "binance",
+   "summary": "Binance referral: 20% trading commission, new users get 100 USDT fee voucher + 1 USDC per 10 USDC stock trade.",
+   "date": "2026-11-28"
+  },
+  "x_2126489819966812281": {
+   "author": "CandaceJ47942",
+   "source": "x",
+   "project": "gate",
+   "summary": "Gate Convert: register, verify ID, swap ≥100 USDT to earn 2 USDT + 0.5 GT for 5-day check-in by Dec 3.",
+   "date": "2026-11-28"
+  },
+  "x_2126536310370238710": {
+   "author": "yujuhao",
+   "source": "x",
+   "project": "startale",
+   "summary": "Survey reward: fill questionnaire to earn 10 USDC by Dec 5 23:59 UTC.",
+   "date": "2026-11-28"
+  },
+  "x_2126526497825628658": {
+   "author": "HuobiGlobal",
+   "source": "x",
+   "project": "htx",
+   "summary": "Refer a friend on HTX, both complete trades, each get 5 USDT stock tokens; 200 pairs max, 5 lucky pairs get +20 USDT.",
+   "date": "2026-11-28"
+  },
+  "x_2126487100891779232": {
+   "author": "yanyan_nsy",
+   "source": "x",
+   "project": "conso",
+   "summary": "Download Conso extension, verify email, enter code CONSO-7D23N, connect X, complete quests to earn Zaps Points.",
+   "date": "2026-11-28"
+  },
+  "x_2126497577004577258": {
+   "author": "Mark87390491",
+   "source": "x",
+   "project": "dopplerextended",
+   "summary": "Doppler Finance XDP airdrop: connect Base wallet by 11.28 12:00 UTC. Extended XTEN: snapshot 11.30, claims open Dec.",
+   "date": "2026-11-28"
+  },
+  "x_2126536393912635616": {
+   "author": "ji_shao4138",
+   "source": "x",
+   "project": "okx",
+   "summary": "New user bonus: register via link, complete KYC, get 650 USDT; deposit/trade for extra rewards.",
+   "date": "2026-11-28"
+  },
+  "x_2126533417592664173": {
+   "author": "META_STARx",
+   "source": "x",
+   "project": "wenwallet",
+   "summary": "Create wallet, bind code BB8STVS, invite friend & trade $10+, claim $1–$10 meme coins.",
+   "date": "2026-11-28"
+  },
+  "x_2126483228202865080": {
+   "author": "ldld888888",
+   "source": "x",
+   "project": "river",
+   "summary": "Binance Wallet: trade RIVER in two-round competition (Nov 24–Dec 8), earn share of ~$200k pool; 2x multiplier first 2 days.",
+   "date": "2026-11-28"
+  },
+  "x_2126487458271363145": {
+   "author": "Horkew_Snake",
+   "source": "x",
+   "project": "",
+   "summary": "🚨​ NEWS:​ Robinhood​ DeFi​ has​ launched the guaranteed $CASHCAT eligibility checker..\nVerify your​ ",
+   "date": "2026-11-28"
+  },
+  "x_2126436126043045997": {
+   "author": "cloudi66",
+   "source": "x",
+   "project": "vearl",
+   "summary": "Vearl testnet: run GPU miner, qualify for share of 7% mainnet supply; testnet live, 126 qualified miners on 11/27 snapshot.",
+   "date": "2026-11-28"
+  },
+  "x_2126523807464837298": {
+   "author": "MasumOnchain",
+   "source": "x",
+   "project": "",
+   "summary": "🚨 SCAM WARNING: PEXEL EXCHANGE\n\nPlease think twice before trusting @PEXELExchange.\n\nThe deposit-base",
+   "date": "2026-11-28"
+  },
+  "x_2126525692326088861": {
+   "author": "OmaroAirdrop",
+   "source": "x",
+   "project": "",
+   "summary": "🚨 SCAM ALERT!\n\nBe careful with the PEXEL Exchange airdrop.\n\nUsers are being asked to deposit USDT be",
+   "date": "2026-11-28"
   }
  },
  "likes": [],
@@ -602,7 +700,7 @@
  },
  "muted": [],
  "spend": {
-  "2026-11": 0.595541
+  "2026-11": 0.698658
  },
  "stats": {
   "2026-11-26": {
@@ -618,6 +716,13 @@
    "runs": 16,
    "ai": 0.398275,
    "tweets": 1377
+  },
+  "2026-11-28": {
+   "alerts": 14,
+   "scanned": 312,
+   "runs": 1,
+   "ai": 0.103117,
+   "tweets": 263
   }
  },
  "history": [
@@ -823,6 +928,34 @@
   "paripesa.com": {
    "created": "2017-06-24",
    "checked": "2026-11-27"
+  },
+  "conso.xyz": {
+   "created": "2024-09-04",
+   "checked": "2026-11-28"
+  },
+  "smart-events.xyz": {
+   "created": "2026-10-19",
+   "checked": "2026-11-28"
+  },
+  "typeform.com": {
+   "created": "2002-06-20",
+   "checked": "2026-11-28"
+  },
+  "bsmkweb.net": {
+   "created": "2025-10-21",
+   "checked": "2026-11-28"
+  },
+  "gateport.business": {
+   "created": "2025-11-10",
+   "checked": "2026-11-28"
+  },
+  "tapzuhrqpas.com": {
+   "created": "2026-09-16",
+   "checked": "2026-11-28"
+  },
+  "htx.com": {
+   "created": "1995-12-13",
+   "checked": "2026-11-28"
   }
  },
  "commands_version": 4,
@@ -830,8 +963,8 @@
   "kucoincom": {
    "up": 0,
    "down": 0,
-   "alerts": 1,
-   "last": "2026-11-27"
+   "alerts": 2,
+   "last": "2026-11-28"
   },
   "zoomexofficial": {
    "up": 0,
@@ -1004,8 +1137,8 @@
   "meta_starx": {
    "up": 0,
    "down": 0,
-   "alerts": 1,
-   "last": "2026-11-27"
+   "alerts": 2,
+   "last": "2026-11-28"
   },
   "iwk331": {
    "up": 0,
@@ -1156,6 +1289,78 @@
    "down": 0,
    "alerts": 1,
    "last": "2026-11-27"
+  },
+  "mjjwiki": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "candacej47942": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "yujuhao": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "huobiglobal": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "yanyan_nsy": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "mark87390491": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "ji_shao4138": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "ldld888888": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "horkew_snake": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "cloudi66": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "masumonchain": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "omaroairdrop": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
   }
  },
  "watched": [],
@@ -2736,6 +2941,303 @@
    },
    "in_digest": false,
    "rescued": false
+  },
+  "x_2126450405588537726": {
+   "date": "2026-11-28",
+   "summary": "Pretty interesting campaign from @popdex_  🔥\n\nThey’re putting together $17K in USDT rewards, includi",
+   "reason": "Leaderboard and referral pool rewards are not guaranteed per-user payouts; prize pool distribution is unclear.",
+   "project": "popdex",
+   "tier": "cash",
+   "amount": "$17,000.00",
+   "post": {
+    "id": "x_2126450405588537726",
+    "title": "Pretty interesting campaign from @popdex_  🔥\n\nThey’re putting together $17K in USDT rewards, includi",
+    "body": "Pretty interesting campaign from @popdex_  🔥\n\nThey’re putting together $17K in USDT rewards, including a $12K leaderboard for first-time traders, plus 2,000 bonus PopTickets for early participants. There’s also a $5K referral pool open to existing users, so both new traders and the community have a chance to benefit.\n\nTrade to earn PopTickets, climb the leaderboard or invite friends. Definitely worth checking out if you’ve been looking to explore PopDEX\n👇\nhttps://t.co/RJoftj1pZz",
+    "url": "https://x.com/Mahdi00100/status/2126450405588537726",
+    "permalink": "https://x.com/Mahdi00100/status/2126450405588537726",
+    "author": "Mahdi00100",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://popdex.org/1125_new_user"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126464664775344490": {
+   "date": "2026-11-28",
+   "summary": "Create account, go to Airdrop section, complete tasks to earn PEX (share of 5M pool, FCFS).",
+   "reason": "Pool-based airdrop (5M total shared across all users, FCFS) with no stated per-user reward — not a fixed 'cash' amount.",
+   "project": "pexel",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126464664775344490",
+    "title": "🔥 PEXEL Exchange Instant Airdrop \n🎁Reward PEX Token FCFS\n\n✅Join Link: https://t.co/Xm8uiIkXhI\n\n✅Crea",
+    "body": "🔥 PEXEL Exchange Instant Airdrop \n🎁Reward PEX Token FCFS\n\n✅Join Link: https://t.co/Xm8uiIkXhI\n\n✅Create your account.\n✅Go to the Airdrop section.\n✅Complete tasks and earn PEX. https://t.co/dppXEQlThc",
+    "url": "https://x.com/siam93414/status/2126464664775344490",
+    "permalink": "https://x.com/siam93414/status/2126464664775344490",
+    "author": "siam93414",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://pexelexchange.com/register?ref=97755903"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126537820613509154": {
+   "date": "2026-11-28",
+   "summary": "$5 USDT random draw airdrop with task completion.",
+   "reason": "Random winners prize pool, not guaranteed per-user reward; raffle structure makes it not 'cash'.",
+   "project": "12playlive",
+   "tier": "cash",
+   "amount": "$5.00",
+   "post": {
+    "id": "x_2126537820613509154",
+    "title": "🔈 12PlayLive Airdrop Is LIVE 🪂\n\n💰 Reward: $5 USDT\n🎁 Random users will receive rewards!\n\n🔗 Join Here:",
+    "body": "🔈 12PlayLive Airdrop Is LIVE 🪂\n\n💰 Reward: $5 USDT\n🎁 Random users will receive rewards!\n\n🔗 Join Here:\nhttps://t.co/Jq3NrMMFPq\n\n✅ Join the airdrop bot\n✅ Complete all available tasks\n✅ Submit your BSC wallet address\n✅ Done!\n\n🎯 Simple tasks, free participation and a chance to win $5 USDT.\n\nGood luck, everyone ❤️\n\nDYOR & Stay Active! 🚀",
+    "url": "https://x.com/SamiTrades_/status/2126537820613509154",
+    "permalink": "https://x.com/SamiTrades_/status/2126537820613509154",
+    "author": "SamiTrades_",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://t.me/TwelvePlayLiveAirdropBo"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126492536168480890": {
+   "date": "2026-11-28",
+   "summary": "Join MBTC airdrop with referral code; no reward amount stated.",
+   "reason": "No stated reward amount or concrete steps; personal referral promotion without campaign details.",
+   "project": "memebitcoin",
+   "tier": "cash",
+   "amount": "1096361BTC",
+   "post": {
+    "id": "x_2126492536168480890",
+    "title": "Memebitcoin (MBTC) is Airdrop is live, Join memebitcoin (MBTC) today with my referral code: zk4zprg8",
+    "body": "Memebitcoin (MBTC) is Airdrop is live, Join memebitcoin (MBTC) today with my referral code: zk4zprg8 @1096361BTC Airdrop still going strong and solid, Don't forget to join the MBTC family using my referral code above. #mbtc #MemeBitcoin #memebitcoin #MBTC https://t.co/LsDKOmiPcW",
+    "url": "https://x.com/biggest_hater3/status/2126492536168480890",
+    "permalink": "https://x.com/biggest_hater3/status/2126492536168480890",
+    "author": "biggest_hater3",
+    "source": "x",
+    "lang": "en",
+    "links": []
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126491201973244199": {
+   "date": "2026-11-28",
+   "summary": "Kukdoo airdrop with referral code; details missing.",
+   "reason": "No reward amount or steps stated; vague airdrop with only a referral code.",
+   "project": "kukdoo",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126491201973244199",
+    "title": "✅ Kukdoo Airdrop is Live 🔥🔥\n\nUse my code K3S0U0KH 🐣\nhttps://t.co/ReWCp0PHO6",
+    "body": "✅ Kukdoo Airdrop is Live 🔥🔥\n\nUse my code K3S0U0KH 🐣\nhttps://t.co/ReWCp0PHO6",
+    "url": "https://x.com/erfanbilla/status/2126491201973244199",
+    "permalink": "https://x.com/erfanbilla/status/2126491201973244199",
+    "author": "erfanbilla",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://kukdoo.xyz/r/K3S0U0KH/5tiip"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126490563017113718": {
+   "date": "2026-11-28",
+   "summary": "$0.50–$10 USDT + eggs, first 25,000 users, Telegram bot, free.",
+   "reason": "First-come-first-served raffle with limited slots and variable reward ($0.50–$10); not guaranteed per-user payout.",
+   "project": "kukdoo",
+   "tier": "cash",
+   "amount": "$1,250,000.00",
+   "post": {
+    "id": "x_2126490563017113718",
+    "title": "🚨 Kukdoo Telegram Bot Airdrop Is Live 🐔💰\n\n@Kukdooobot closed a $1.25M Seed Round backed by @Zerone_V",
+    "body": "🚨 Kukdoo Telegram Bot Airdrop Is Live 🐔💰\n\n@Kukdooobot closed a $1.25M Seed Round backed by @Zerone_Venture\n\n🎁 Rewards: $0.50 – $10 USDT + Eggs\n👥 Limited: First 25,000 users (FCFS)\n🆓 Cost: Completely FREE \n\n📌 Join Link- https://t.co/FUcZAOR3An\n\nComplete All Social Task",
+    "url": "https://x.com/erfanbilla/status/2126490563017113718",
+    "permalink": "https://x.com/erfanbilla/status/2126490563017113718",
+    "author": "erfanbilla",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://t.me/kukdooobot?start=8224800353"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126440186288669047": {
+   "date": "2026-11-28",
+   "summary": "$LONG airdrop mining, tokens locked until TGE, daily mining after registration and tasks.",
+   "reason": "Tokens locked to TGE with no stated amount or instant value; speculative airdrop mining with no concrete payout.",
+   "project": "longyunetwork",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126440186288669047",
+    "title": "AIRDROP NEW \n $LONG (locked to TGE) obtained through mining.\n\n➡️ Register: https://t.co/khrQCPsice\n➖",
+    "body": "AIRDROP NEW \n $LONG (locked to TGE) obtained through mining.\n\n➡️ Register: https://t.co/khrQCPsice\n➖ Enter code: U9N8Z2QX\n➖ Log in with your X account\n➖ Create a wallet and keep the key\n➖ Complete the task to get the bonus\n➖ Start mining every 24 hours\n@LongyuNetwork",
+    "url": "https://x.com/ArizkyArshaka/status/2126440186288669047",
+    "permalink": "https://x.com/ArizkyArshaka/status/2126440186288669047",
+    "author": "ArizkyArshaka",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://mine.longyu.network/?invite=U9N8Z2QX"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126517002076303732": {
+   "date": "2026-11-28",
+   "summary": "Daily education missions and commodity price learning; earn sats, withdrawal method unclear.",
+   "reason": "Learn-and-earn pitch without stated reward amount or how sats convert to withdrawable cash.",
+   "project": "satsman",
+   "tier": "cash",
+   "amount": "$50.00",
+   "post": {
+    "id": "x_2126517002076303732",
+    "title": "A pair of Jeans costs $50.00, which is 83,135 sats; Satsman daily missions keep you acquainted with ",
+    "body": "A pair of Jeans costs $50.00, which is 83,135 sats; Satsman daily missions keep you acquainted with commodity prices in Bitcoin. On the platform, you learn and earn daily. You can join here free 👇\n\nhttps://t.co/4HFBTZq8XW\n#satsman #bitcoin #education #sats https://t.co/ae18dJTiJV",
+    "url": "https://x.com/sensesolar/status/2126517002076303732",
+    "permalink": "https://x.com/sensesolar/status/2126517002076303732",
+    "author": "sensesolar",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://satsman.com/?ref=senses18"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126532505507713228": {
+   "date": "2026-11-28",
+   "summary": "Mystery box invite campaign, $0.42–$50 USDT or items, first come first served.",
+   "reason": "Vague reward range ($1–$50) and unclear project identity; no clear steps or project name provided.",
+   "project": "",
+   "tier": "cash",
+   "amount": "$50.00",
+   "post": {
+    "id": "x_2126532505507713228",
+    "title": "First box: $0.42 USDT. Second box: eggs. I'll take it.\n\nInvite code K97I2Y5. https://t.co/VwPcSXV4Aq",
+    "body": "First box: $0.42 USDT. Second box: eggs. I'll take it.\n\nInvite code K97I2Y5. https://t.co/VwPcSXV4Aq \nfast join first come first served\nget into 1$ to 50$",
+    "url": "https://x.com/Suraj38684722/status/2126532505507713228",
+    "permalink": "https://x.com/Suraj38684722/status/2126532505507713228",
+    "author": "Suraj38684722",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://kukdoo.xyz/r/K97I2Y5/2tin9"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126413276678328508": {
+   "date": "2026-11-28",
+   "summary": "REAL WAYS TO EARN ON POPDEX A CLOSER LOOK AT THE VAULT AND NEW TRADER REWARDS👇\n\n🪢https://t.co/PWZc6S",
+   "reason": "Leaderboard pool ($12k top 5) and ticket matching (capped 2,000) are not guaranteed per-user cash; speculative airdrop with no concrete toke",
+   "project": "",
+   "tier": "cash",
+   "amount": "$11,350,000,000.00",
+   "post": {
+    "id": "x_2126413276678328508",
+    "title": "REAL WAYS TO EARN ON POPDEX A CLOSER LOOK AT THE VAULT AND NEW TRADER REWARDS👇\n\n🪢https://t.co/PWZc6S",
+    "body": "REAL WAYS TO EARN ON POPDEX A CLOSER LOOK AT THE VAULT AND NEW TRADER REWARDS👇\n\n🪢https://t.co/PWZc6Shy5Q\nCODE: POPMOON\n\n🚀 Lately I’ve been actively trading on @popdex_ and testing the options the platform offers with my own experience. I’ve had the chance to evaluate both by providing liquidity and by trading.\n\n💎 On the Vault side, it’s currently showing around 26.3% APR. There’s no performance cut or management fee, the yield goes straight to depositors, and the source is entirely from real trading on the platform. The lock-up period is short (about 4 days) and you need to size the risk like any other yield strategy; returns can drop in weeks when traders win big.\n\n🔥 New Trader Campaign Continues Until December 6\n\n• $17,000 USDT + 2,000 Pop Ticket pool\n• Early participants get every earned ticket matched 1:1 (first come first served, maximum 2,000 bonus)\n• $12,000 leaderboard, top 5 each receive $1,000\n• Every trade also earns MegaPop tickets\n\n📊 Current Metrics \n• 24-hour trading volume around $220-230 million\n• Last 7 days $3.36 billion\n• Last 30 days $9.01 billion\n• Total volume has surpassed $11.35 billion\n• TVL around $85 million\n• Open interest around $118 million\n\n⚖️ Farming Drop Situation\n\nThere’s still no points system or token distribution. Value is returned as real USDT by allocating part of trading fees (around 40%) to MegaPop weekly draws and campaigns. Last week one arb team alone earned around $131,000. This is a real volume and contribution-focused model rather than pure points farming. Volume is growing organically, open interest continues to increase, and RWA markets add extra depth.\n\n✅ General Assessment\n\nThere are clean options for those who want to both deposit and trade. The Vault works well on the passive side, while the campaign gives extra motivation to active traders. Evaluating by managing risks looks reasonable. I’ll keep following the latest updates on @popdex_",
+    "url": "https://x.com/Kaitor_eth/status/2126413276678328508",
+    "permalink": "https://x.com/Kaitor_eth/status/2126413276678328508",
+    "author": "Kaitor_eth",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://app.popdex.xyz/en/tools/app-launch?referralCode=POPMOON"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126542023452967258": {
+   "date": "2026-11-28",
+   "summary": "大家总聊“机构进场”和“传统资金上链”，但真换位思考一下，大资金和企业为什么迟迟不敢把核心业务搬到公链上？\n\n原因其实很现实：公链太透明了\n\n对散户来说，链上透明能防作恶；但对机构和企业来说，透明就意",
+   "reason": "Educational commentary on privacy finance with vague mention of Primus XP tasks; no concrete steps, no stated reward amount, no live claim d",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126542023452967258",
+    "title": "大家总聊“机构进场”和“传统资金上链”，但真换位思考一下，大资金和企业为什么迟迟不敢把核心业务搬到公链上？\n\n原因其实很现实：公链太透明了\n\n对散户来说，链上透明能防作恶；但对机构和企业来说，透明就意",
+    "body": "大家总聊“机构进场”和“传统资金上链”，但真换位思考一下，大资金和企业为什么迟迟不敢把核心业务搬到公链上？\n\n原因其实很现实：公链太透明了\n\n对散户来说，链上透明能防作恶；但对机构和企业来说，透明就意味着“裸奔”。账户里有多少底牌、什么时候调仓、交易策略是什么，甚至给员工发多少工资，只要上链，竞争对手和全网都能扒得一清二楚。\n\n可如果为了隐私，专门跑去用完全匿名的独立隐私链，又会撞上另一个死结：流动性割裂，而且没法向监管或对手方自证合规。\n\n但当你研究@primus_labs之后，我觉得他们切入的角度挺实在的——不另起炉灶造新链，而是直接架在现有的链上金融基础设施之上，把“隐私”和“验证”这两件事合在一起做：\n\n该藏的藏住（Confidentiality）：在现有公链轨道上保护敏感信息，让持仓、转账金额和资金策略在加密状态下照常流转，不用暴露在阳光下。\n该证的证清（Verification）：就算财务数据、资产证明或资质原本存在链下，也能用密码学（如 zkTLS）向链上证明“它是真的”，同时不泄露背后的具体明细。\n\n说白了，不是为了藏而藏，而是做到“既保密，又可验证”。\n\n现在这套能力在 BNB 生态里已经能看到很具体的落地，比如保密金库、加密资产管理、企业链上隐私发薪等等。补上这块拼图之后，机构和企业不用迁移流动性，就能在熟悉的环境里合规、体面地开展链上金融业务。\n\n如果你也在关注隐私金融和机构基建这条线，可以顺手去做一些 Primus 的 XP 任务，因为可参与的方向本身不多，所以这种任务获得未来空投的概率还是蛮大的，每周都会更新：https://t.co/d1DOO1lRja",
+    "url": "https://x.com/aling2000520/status/2126542023452967258",
+    "permalink": "https://x.com/aling2000520/status/2126542023452967258",
+    "author": "aling2000520",
+    "source": "x",
+    "lang": "zh",
+    "links": [
+     "https://s.kaito.ai/dOGdKgz"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126490028725744029": {
+   "date": "2026-11-28",
+   "summary": "PEXEL exchange: new user tasks (5 PEX per task, 15 PEX per referral), 5M PEX pool, claims direct to wallet.",
+   "reason": "Vague new exchange referral with claimed 5M PEX pool but no specific per-user reward stated; resembles disliked low-payout task-based offer.",
+   "project": "pexel",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126490028725744029",
+    "title": "有个能直接提现到钱包的项目，兄弟们 👉 PEXEL！  这是个新交易所，正在给新用户空投高达500万枚PEX。  • 每完成一项任务可获得5枚PEX • 每成功邀请一位好友可获得15枚PEX  新用户",
+    "body": "有个能直接提现到钱包的项目，兄弟们 👉 PEXEL！  这是个新交易所，正在给新用户空投高达500万枚PEX。  • 每完成一项任务可获得5枚PEX • 每成功邀请一位好友可获得15枚PEX  新用户只需完成5项社交媒体任务，就能拿到25枚PEX。超级简单。\n\nhttps://t.co/gKEvwlIy9W",
+    "url": "https://x.com/jalen_dt/status/2126490028725744029",
+    "permalink": "https://x.com/jalen_dt/status/2126490028725744029",
+    "author": "jalen_dt",
+    "source": "x",
+    "lang": "zh",
+    "links": [
+     "https://pexelexchange.com/register?ref=83457027"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126525237936398358": {
+   "date": "2026-11-28",
+   "summary": "每次往别人钱包转一笔钱，或者在链上领一笔工资，你有没有下意识担心过对方顺着地址点进区块浏览器，把你的持仓底细和资金往来翻个底朝天？\n\n这个平时用钱包时一闪而过的顾虑，恰恰是公链大规模走向商业支付和机构",
+   "reason": "Analysis article about Primus Labs' privacy tech and business progress; mentions early-stage protocol fees and undefined tokenomics, no conc",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "$5,213.00",
+   "post": {
+    "id": "x_2126525237936398358",
+    "title": "每次往别人钱包转一笔钱，或者在链上领一笔工资，你有没有下意识担心过对方顺着地址点进区块浏览器，把你的持仓底细和资金往来翻个底朝天？\n\n这个平时用钱包时一闪而过的顾虑，恰恰是公链大规模走向商业支付和机构",
+    "body": "每次往别人钱包转一笔钱，或者在链上领一笔工资，你有没有下意识担心过对方顺着地址点进区块浏览器，把你的持仓底细和资金往来翻个底朝天？\n\n这个平时用钱包时一闪而过的顾虑，恰恰是公链大规模走向商业支付和机构资金的最大死结。\n\n为了解决“链上裸奔”，过去行业走过不少极端路线：要么为了隐私彻底切断交易关联，结果连正常的合规审计和资金来源证明都做不了；要么干脆继续透明，让大资金和企业望而却步。\n\nPrimus Labs在隐私赛道它换了一个思路——不追求让链上交易彻底“隐身”，而是把保密做进数据层，只把具体金额和资产状态锁进密文里。\n\n在具体实现上，它把两项密码学技术拼成了一个闭环：\n一边用 zkTLS 充当可信搬运工，让用户不用交出账号密码或依赖中心化接口，就能把银行流水、交易所记录等链下数据生成零知识证明带到链上；\n另一边则引入 FHE（全同态加密） 和自研的 AutoHoG 加速引擎，让合约直接在加密状态下完成加减算账，计算节点全程看不到明文金额，只有经过访问层授权才能按规则披露。\n\n这种路线的好处是既拿到了 Dispersion VC、VanEck 以及 YZi Labs 累计 700 万美元的押注，也没有停留在白皮书阶段——目前它的声誉验证层 AlphaNet 已经在 Base 跑通，而主打加密资产存取和保密转账的 Confidential Vault 也落地到了 BNB Chain。\n\n不过，当一套技术方案从概念演示走向真实业务，真正的考验才刚刚开始。\n顺着它的落地进度往下看，有几个现实瓶颈依然绕不开：\n\n▸ 真实商业买单规模还很早期。虽然随着产品上线，DefiLlama 记录的 Primus 近 30 天协议费用已经涨到了 5,213 美元左右，比最初几百美元的冷启动期有了明显起色，但和千万级融资背景相比，目前进来的大多还是早期体验用户，高频机构资金和大规模 DeFi 协议的真实付费需求还没有完全跑出来。\n▸ 密文计算的性能与授权边界仍需验证。全同态加密向来面临算力开销大、延迟高的工程难题，AutoHoG 在复杂合约下的实际承载能力还要经受高并发检验；同时，既然保留了“受控披露”的口子，谁来掌握解密权限、访问记录如何防止被滥用，也决定了机构到底敢不敢把核心账本放上去。\n▸ 代币预期与激励机制尚未明牌。虽然基金会文档已经明确了原生代币 PRIM 的定位，但官方至今没有公布具体的 TGE 时间表和空投分配细则，现阶段去交互 AlphaNet 或存钱进资金池，本质上依然是在用时间或资金成本博弈不确定的早期预期。\n\n说到底，把金额加密、同时留出合规披露通道，确实比非黑即白的“全透明”或“全匿名”更贴近真实商业世界的需求。\n\n但决定 Primus Labs 能不能真正走出来的，从来不只是密码学架构有多漂亮，而是接下来几个月里，它的协议费用能不能摆脱空投预期驱动、靠真实保密转账持续滚大。\n\n👉👉https://t.co/HqJJILssNC",
+    "url": "https://x.com/ldld888888/status/2126525237936398358",
+    "permalink": "https://x.com/ldld888888/status/2126525237936398358",
+    "author": "ldld888888",
+    "source": "x",
+    "lang": "zh",
+    "links": [
+     "https://s.kaito.ai/NadPuD1"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
   }
  },
  "rescue_queue": [],
@@ -2901,6 +3403,41 @@
    "status": "unclear",
    "evidence": "couldn't read wenwallet.ai's terms — check manually",
    "checked": "2026-11-27"
+  },
+  "bsmkweb.net": {
+   "status": "unclear",
+   "evidence": "couldn't read bsmkweb.net's terms — check manually",
+   "checked": "2026-11-28"
+  },
+  "gateport.business": {
+   "status": "unclear",
+   "evidence": "couldn't read gateport.business's terms — check manually",
+   "checked": "2026-11-28"
+  },
+  "typeform.com": {
+   "status": "unclear",
+   "evidence": "couldn't read typeform.com's terms — check manually",
+   "checked": "2026-11-28"
+  },
+  "htx.com": {
+   "status": "unclear",
+   "evidence": "couldn't read htx.com's terms — check manually",
+   "checked": "2026-11-28"
+  },
+  "conso.xyz": {
+   "status": "unclear",
+   "evidence": "couldn't read conso.xyz's terms — check manually",
+   "checked": "2026-11-28"
+  },
+  "tapzuhrqpas.com": {
+   "status": "unclear",
+   "evidence": "couldn't read tapzuhrqpas.com's terms — check manually",
+   "checked": "2026-11-28"
+  },
+  "smart-events.xyz": {
+   "status": "unclear",
+   "evidence": "Excerpts describe technical participation steps but contain no geographic eligibility or country restriction information. (smart-events.xyz)",
+   "checked": "2026-11-28"
   }
  }
 }
