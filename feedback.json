@@ -761,10 +761,10 @@
   },
   "2026-11-28": {
    "alerts": 20,
-   "scanned": 503,
-   "runs": 6,
+   "scanned": 509,
+   "runs": 7,
    "ai": 0.140827,
-   "tweets": 406
+   "tweets": 412
   }
  },
  "history": [
