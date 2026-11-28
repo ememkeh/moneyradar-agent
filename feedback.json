@@ -723,6 +723,20 @@
    "project": "pexel",
    "summary": "PEXEL Exchange: deposit $10 get $10 bonus, deposit $25 get $25 bonus (first 500 each).",
    "date": "2026-11-28"
+  },
+  "x_2126584739687805323": {
+   "author": "YakusaHL",
+   "source": "x",
+   "project": "canborsa",
+   "summary": "Refer friends to earn 50% trading commission (e.g., $200–$400 per 1M volume).",
+   "date": "2026-11-28"
+  },
+  "x_2126583198499197338": {
+   "author": "weizhenyu12",
+   "source": "x",
+   "project": "okx",
+   "summary": "Use code TMH2W6 for OKX VIP: unlock 400 USDT trading rewards + 40% USDG annual yield.",
+   "date": "2026-11-28"
   }
  },
  "likes": [],
@@ -742,7 +756,7 @@
  },
  "muted": [],
  "spend": {
-  "2026-11": 0.736368
+  "2026-11": 0.774381
  },
  "stats": {
   "2026-11-26": {
@@ -760,11 +774,11 @@
    "tweets": 1377
   },
   "2026-11-28": {
-   "alerts": 20,
-   "scanned": 512,
-   "runs": 8,
-   "ai": 0.140827,
-   "tweets": 415
+   "alerts": 22,
+   "scanned": 654,
+   "runs": 9,
+   "ai": 0.17884,
+   "tweets": 510
   }
  },
  "history": [
@@ -1005,6 +1019,14 @@
   },
   "pump.fun": {
    "created": "2023-09-19",
+   "checked": "2026-11-28"
+  },
+  "canborsa.com": {
+   "created": "2026-04-30",
+   "checked": "2026-11-28"
+  },
+  "oyidl.co": {
+   "created": null,
    "checked": "2026-11-28"
   }
  },
@@ -1443,6 +1465,18 @@
    "last": "2026-11-28"
   },
   "syncthedj": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "yakusahl": {
+   "up": 0,
+   "down": 0,
+   "alerts": 1,
+   "last": "2026-11-28"
+  },
+  "weizhenyu12": {
    "up": 0,
    "down": 0,
    "alerts": 1,
@@ -3528,6 +3562,167 @@
    },
    "in_digest": false,
    "rescued": false
+  },
+  "x_2126590273312698558": {
+   "date": "2026-11-28",
+   "summary": "🔥 Bitbase Thanksgiving Referral Campaign!\n\nInvite friends and earn up to 6 HYPE rewards!\n\n🎁 Total Pr",
+   "reason": "Prize pool split among winners; no guaranteed per-user reward stated.",
+   "project": "",
+   "tier": "cash",
+   "amount": "$5,000.00",
+   "post": {
+    "id": "x_2126590273312698558",
+    "title": "🔥 Bitbase Thanksgiving Referral Campaign!\n\nInvite friends and earn up to 6 HYPE rewards!\n\n🎁 Total Pr",
+    "body": "🔥 Bitbase Thanksgiving Referral Campaign!\n\nInvite friends and earn up to 6 HYPE rewards!\n\n🎁 Total Prize Pool: 16,683 HYPE\n💰 Up to 5 HYPE for inviters\n👥 Up to 1 HYPE for each qualifying friend\n\nRequirements for invited friends:\n➜ Sign up using your referral link\n➜ Maintain a net deposit of ≥100 USDT for 3 consecutive days\n➜ Complete ≥5,000 USDT in valid Futures trading volume\n➜ Complete all tasks within 7 days of registration\n\n📅 Campaign: Nov 26 – Dec 9 (UTC)\n\nInvite friends and earn rewards! 🚀\n\n🔗 https://t.co/5gpRcXBRWU",
+    "url": "https://x.com/vmr888ct/status/2126590273312698558",
+    "permalink": "https://x.com/vmr888ct/status/2126590273312698558",
+    "author": "vmr888ct",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://www.scghqw.com/landing-page/campaign-thanksgiving-airdrop?ref=TQM3RL"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126601115940626445": {
+   "date": "2026-11-28",
+   "summary": "🚀 Unveils KOR Protocol’s $KOR Rewards\n\nCelebrating early creators; KOR’s base tech now rivals $SOL.\n",
+   "reason": "Vague claim steps and no details on eligibility, timeline, or exact reward amount.",
+   "project": "",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126601115940626445",
+    "title": "🚀 Unveils KOR Protocol’s $KOR Rewards\n\nCelebrating early creators; KOR’s base tech now rivals $SOL.\n",
+    "body": "🚀 Unveils KOR Protocol’s $KOR Rewards\n\nCelebrating early creators; KOR’s base tech now rivals $SOL.\n\nClaim Guide:\n\n🔓 Allocation open portal\n\n🔗 Drop connect wallet\n\n💰 Pool claim $KOR\n\n🌐 https://t.co/lLQDjYABNF\n\n#GameFi #RWA #Airdrop https://t.co/v0GhMofZCr",
+    "url": "https://x.com/MallG2x0/status/2126601115940626445",
+    "permalink": "https://x.com/MallG2x0/status/2126601115940626445",
+    "author": "MallG2x0",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://tr.ee/kor"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126589518455132667": {
+   "date": "2026-11-28",
+   "summary": "$FISH airdrop, $130K pool by rank, tasks + spin; payment Dec 31.",
+   "reason": "Leaderboard/rank-based prize pool ($130K split), not guaranteed per-user reward; vague 'spin and earn points' with no stated conversion.",
+   "project": "fish",
+   "tier": "cash",
+   "amount": "$130,000.00",
+   "post": {
+    "id": "x_2126589518455132667",
+    "title": "FREE Airdrop : potential $5000 🪂\n\n$FISH is distributing $130K in \n\n21.66% of $FISH supply is allocat",
+    "body": "FREE Airdrop : potential $5000 🪂\n\n$FISH is distributing $130K in \n\n21.66% of $FISH supply is allocated to community rewards.\n\nTo get started \ngo to  https://t.co/bP1Jr9dFuX\nRegister \nconnect Wallet \nComplete tasks\n*Spin and earn points\n\n$FISH is paid on 31 Dec, once, by rank. https://t.co/zIAc3glY2d",
+    "url": "https://x.com/Barry_white999/status/2126589518455132667",
+    "permalink": "https://x.com/Barry_white999/status/2126589518455132667",
+    "author": "Barry_white999",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://t.me/FEEDonTONbot?startapp=r_iZfLTrqpDsEN"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126585176037736905": {
+   "date": "2026-11-28",
+   "summary": "$FISH airdrop, $130K pool by rank, tasks + spin; payment Dec 31.",
+   "reason": "Leaderboard/rank-based prize pool ($130K split), not guaranteed per-user reward; vague 'spin and earn points' with no stated conversion.",
+   "project": "fish",
+   "tier": "cash",
+   "amount": "$130,000.00",
+   "post": {
+    "id": "x_2126585176037736905",
+    "title": "FREE Airdrop : potential $1000 \n\n$FISH is distributing $130K in \n\n21.66% of $FISH supply is allocate",
+    "body": "FREE Airdrop : potential $1000 \n\n$FISH is distributing $130K in \n\n21.66% of $FISH supply is allocated to community rewards.\n\nTo get started \ngo to  https://t.co/NH2KqB8Ysp\nRegister \nconnect Wallet \nComplete tasks\nSpin and earn points\n\n$FISH is paid on 31 Dec, once, by rank https://t.co/fWJdktig2L",
+    "url": "https://x.com/SteadyFuel/status/2126585176037736905",
+    "permalink": "https://x.com/SteadyFuel/status/2126585176037736905",
+    "author": "SteadyFuel",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://t.me/FEEDonTONbot?startapp=gift-4gtsRSGV167Tb2b39tMrjw"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126581666756128935": {
+   "date": "2026-11-28",
+   "summary": "TonFish Feed Event, tasks + spin + leaderboard, potential $1–$500, no fixed reward.",
+   "reason": "Potential rewards $1–$500 via leaderboard/spin; no guaranteed per-user amount or stated conversion from points.",
+   "project": "tonfish",
+   "tier": "cash",
+   "amount": "$500.00",
+   "post": {
+    "id": "x_2126581666756128935",
+    "title": "🐟 TonFish Feed Event is LIVE!\n\nPotential rewards: $1–$500 💰\nComplete tasks, spin, boost your Citizen",
+    "body": "🐟 TonFish Feed Event is LIVE!\n\nPotential rewards: $1–$500 💰\nComplete tasks, spin, boost your Citizen Score &amp; climb the leaderboard!\n\nFull details &amp; participation guide 👇\nhttps://t.co/CXih8g7DBI\n\n#TonFish #TON #Airdrop https://t.co/uDQAydoYs9",
+    "url": "https://x.com/riaz_btc/status/2126581666756128935",
+    "permalink": "https://x.com/riaz_btc/status/2126581666756128935",
+    "author": "riaz_btc",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://t.me/earningmine01/5624"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126574369845527014": {
+   "date": "2026-11-28",
+   "summary": "MMIX Quest Hub: complete tasks, earn points toward airdrop eligibility; not live yet.",
+   "reason": "MMIX Quest Hub is speculative points farming ('eligibility for upcoming airdrop') with no stated conversion or confirmed live distribution d",
+   "project": "mmix",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126574369845527014",
+    "title": "I’ve been thinking about how much of the real world is still disconnected from blockchain.\n\nBusiness",
+    "body": "I’ve been thinking about how much of the real world is still disconnected from blockchain.\n\nBusinesses have assets, customers, payment systems and loyalty programmes, but moving these activities onchain isn’t always as simple as deploying a smart contract.\n\nThere are questions around identity, compliance, who can issue assets and who is allowed to transfer them.\n\nThis is why I’m urging you to pay attention to @MMIX_io \n\nMMIX is building a permissioned, EVM-compatible Layer 1 designed to connect traditional businesses with blockchain technology through verified participants and built-in compliance.\n\nIts vision covers several sectors, including RWA tokenization, financial services, eCommerce, DeFi, hospitality and sport.\n\nThere’s also the MMIX Quest Hub, where community members can explore available quests, complete tasks and earn points while working toward eligibility for upcoming airdrop and NFT opportunities. Of course, any rewards and eligibility are subject to official campaign rules.\n\nBringing real businesses, assets and everyday services onchain is a big opportunity, and I believe MMIX is building towards something worth paying attention to.\n\nExplore MMIX and check out the available quests!\nMy re link: https://t.co/jzk0ZAHMan",
+    "url": "https://x.com/dee_nftarmy/status/2126574369845527014",
+    "permalink": "https://x.com/dee_nftarmy/status/2126574369845527014",
+    "author": "dee_nftarmy",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://hub.mmix.io/points?referral_code=Y9VYNF2G"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
+  },
+  "x_2126577118054330875": {
+   "date": "2026-11-28",
+   "summary": "Good project but coin liquidity and price very low.  \nPEXEL EXCHANGE Airdrop is live! Earn PEX rewar",
+   "reason": "Vague reward amount ('PEX rewards') with no stated payout per user; resembles rejected 35 PEX post.",
+   "project": "pexelexchange",
+   "tier": "airdrop",
+   "amount": "",
+   "post": {
+    "id": "x_2126577118054330875",
+    "title": "Good project but coin liquidity and price very low.  \nPEXEL EXCHANGE Airdrop is live! Earn PEX rewar",
+    "body": "Good project but coin liquidity and price very low.  \nPEXEL EXCHANGE Airdrop is live! Earn PEX rewards.\n\nWithdraw PEX instantly to your Web3 wallet.\n\nSign up: https://t.co/lEtlmsLBww\n1. Sign up 2. Verify email 3. Complete airdrop tasks\n\n#PEXELExchange #PEX #Airdrop #Web3 #Trading",
+    "url": "https://x.com/Shiponahme/status/2126577118054330875",
+    "permalink": "https://x.com/Shiponahme/status/2126577118054330875",
+    "author": "Shiponahme",
+    "source": "x",
+    "lang": "en",
+    "links": [
+     "https://pexelexchange.com/register?ref=47683268"
+    ]
+   },
+   "in_digest": false,
+   "rescued": false
   }
  },
  "rescue_queue": [],
@@ -3737,6 +3932,16 @@
   "dappos.com": {
    "status": "unclear",
    "evidence": "couldn't read dappos.com's terms — check manually",
+   "checked": "2026-11-28"
+  },
+  "canborsa.com": {
+   "status": "unclear",
+   "evidence": "Nigeria not explicitly named. Restricted Territories defined as 'jurisdictions subject to applicable economic and trade sanctions' but no sp (canborsa.com)",
+   "checked": "2026-11-28"
+  },
+  "oyidl.co": {
+   "status": "unclear",
+   "evidence": "couldn't read oyidl.co's terms — check manually",
    "checked": "2026-11-28"
   }
  }
